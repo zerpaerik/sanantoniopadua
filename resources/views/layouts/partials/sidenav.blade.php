@@ -1,5 +1,5 @@
 @if(\Auth::user()->role_id == 4)
-<li class="dropdown">
+<li class="dropdown" style="background: #790D2A;">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-inbox"></i>
     <span class="hidden-xs">Archivos</span>
@@ -32,7 +32,7 @@
   </ul>
 </li>
 
-<li class="dropdown">
+<li class="dropdown" style="background: #790D2A;">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-refresh"></i>
     <span class="hidden-xs">Existencias</span>
@@ -114,7 +114,7 @@
   </ul>
 </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Movimientos</span>
@@ -146,7 +146,7 @@
     </ul>
   </li>
 
-   <li class="dropdown">
+   <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Comisiones por Pagar</span>
@@ -166,7 +166,7 @@
     </ul>
   </li>
 
-   <li class="dropdown">
+   <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Comisiones Pagadas</span>
@@ -187,7 +187,7 @@
     </ul>
   </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Consultas</span>
@@ -210,7 +210,7 @@
       </li>              
     </ul>
   </li>
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Programaciones</span>
@@ -228,7 +228,7 @@
     </ul>
   </li>
 
-    <li class="dropdown">
+    <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs"> Control de Sesiones</span>
@@ -244,7 +244,7 @@
     </ul>
   </li>
 
-   <li class="dropdown">
+   <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-bell"></i>
       <span class="hidden-xs">Métodos Anticonceptivos</span>
@@ -259,7 +259,7 @@
       </li>           
     </ul>
   </li>
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Resultados</span>
@@ -281,7 +281,7 @@
   </li>
 
 
-    <li class="dropdown">
+    <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-truck"></i>
       <span class="hidden-xs">Visitadores</span>
@@ -299,7 +299,7 @@
     </ul>
   </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Reportes</span>
@@ -335,7 +335,7 @@
     </ul>
   </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-cog"></i>
       <span class="hidden-xs">Administración</span>
@@ -362,7 +362,7 @@
     </ul>
   </li>
  @elseif(\Auth::user()->role_id == 5)
- <li class="dropdown">
+ <li class="dropdown" style="background: #790D2A;">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-inbox"></i>
     <span class="hidden-xs">Archivos</span>
@@ -395,7 +395,7 @@
   </ul>
 </li>
 
-<li class="dropdown">
+<li class="dropdown" style="background: #790D2A;">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-refresh"></i>
     <span class="hidden-xs">Existencias</span>
@@ -478,7 +478,7 @@
   </ul>
 </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Movimientos</span>
@@ -507,7 +507,7 @@
     </ul>
   </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Comisiones por Pagar</span>
@@ -527,7 +527,7 @@
     </ul>
   </li>
 
-   <li class="dropdown">
+   <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Comisiones Pagadas</span>
@@ -548,7 +548,7 @@
     </ul>
   </li>
 
-<li class="dropdown">
+<li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Consultas</span>
@@ -571,7 +571,7 @@
       </li>              
     </ul>
   </li>
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Programaciones</span>
@@ -585,7 +585,7 @@
       </li>                  
     </ul>
   </li>
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs"> Control de Sesiones</span>
@@ -600,7 +600,7 @@
       
     </ul>
   </li>
-   <li class="dropdown">
+   <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-bell"></i>
       <span class="hidden-xs">Métodos Anticonceptivos</span>
@@ -615,7 +615,7 @@
       </li>           
     </ul>
   </li>
- <li class="dropdown">
+ <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Resultados</span>
@@ -637,7 +637,7 @@
   </li>
  
 
-    <li class="dropdown">
+    <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-truck"></i>
       <span class="hidden-xs">Visitadores</span>
@@ -655,7 +655,7 @@
     </ul>
   </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Reportes</span>
@@ -687,7 +687,7 @@
     </ul>
   </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-cog"></i>
       <span class="hidden-xs">Administración</span>
@@ -718,7 +718,7 @@
   
  @elseif(\Auth::user()->role_id == 6)
  
- <li class="dropdown">
+ <li class="dropdown" style="background: #790D2A;">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-inbox"></i>
     <span class="hidden-xs">Archivos</span>
@@ -739,7 +739,7 @@
   </ul>
 </li>
 
-<li class="dropdown">
+<li class="dropdown" style="background: #790D2A;">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-refresh"></i>
     <span class="hidden-xs">Existencias</span>
@@ -781,7 +781,7 @@
 </li>
 
 
- <li class="dropdown">
+ <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Movimientos</span>
@@ -808,7 +808,8 @@
     </ul>
   </li>
   
-<li class="dropdown">
+ <li class="dropdown" style="background: #790D2A;">
+<li class="dropdown" >
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Consultas</span>
@@ -831,7 +832,7 @@
       </li>              
     </ul>
   </li>
-  <li class="dropdown">
+ <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-bell"></i>
       <span class="hidden-xs">Métodos Anticonceptivos</span>
@@ -845,7 +846,7 @@
       </li>           
     </ul>
   </li>
-  <li class="dropdown">
+ <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Programaciones</span>
@@ -860,7 +861,7 @@
     </ul>
   </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs"> Control de Sesiones</span>
@@ -876,7 +877,7 @@
     </ul>
   </li>
 
-   <li class="dropdown">
+   <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-bell"></i>
       <span class="hidden-xs">Métodos Anticonceptivos</span>
@@ -891,7 +892,7 @@
       </li>        
     </ul>
   </li>
- <li class="dropdown">
+ <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Resultados</span>
@@ -912,7 +913,7 @@
     </ul>
   </li>
   
-    <li class="dropdown">
+    <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Reportes</span>
@@ -933,7 +934,7 @@
     </ul>
   </li>
 
-      <li class="dropdown">
+      <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-cog"></i>
       <span class="hidden-xs">Administración</span>
@@ -948,7 +949,7 @@
 
  @elseif(\Auth::user()->role_id == 7)
 
- <li class="dropdown">
+ <li class="dropdown"  style="background: #790D2A;">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-refresh"></i>
     <span class="hidden-xs">Existencias</span>
@@ -969,7 +970,7 @@
   </ul>
 </li>
  
-<li class="dropdown">
+<li class="dropdown"  style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Consultas</span>
@@ -992,7 +993,7 @@
       </li>              
     </ul>
   </li>
-  <li class="dropdown">
+  <li class="dropdown"  style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Programaciones</span>
@@ -1007,7 +1008,7 @@
     </ul>
   </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs"> Control de Sesiones</span>
@@ -1023,7 +1024,7 @@
     </ul>
   </li>
 
-   <li class="dropdown">
+   <li class="dropdown"  style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-bell"></i>
       <span class="hidden-xs">Métodos Anticonceptivos</span>
@@ -1037,7 +1038,7 @@
       </li>          
     </ul>
   </li>
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Resultados</span>
@@ -1059,7 +1060,7 @@
   </li>
 
 
-    <li class="dropdown">
+    <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Reportes</span>
@@ -1072,7 +1073,7 @@
     </ul>
   </li>
 
-   <li class="dropdown">
+   <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-cog"></i>
       <span class="hidden-xs">Administración</span>
@@ -1092,7 +1093,7 @@
  
 @elseif(\Auth::user()->role_id == 8)
 
-<li class="dropdown">
+<li class="dropdown"  style="background: #790D2A;">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-inbox"></i>
     <span class="hidden-xs">Archivos</span>
@@ -1110,7 +1111,7 @@
   </ul>
 </li>
 
-  <li class="dropdown">
+  <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-truck"></i>
       <span class="hidden-xs">Visitadores</span>
