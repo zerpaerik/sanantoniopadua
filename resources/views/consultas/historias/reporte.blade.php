@@ -6,8 +6,8 @@
 </head>
 <body>
 
-	<img src="/var/www/html/sanantoniopadua/public/img/logopadua.jpeg"  style="width: 20%;"/>
-	<br><br>
+	<p><strong>SAN ANTONIO DE PADUA -</strong> {{Session::get('sedeName')}}</p>
+	<br>
 	<CENTER><p><strong>HISTORIA CLÍNICA</strong></p></CENTER>
 <br>
 
