@@ -274,14 +274,13 @@
                          <div class="col-sm-12">
 							<select id="el6" multiple="true" name="ap[]" style="width: 350px;">
 							<option value="Ninguno">Ninguno</option>
-							<option value="Alergias">Alergias</option>
-							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
-							<option value="Epilepsia">Epilepsia</option>
-							<option value="Diabetes">Diabetes</option>
-							<option value="Gemelares">Gemelares</option>
-							<option value="Hipertension Arterial">Hipertension Arterial</option>
-							<option value="Neoplasia">Neoplasia</option>
-							<option value="TBC Pulmonar">TBC Pulmonar</option>
+							<option value="Cesarea">Cesarea</option>
+							<option value="Tiroides">Tiroides</option>
+							<option value="Hepatitis">Hepatitis</option>
+							<option value="ITS">ITS</option>
+							<option value="VIH">VIH</option>
+							<option value="TORCH">TORCH</option>
+							<option value="Abortos Habituales">Abortos Habituales</option>
 							<option value="Otro">Otro</option>
 						    </select>
 						</div>
@@ -438,7 +437,7 @@
 							<select id="el12" name="orina">
 							<option value="Normal">Normal</option>
 							<option value="Anormal">Anormal</option>
-						     <option value="No">No se hizO</option>
+						     <option value="No">No se hizo</option>
 						</select>
 
 						<input type="date" name="orinad" style="line-height: 20px">	
@@ -626,13 +625,49 @@
   @endforeach
   </tr>
 
-     <th style="background: #81BEF7;border: 1px solid black;">Perfìl Biofìsico</th>
+     <th style="background: #81BEF7;border: 1px solid black;">Perfil Biofìsico</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->perfil_biofisico}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;border: 1px solid black;">Responsable</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Establecimiento</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->establecimiento_atencion}}</td>
+  @endforeach
+  </tr>
+
+  <th style="background: #81BEF7;border: 1px solid black;">Orina</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->orinap}}</td>
+  @endforeach
+  </tr>
+
+  <th style="background: #81BEF7;border: 1px solid black;">Urocultivo</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->urocultivo}}</td>
+  @endforeach
+  </tr>
+
+  <th style="background: #81BEF7;border: 1px solid black;">Antigeno Australiano</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->antigeno_australiano}}</td>
+  @endforeach
+  </tr>
+
+  <th style="background: #81BEF7;border: 1px solid black;">VDRL</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->vdrl}}</td>
+  @endforeach
+  </tr>
+
+  <th style="background: #81BEF7;border: 1px solid black;">Plaquetas</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->plaquetas}}</td>
+  @endforeach
+  </tr>
+
+  <th style="background: #81BEF7;border: 1px solid black;">Responsable</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->responsable_control}}</td>
   @endforeach
@@ -802,7 +837,7 @@
             </div>
         </div>
 
-                    <div class="row">
+        <div class="row">
 
 
              <label class="col-sm-1 control-label">Pulso.</label>
@@ -824,7 +859,7 @@
 
         </div>
 
-                    <div class="row">
+        <div class="row">
 
 
 
@@ -834,26 +869,55 @@
             </div>
 
 
-             <label class="col-sm-1 control-label">Visita.</label>
+             <!--<label class="col-sm-1 control-label">Visita.</label>
             <div class="col-sm-3">
               <input type="text" class="form-control" name="visita_domicilio" placeholder="Visita a domicilio" data-toggle="tooltip" data-placement="bottom" title="visita_domicilio">
-            </div>
+            </div>-->
 
              <label class="col-sm-1 control-label">Establ.</label>
             <div class="col-sm-3">
               <input type="text" class="form-control" name="establecimiento_atencion" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion">
             </div>
 
+            <label class="col-sm-1 control-label">Orina</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="orinap" placeholder="Orina" data-toggle="tooltip" data-placement="bottom">
+            </div>
+
+        </div>
+
+        <div class="row">
+        	<label class="col-sm-1 control-label">Urocultivo</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="urocultivo" placeholder="Urocultivo" data-toggle="tooltip" data-placement="bottom">
+            </div>
+
+        	<label class="col-sm-1 control-label">Ant. Aust.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="antigeno_australiano" placeholder="Antigeno Australiano" data-toggle="tooltip" data-placement="bottom">
+            </div>
+
+            <label class="col-sm-1 control-label">VDRL</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="vdrl" placeholder="VDRL" data-toggle="tooltip" data-placement="bottom">
+            </div>
+        </div>
+
+        <div class="row">
+        	<label class="col-sm-1 control-label">Plaquetas</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="plaquetas" placeholder="Plaquetas" data-toggle="tooltip" data-placement="bottom">
+            </div>
         </div>
 
 
-                    <div class="row">
+        <div class="row">
              <label class="col-sm-1 control-label">Serologia</label>
             <div class="col-sm-3">
              <select id="el12" name="sero">
 							<option value="Negativo">Negativo</option>
 							<option value="Positivo">Positivo</option>
-						     <option value="No">No se hizO</option>
+						     <option value="No">No se hizo</option>
 			</select>
 				<input type="date" name="serod" style="line-height: 20px">	
 
@@ -876,7 +940,7 @@
                <select id="el12" name="vih">
 							<option value="Positivo">Positivo</option>
 							<option value="Negativo">Negativo</option>
-						     <option value="No">No se hizO</option>
+						     <option value="No">No se hizo</option>
 			</select>
 							<input type="date" name="vihd" style="line-height: 20px">	
 

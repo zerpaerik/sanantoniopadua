@@ -380,26 +380,26 @@
 			<br>
 			<div class="row">
 			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
-			<div class="col-sm-2">Piel/Mucosas	
+			<div class="col-sm-4">Piel/Mucosas	
 				<input class="form-control" type="text" name="piel">
 			</div>
-			<div class="col-sm-2">Mamas	
+			<div class="col-sm-4">Mamas	
 				<input class="form-control" type="text" name="mamas">
 			</div>
-			<div class="col-sm-2">Abdomen	
+			<div class="col-sm-4">Abdomen	
 				<input class="form-control" type="text" name="abdomen">
 			</div>
-			<div class="col-sm-2">Genitales Externos	
+		    </div>
+		    <div class="row">
+		    <div class="col-sm-4">Genitales Externos	
 				<input class="form-control" type="text" name="genext">
 			</div>
-			<div class="col-sm-2">Genitales Internos	
+			<div class="col-sm-4">Genitales Internos	
 				<input class="form-control" type="text" name="genint">
 			</div>
-			<div class="col-sm-2">Miembros Inferiores	
+			<div class="col-sm-4">Miembros Inferiores	
 				<input class="form-control" type="text" name="miembros">
 			</div>
-
-
 		    </div>
 
 

@@ -339,7 +339,7 @@ class ConsultaController extends Controller
 
     $consulta->piel =$request->piel;
     $consulta->mamas =$request->mamas;
-     $consulta->amenorrea =$request->amenorrea;
+    $consulta->amenorrea =$request->amenorrea;
     $consulta->andria =$request->andria;
     $consulta->abdomen =$request->abdomen;
     $consulta->genext =$request->genext;

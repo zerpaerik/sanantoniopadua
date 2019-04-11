@@ -135,7 +135,9 @@
                         <option value="1">Seleccionar laboratorio</option>
                         @foreach($laboratorios as $pac)
                           <option value="{{$pac->id}}">
+                            @if($pac->estatus == 1)
                             {{$pac->name}}-Precio:{{$pac->preciopublico}}
+                            @endif
                           </option>
                         @endforeach
                       </select>

@@ -405,6 +405,9 @@ Route::get('historico', 'Existencias\ProductoController@historicoView')->name('h
 Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->name('transferencia');
 Route::post('entrada', 'Existencias\ProductoController@entrada');
 
+Route::get('ventas', 'Existencias\ProductoController@indexv')->name('ventas.index');
+Route::get('ventas-delete-{id}', 'Existencias\ProductoController@delete_venta');
+Route::get('ticket_ver_ventas-{id}','Existencias\ProductoController@ticket_ver_ventas');
 
 
 Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');

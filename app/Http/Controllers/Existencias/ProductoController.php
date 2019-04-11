@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 use DB;
-use App\Models\Creditos;
+use App\Models\{Creditos, Ventas, Servicios,Pacientes,VentasProductos};
 use Toastr;
+use Carbon\Carbon;
+use Auth;
 
 
 class ProductoController extends Controller
@@ -265,6 +267,158 @@ class ProductoController extends Controller
       $t = Transferencia::where('code', '=', $code)->get();
       return view('existencias.transferencia', ["transferencias" => $t, "code" => $code]);
     }
+
+    public function indexv(Request $request){
+
+       if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2;    
+
+
+               
+             $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos')
+            ->join('ventas_productos as v','v.id_venta','a.id')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('pacientes as p','p.id','v.paciente')
+            ->groupBy('a.id')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderby('a.id','desc')
+            ->get();
+
+           $aten = VentasProductos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+            if ($aten->monto == 0) {
+        }
+          
+           $cantidad = VentasProductos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
+                        ->select(DB::raw('COUNT(DISTINCT id_venta) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+
+        
+
+
+        } else {
+
+
+            $atenciones = DB::table('ventas as a')
+            ->select(DB::raw('SUM(v.monto) as monto'),'a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.id as id3','v.paciente','v.created_at','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos')
+            ->join('ventas_productos as v','v.id_venta','a.id')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('pacientes as p','p.id','v.paciente')
+            ->groupBy('a.id')
+            ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+            ->orderby('a.id','desc')
+            ->get();
+
+       
+           
+
+        $aten = VentasProductos::whereDate('created_at', '=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+            $cantidad = VentasProductos::whereDate('created_at', '=',Carbon::today()->toDateString())
+                        ->select(DB::raw('COUNT(DISTINCT id_venta) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+
+
+
+
+        }
+
+        $ventasp = new VentasProductos();
+        $ventas = new Ventas();
+        return view('existencias.ventas.index', ["atenciones" => $atenciones, "aten" => $aten,"cantidad" => $cantidad,"ventasp" => $ventasp,"ventas" => $ventas]);
+  }
+
+
+   public function ticket_ver_ventas($id) 
+    {
+
+      
+          $ticket = DB::table('ventas as v')
+            ->select('v.id','a.id_producto','a.id_venta','a.paciente','a.created_at','a.monto','a.cantidad','e.name','e.lastname','b.nombre','b.codigo','v.id_usuario','p.nombres','p.apellidos')
+            ->join('ventas_productos as a','a.id_venta','v.id')
+            ->join('productos as b','b.id','a.id_producto')
+            ->join('users as e','e.id','v.id_usuario')
+            ->join('pacientes as p','p.id','a.paciente')
+            ->where('v.id','=',$id)
+            ->first();
+
+
+          $productos = DB::table('ventas as v')
+            ->select('v.id','a.id_producto','a.id_venta','a.cantidad','b.nombre','b.codigo','v.id_usuario')
+            ->join('ventas_productos as a','a.id_venta','v.id')
+            ->join('productos as b','b.id','a.id_producto')
+            ->where('v.id','=',$id)
+            ->get();
+
+
+        $monto = VentasProductos::where('id_venta', '=',$id)
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+        if ($monto->monto == 0) {
+        }
+
+
+        $view = \View::make('existencias.ventas.ticket')->with('ticket', $ticket)->with('productos', $productos)->with('monto', $monto);
+        $pdf = \App::make('dompdf.wrapper');
+       // $pdf->setPaper('A3');
+        $pdf->setPaper(array(0,0,800.00,3000.00));
+        $pdf->loadHTML($view);
+        return $pdf->stream('ticket_ver_ventas');
+    }
+
+
+   public function delete_venta($id)
+  {
+
+     $venta = VentasProductos::where('id', '=',$id)->first();
+
+
+
+     $productoventa=$venta->id_producto;
+     $cantidadventa=$venta->cantidad;
+
+
+
+    $producto = Producto::where('id', '=',$productoventa)
+      ->get()->first();
+
+    $cantactual=$producto->cantidad;
+
+
+
+     Producto::where('id', $productoventa)
+                  ->update([
+                      'cantidad' => $cantactual + $cantidadventa,
+                  ]);
+
+
+    $venta = Ventas::where('id','=',$id)->delete();
+
+    $ventaP = VentasProductos::where('id', '=',$id)->delete();
+
+    $creditos = Creditos::where('id_venta','=',$id);
+    $creditos->delete();
+
+    Toastr::success('Eliminada Exitosamente', 'VENTA!', ['progressBar' => true]);
+    return redirect()->action('Existencias\ProductoController@indexv', ["created" => false]);
+  }
 
     function unique_multidim_array($array, $key) { 
         $temp_array = array(); 
