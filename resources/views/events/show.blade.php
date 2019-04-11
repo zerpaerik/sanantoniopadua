@@ -23,11 +23,14 @@
 	@if($historial)
 	<h2>Historia Base de {{$data->nombres}} {{$data->apellidos}}</h2>
 		<p>Alergias: {{$historial->alergias}}</p>
-		<p>Antecedentes patologicos: {{$historial->antecedentes_patologicos}}</p>
+		<p>Antecedentes Patológicos: {{$historial->antecedentes_patologicos}}</p>
 		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
 		<p>Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
-		<p>Menarquia: {{$historial->menarquia}}</p> años
-		<p>1º R.S : {{$historial->prs}}</p> años
+		<p>Antecedentes Quirúrgicos: {{$historial->antecedentes_quirurgicos}}</p>
+		<p>Antecedentes Traumáticos: {{$historial->antecedentes_traumaticos}}</p>
+		<p>Antecedentes Genéticos: {{$historial->antecedentes_geneticos}}</p>
+		<p>Menarquia: {{$historial->menarquia}} años</p>
+		<p>1º R.S : {{$historial->prs}} años</p>
 
 	@else
 	<h4>Este usuario no cuenta con un historial base, por favor agregue uno</h4>
@@ -40,10 +43,10 @@
 				<h3>Antecedentes Medicos</h3>
 				<div class="row">
 
-				<label for="" class="col-sm-3">Antecedentes familiares</label>
+				<label for="" class="col-sm-3">Antecedentes Familiares:</label>
 				<div class="col-sm-3">
 					<select id="el12" name="af">
-							<option value="0">Seleccione</option>
+							<option value="0" selected disabled hidden>Seleccione</option>
 							<option value="1">Ninguno</option>
 							<option value="2">Otros</option>
 						</select>
@@ -57,10 +60,10 @@
 				</div>
 				<div class="row">
 
-				<label for="" class="col-sm-3">Antecedentes personales</label>
+				<label for="" class="col-sm-3">Antecedentes Personales:</label>
 				<div class="col-sm-3">			
 						<select id="el11" name="ap">
-														<option value="0">Seleccione</option>
+							<option value="0" selected disabled hidden>Seleccione</option>
 							<option value="1">Ninguno</option>
 							<option value="2">Otros</option>
 						</select>
@@ -73,10 +76,10 @@
 
 			  <div class="row">
 
-				<label for="" class="col-sm-3">Antecedentes patologicos</label>
+				<label for="" class="col-sm-3">Antecedentes Patológicos:</label>
 				<div class="col-sm-3">			
 					<select id="el14" name="apa">
-													<option value="0">Seleccione</option>
+							<option value="0" selected disabled hidden>Seleccione</option>
 							<option value="1">Ninguno</option>
 							<option value="2">Otros</option>
 						</select>
@@ -88,10 +91,55 @@
 				</div>
 				<div class="row">
 
-				<label for="" class="col-sm-3">Alergias</label>
+				<label for="" class="col-sm-3">Antecedentes Quirúrgicos:</label>
+				<div class="col-sm-3">			
+					<select id="el20" name="aq">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+					<div class="col-sm-3">
+					<div id="aq1"></div>
+				</div>
+
+				</div>
+				<div class="row">
+
+				<label for="" class="col-sm-3">Antecedentes Traumáticos:</label>
+				<div class="col-sm-3">			
+					<select id="el21" name="at">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+					<div class="col-sm-3">
+					<div id="at1"></div>
+				</div>
+
+				</div>
+				<div class="row">
+
+				<label for="" class="col-sm-3">Antecedentes Genéticos:</label>
+				<div class="col-sm-3">			
+					<select id="el22" name="ag">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+					<div class="col-sm-3">
+					<div id="ag1"></div>
+				</div>
+
+				</div>
+				<div class="row">
+
+				<label for="" class="col-sm-3">Alergias:</label>
 				<div class="col-sm-3">
 					<select id="el10" name="al">
-					<option value="0">Seleccione</option>
+					<option value="0" selected disabled hidden>Seleccione</option>
 					<option value="1">No</option>
 					<option value="2">Si</option>
 				</select>
@@ -101,17 +149,18 @@
 					<div id="alerg"></div>
 				</div>
 
-					</div>
+				</div>
 				
-
-
-				<label for="" class="col-sm-3">Menarquia</label>
+				<br>
+				<div class="row">
+				<label for="" class="col-sm-1">Menarquia:</label>
 				<div class="col-sm-3">
 					<input type="text" name="menarquia"> años.
 				</div>
-				<label for="" class="col-sm-3">1º R.S</label>
+				<label for="" class="col-sm-1">1º R.S:</label>
 				<div class="col-sm-3">
 					<input type="text" name="prs"> años.
+				</div>
 				</div>
 			
 			
@@ -137,15 +186,17 @@
 				<p class="col-sm-6"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}c 24/hrs</p>
 				<p class="col-sm-6"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}c 24/hrs</p>
 				<p class="col-sm-6"><strong>Frecuencia Cardìaca:</strong> {{ $consulta->card }}x min</p>
-				<p class="col-sm-6"><strong>Andria:</strong> {{ $consulta->pulso }}</p>
+				<p class="col-sm-6"><strong>R/C:</strong> {{ $consulta->pulso }}</p>
 				<p class="col-sm-6"><strong>Temperatura:</strong> {{ $consulta->temperatura }}ºC</p>
 				<p class="col-sm-6"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
+				<p class="col-sm-6"><strong>Talla:</strong> {{ $consulta->talla }}</p>
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
 				<p class="col-sm-6"><strong>Amenorrea:</strong> {{ $consulta->amenorrea}}</p>
 				<p class="col-sm-6"><strong>Ciclo Menstrual:</strong> {{ $consulta->andria }}</p>
 				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
 			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
 				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G</strong>:{{ $consulta->g }}</p>
+				<p class="col-sm-6"><strong>Fecha Ult. Emb.:</strong> {{ $consulta->fechaemb }}</p>
 				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
 				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
 				<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
@@ -191,20 +242,20 @@
 			</div>
            <div class="row">
             <label for="" class="col-sm-2 control-label">Motivo de Consulta</label>
-			<div class="col-sm-4 control-label">	
-				<input  required class="form-control" type="text" name="motivo_consulta">		
+			<div class="col-sm-10">	
+				<textarea name="motivo_consulta" cols="10" rows="3" class="form-control" ></textarea>
 			</div>
 		  </div>
 
 		
 
 		  <div class="col-md-6">
-		  	            <label for="" class="col-sm-2 control-label">Func.Biològicas</label>
+		  	<label for="" class="col-sm-2 control-label">Func.Biològicas</label>
 		  </div>
-		   <div class="col-md-6">
-		  	            <label for="" class="col-sm-2 control-label">Func.Vitales</label>
+		  <div class="col-md-6">
+		  	<label for="" class="col-sm-2 control-label">Func.Vitales</label>
 		  </div>
-			 <label for="" class="col-sm-2 control-label">Apetito</label>
+			<label for="" class="col-sm-2 control-label">Apetito</label>
 			<div class="col-sm-4">
 				<select id="el7" name="apetito">
 					<option value="Aumentado">Aumentado</option>
@@ -240,11 +291,16 @@
 			<div class="col-sm-4">			
 				<input  class="form-control" type="text" name="peso" placeholder="Kg">
 			</div>
+			<label for="" class="col-sm-2 control-label">Talla</label>
+			<div class="col-sm-4">			
+				<input  class="form-control" type="text" name="talla" placeholder="talla">
+			</div>
 			<label for="" class="col-sm-2 control-label">Animo</label>
 			<div class="col-sm-4">	
 				<select id="el9" name="animo">
 					<option value="Deprimido">Deprimido</option>
-					<option value="Eufòrico">Eufòrico</option>
+					<option value="Eufórico">Eufórico</option>
+					<option value="Normal">Normal</option>
 					<option value="Tendencia al llanto">Tendencia al llanto</option>
 				</select>
 			</div>
@@ -256,7 +312,7 @@
 			<div class="col-sm-4">	
 				<input  class="form-control" placeholder="Frecuencia Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs">
 			</div>
-			<label for="" class="col-sm-2 control-label">Andria:</label>
+			<label for="" class="col-sm-2 control-label">R/C:</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" type="text" name="pulso">
 			</div>
@@ -296,7 +352,7 @@
 
 			<label for="" class="col-sm-2 control-label">PAP:</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" type="date" name="pap">
+				<input   class="form-control" type="text" name="pap" placeholder="fecha">
 			</div>
 
 			<label for="" class="col-sm-2 control-label">MAC:</label>
@@ -312,6 +368,10 @@
 			<label for="" class="col-sm-2 control-label">P:</label>
 			<div class="col-sm-1">	
 				<input  class="form-control" type="text" name="p">
+			</div>
+			<label for="" class="col-sm-2 control-label">Fecha Ult. Emb.:</label>
+			<div class="col-sm-4">			
+				<input  class="form-control" type="text" name="fechaemb" placeholder="fecha de último embarazo">
 			</div>
 
 			
@@ -607,22 +667,23 @@ function Select2Test(){
 	$("#el2").select2();
 	$("#el1").select2();
 	$("#el3").select2();
-  $("#el5").select2();
-  $("#el4").select2();
-  $("#el6").select2();
-  $("#el7").select2();
-  $("#el8").select2();
-  $("#el9").select2();
-  $("#el10").select2();
-  $("#el11").select2();
-  $("#el12").select2();
-    $("#el13").select2();
-  $("#el14").select2();
-    $("#el15").select2();
-
-  $("#el16").select2();
-
-  $("#el17").select2();
+	$("#el5").select2();
+	$("#el4").select2();
+	$("#el6").select2();
+	$("#el7").select2();
+	$("#el8").select2();
+	$("#el9").select2();
+	$("#el10").select2();
+	$("#el11").select2();
+	$("#el12").select2();
+	$("#el13").select2();
+	$("#el14").select2();
+	$("#el15").select2();
+	$("#el16").select2();
+	$("#el17").select2();
+	$("#el20").select2();
+	$("#el21").select2();
+	$("#el22").select2();
 
 
 
@@ -717,6 +778,81 @@ function DemoTimePicker(){
                  url:  link,
                  success: function(a) {
                     $('#apa1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+	<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el20').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/aq/otros/';
+          } else {
+           link = '/aq/ningunoaq/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#aq1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el21').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/at/otros/';
+          } else {
+           link = '/at/ningunoat/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#at1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el22').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/ag/otros/';
+          } else {
+           link = '/ag/ningunoag/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#ag1').html(a);
                  }
           });
 

@@ -18,6 +18,9 @@
 		<p>Antecedentes patologicos: {{$historial->antecedentes_patologicos}}</p>
 		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
 		<p>Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
+    <p>Antecedentes Quirúrgicos: {{$historial->antecedentes_quirurgicos}}</p>
+    <p>Antecedentes Traumáticos: {{$historial->antecedentes_traumaticos}}</p>
+    <p>Antecedentes Genéticos: {{$historial->antecedentes_geneticos}}</p>
 		<p>Menarquia: {{$historial->menarquia}}</p>
 		<p>1º R.S : {{$historial->prs}}</p>
 
@@ -42,6 +45,7 @@
 				<p class="col-sm-12"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
 				<p class="col-sm-12"><strong>Temperatura:</strong> {{ $consulta->temperatura }}</p>
 				<p class="col-sm-12"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
+        <p class="col-sm-6"><strong>Talla:</strong> {{ $consulta->talla }}</p>
 				<p class="col-sm-12"><strong>FUR:</strong> {{ $consulta->fur }}</p>
         <p class="col-sm-12"><strong>Amenorrea:</strong> {{ $consulta->amenorrea }}</p>
         <p class="col-sm-12"><strong>Amenorrea:</strong> {{ $consulta->andria }}</p>
