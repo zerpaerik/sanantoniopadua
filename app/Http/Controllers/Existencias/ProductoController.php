@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Existencias;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Existencias\{Producto, Existencia, Transferencia};
+use App\Models\Existencias\{Producto, Existencia, Transferencia, Salidas,SalidasProductos};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 use DB;
 use App\Models\{Creditos, Ventas, Servicios,Pacientes,VentasProductos};
+use App\Models\Pacientes\Paciente;
 use Toastr;
 use Carbon\Carbon;
 use Auth;
@@ -84,11 +85,11 @@ class ProductoController extends Controller
       return view('existencias.entrada', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" => Proveedor::all()]);    
     }
 
-    public function productOutView(){
+   public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->get(['id', 'nombre','cantidad']),
+        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where("categoria",'<>',3)->orderby('nombre','asc')->get(['id', 'nombre','cantidad']),
         "sedes" => Sede::all(),
-        "proveedores" => Proveedor::all()
+        "proveedores" => Proveedor::all(),"pacientes" => Paciente::where('estatus','=',1)->orderby('apellidos','asc')->get()
       ]);    
     }
 
@@ -98,42 +99,88 @@ class ProductoController extends Controller
     }
 
     public function getProduct($id){
-      $p = Producto::find($id);
-      return response()->json(["producto" => $p], 200);
+     
+      return Producto::findOrFail($id);
+
     }
 
     public function addCant(Request $request){
-	
+
+
+  
        $searchProduct = DB::table('productos')
                     ->select('*')
                     ->where('almacen','=','2')
-                    ->where('id','=', $request->producto)
+                    ->where('id','=', $request->id_laboratorio['laboratorios'])
                     ->first();   
 
                     $nombre = $searchProduct->nombre;
-					$cantidadactual = $searchProduct->cantidad;
-		if( $request->cantidadplus > $cantidadactual){
-		 Toastr::error('Cantidad excede Maximo en stock', 'Error!', ['progressBar' => true]);
-		 return redirect()->action('Existencias\ProductoController@index2', ["created" => true]);
-		} else {
-			
-		  Producto::where('id', $request->producto)
+          $cantidadactual = $searchProduct->cantidad;
+    if( $request->cantidadplus > $cantidadactual){
+     Toastr::error('Cantidad excede Maximo en stock', 'Error!', ['progressBar' => true]);
+     return redirect()->action('Existencias\ProductoController@index2', ["created" => true]);
+    } else {
+      
+      
+
+              $ventas = new Ventas();
+              $ventas->id_usuario = Auth::user()->id;
+              $ventas->save();  
+
+
+            if (isset($request->id_laboratorio)) {
+      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+        if (!is_null($laboratorio['laboratorio'])) {
+
+
+           $searchProduct = DB::table('productos')
+                    ->select('*')
+                    ->where('almacen','=','2')
+                    ->where('id','=', $laboratorio['laboratorio'])
+                    ->first();   
+
+          $cantidadactual = $searchProduct->cantidad;
+          $precio = $searchProduct->precioventa;
+
+          if($request->monto_l['laboratorios'][$key]['monto'] == NULL){
+            $preciov= $precio;
+          } else {
+            $preciov=$request->monto_l['laboratorios'][$key]['monto']; 
+          }
+
+
+
+
+          $lab = new VentasProductos();
+          $lab->id_producto =  $laboratorio['laboratorio'];
+          $lab->monto =  $preciov * $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->id_venta = $ventas->id;
+          $lab->paciente =$request->paciente;
+          $lab->save();
+
+          Producto::where('id', $laboratorio['laboratorio'])
                   ->update([
-                      'cantidad' => $cantidadactual - $request->cantidadplus,
+                      'cantidad' => $cantidadactual - $request->monto_abol['laboratorios'][$key]['abono'],
                   ]);
-				  
-		      $creditos = new Creditos();
+
+              $creditos = new Creditos();
               $creditos->origen = 'VENTA DE PRODUCTOS';
               $creditos->id_atencion = NULL;
-              $creditos->monto= $request->monto;
+              $creditos->monto= $precio * $request->monto_abol['laboratorios'][$key]['abono'];
               $creditos->id_sede = $request->session()->get('sede');
-              $creditos->tipo_ingreso = $request->tipopago;
+              $creditos->tipo_ingreso ='EF';
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
+              $creditos->id_venta= $lab->id;
               $creditos->save();
-			  
+
+        } 
+      }
+    }
+ 
        Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
-      return redirect()->action('Existencias\ProductoController@index2', ["created" => true]);
-		}
+      return redirect()->action('Existencias\ProductoController@indexv', ["created" => true]);
+    }
     
     }
 
@@ -250,7 +297,7 @@ class ProductoController extends Controller
 	  
 	    
        Toastr::success('Registrado Exitosamente.', 'Producto!', ['progressBar' => true]);
-       return redirect()->action('Existencias\ProductoController@index', ["created" => true]);
+       return redirect()->action('Existencias\ProductoController@indexv', ["created" => true]);
        
      
 

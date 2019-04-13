@@ -292,7 +292,7 @@ class PrenatalController extends Controller
 			"consejeria" => $request->consejeria,
 			"sulfato" => $request->sulfato,
 			"perfil_biofisico" => $request->perfil_biofisico,
-			"establecimiento_atencion" => $request->establecimiento_atencion,
+			//"establecimiento_atencion" => $request->establecimiento_atencion,
 			"responsable_control" => $usuario->name.' '.$usuario->lastname,
 			"sero" => $request->sero,
 			"serod" => $request->serod,

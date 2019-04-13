@@ -631,11 +631,11 @@
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;border: 1px solid black;">Establecimiento</th>
+   <!--<th style="background: #81BEF7;border: 1px solid black;">Establecimiento</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->establecimiento_atencion}}</td>
   @endforeach
-  </tr>
+  </tr>-->
 
   <th style="background: #81BEF7;border: 1px solid black;">Orina</th>
  @foreach($control as $c)
@@ -874,10 +874,10 @@
               <input type="text" class="form-control" name="visita_domicilio" placeholder="Visita a domicilio" data-toggle="tooltip" data-placement="bottom" title="visita_domicilio">
             </div>-->
 
-             <label class="col-sm-1 control-label">Establ.</label>
+             <!--<label class="col-sm-1 control-label">Establ.</label>
             <div class="col-sm-3">
               <input type="text" class="form-control" name="establecimiento_atencion" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion">
-            </div>
+            </div>-->
 
             <label class="col-sm-1 control-label">Orina</label>
             <div class="col-sm-3">
