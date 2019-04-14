@@ -214,8 +214,8 @@ class PrenatalController extends Controller
 				'fecha_terminacion' =>$request->fecha_terminacion,
 				'peso_gestacion' =>$request->peso_gestacion,
 				'aborto_gestacion' =>$request->aborto_gestacion,
-				'af'=> json_encode($request->af),
-				'ap'=> json_encode($request->ap),
+				'af'=> str_replace(["[", "]", '"', ","], ["", ".", "", ", "],json_encode($request->af)),
+				'ap'=> str_replace(["[", "]", '"', ","], ["", ".", "", ", "],json_encode($request->ap)),
 				'peso_pregestacional' =>$request->peso_pregestacional,
 				'talla_pregestacional' =>$request->talla_pregestacional,
 				'conclusion' =>$request->conclusion,
@@ -234,7 +234,7 @@ class PrenatalController extends Controller
 				'bicd' =>$request->bicd,
 				'torch' =>$request->torch,
 				'torchd' =>$request->torchd,
-				'imc' => $request->peso_pregestacional / $request->talla_pregestacional * $request->talla_pregestacional
+				'imc' => number_format(($request->peso_pregestacional / ($request->talla_pregestacional * $request->talla_pregestacional)) * 10000, 2)
 
 
 				
@@ -319,10 +319,15 @@ class PrenatalController extends Controller
 			"def" => $request->def,
 			"tra" => $request->tra,
 			"orinap" => $request->orinap,
+			"oridate" => $request->oridate,
 			"urocultivo" => $request->urocultivo,
+			"urodate" => $request->urodate,
 			"antigeno_australiano" => $request->antigeno_australiano,
+			"antdate" => $request->antdate,
 			"vdrl" => $request->vdrl,
-			"plaquetas" => $request->plaquetas
+			"vdrldate" => $request->vdrldate,
+			"plaquetas" => $request->plaquetas,
+			"plaqdate" => $request->plaqdate
 
     	]);
 

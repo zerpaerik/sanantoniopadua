@@ -33,7 +33,7 @@
 		    		    {{ $prenatal->ap }}
 		    </div>
     </div>
-
+<br>
     <div class="row">
    <strong><p>III. Fin de Gestaciòn Anterior</p></strong>
    <div class="col-md-3">
@@ -61,7 +61,7 @@
    </div>
 
     </div>
-
+<br>
     <div class="row">
     <strong><p>IV. Peso y Talla</p></strong>
     	<div class="col-md-3">
@@ -72,16 +72,26 @@
     		    		<strong>Talla:</strong>{{ $prenatal->talla_pregestacional }} Cms
 
     	</div>
-    	<div class="col-md-3">
-    		   <strong>Conclusiòn:</strong>{{ $prenatal->conclusion }}
-    	</div>
 
     	<div class="col-md-3">
     		   <strong>IMC:</strong>{{ $prenatal->imc }}
     	</div>
+
+    	<div class="col-md-3">
+    		   <strong>Conclusiòn:</strong>
+    	@if($prenatal->imc <= 24)
+    	<strong>Normal</strong>
+    	@elseif($prenatal->imc <=29)
+    	<strong>Sobrepeso</strong>
+    	@elseif($prenatal->imc <=34)
+    	<strong>Obesidad I</strong>
+    	@elseif($prenatal->imc >= 35)
+    	<strong>Obesidad II</strong>
+    	@endif
+    	</div>
     	
     </div>
-
+<br>
 <div class="row">
 	<div class="col-md-6">
 <strong><p>V. Tipo de Sangre</p></strong>	
@@ -248,7 +258,7 @@
 					    <p>
 							
                          <div class="col-sm-12">
-							<select id="el5" multiple="true" name="af[]" style="width: 350px;">
+							<select id="el1" multiple="true" name="af[]" style="width: 350px;">
 							<option value="Ninguno">Ninguno</option>
 							<option value="Alergias">Alergias</option>
 							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
@@ -272,7 +282,7 @@
 					    <p>
 							
                          <div class="col-sm-12">
-							<select id="el6" multiple="true" name="ap[]" style="width: 350px;">
+							<select id="el2" multiple="true" name="ap[]" style="width: 350px;">
 							<option value="Ninguno">Ninguno</option>
 							<option value="Cesarea">Cesarea</option>
 							<option value="Tiroides">Tiroides</option>
@@ -300,7 +310,7 @@
 						          	<div class="col-md-3">
 
 						<p>
-							<select id="el12" name="terminacion_gestacion" style="width: 200px;">
+							<select id="el3" name="terminacion_gestacion" style="width: 200px;">
 							<option value="Parto">Parto</option>
 							<option value="Aborto">Aborto</option>
 							<option value="Ectopico">Ectopico</option>
@@ -324,7 +334,7 @@
 
 						<label for="">Si fue aborto que tipo de aborto</label>
 						
-							<select id="el12" name="aborto_gestacion" style="width: 200px;">
+							<select id="el4" name="aborto_gestacion" style="width: 200px;">
 							<option value="Incompleto">Incompleto</option>
 							<option value="Completo">Completo</option>
 							<option value="Frustro">Frustro</option>
@@ -355,18 +365,6 @@
 						<input type="text" name="talla_pregestacional">
 						</div>
 
-						<div class="col-md-4">
-						<label for="">Conclusiòn</label>
-						<select id="el12" name="conclusion" style="width: 200px;">
-							<option value="0">Seleccione</option>
-							<option value="Normal(18-24)">Normal(18-24)</option>
-							<option value="Sobrepeso(25-29)">Sobrepeso(25-29)</option>
-							<option value="ObesidadI(30-34)">ObesidadI(30-34)</option>
-							<option value="ObesidadII(35-39)">ObesidadII(35-39)</option>
-
-						</select>
-						</div>
-
 						</div>
 						<br>
 
@@ -375,11 +373,11 @@
 
 
 						<h3>VI. Tipo de Sangre</h3>	
-						<div class="col-md-2">	
+						<div class="col-md-3">	
 						<label for="">Grupo</label>
 							<p>
 
-					    <select id="el12" name="sangre">
+					    <select id="el5" name="sangre">
 							<option value="A">A</option>
 							<option value="B">B</option>
 						     <option value="AB">AB</option>
@@ -387,11 +385,11 @@
 						</select>
 						</p>
 					     </div>
-					     <div class="col-md-2">
+					     <div class="col-md-6">
 						<label for="">RH</label>
 							<p>
 							
-							<select id="el12" name="sangrerh">
+							<select id="el6" name="sangrerh">
 							<option value="Rh+">Rh+</option>
 							<option value="Rh-Sen Desc">Rh-Sen Desc</option>
 						     <option value="Rh-Nosen">Rh-Nosen</option>
@@ -434,7 +432,7 @@
 					<h3>Orina</h3>	
 					<p>
 							
-							<select id="el12" name="orina">
+							<select id="el7" name="orina">
 							<option value="Normal">Normal</option>
 							<option value="Anormal">Anormal</option>
 						     <option value="No">No se hizo</option>
@@ -450,9 +448,9 @@
 					<h3>Urea</h3>	
 					<p>
 							
-						<input type="text" name="urea" style="line-height: 20px">	
+						<input type="text" name="urea" style="line-height: 20px; width: 150px;">	
 
-						<input type="date" name="uread" style="line-height: 20px">	
+						<input type="date" name="uread" style="line-height: 20px; width: 150px;">	
 						</p>
 
 					</div>	
@@ -462,9 +460,9 @@
 					<h3>Creati.</h3>	
 					<p>
 							
-						<input type="text" placeholder="creatinina" name="creatinina" style="line-height: 20px">	
+						<input type="text" placeholder="creatinina" name="creatinina" style="line-height: 20px; width: 150px;">	
 
-						<input type="date" name="creatininad" style="line-height: 20px">	
+						<input type="date" name="creatininad" style="line-height: 20px; width: 150px;">	
 						</p>
 
 					</div>
@@ -474,7 +472,7 @@
 					<h3>BK</h3>	
 					<p>
 							
-							<select id="el12" name="bic">
+							<select id="el8" name="bic">
 							<option value="SinExamen">Sin Examen</option>
 							<option value="Neg">Negativo</option>
 						     <option value="Pos">Positivo</option>
@@ -491,7 +489,7 @@
 					<h3>TORCH</h3>	
 					<p>
 							
-							<select id="el12" name="torch">
+							<select id="el9" name="torch">
 							<option value="Normal">Normal</option>
 							<option value="Anormal">Anormal</option>
 						     <option value="No">No se hizO</option>
@@ -637,36 +635,6 @@
   @endforeach
   </tr>-->
 
-  <th style="background: #81BEF7;border: 1px solid black;">Orina</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->orinap}}</td>
-  @endforeach
-  </tr>
-
-  <th style="background: #81BEF7;border: 1px solid black;">Urocultivo</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->urocultivo}}</td>
-  @endforeach
-  </tr>
-
-  <th style="background: #81BEF7;border: 1px solid black;">Antigeno Australiano</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->antigeno_australiano}}</td>
-  @endforeach
-  </tr>
-
-  <th style="background: #81BEF7;border: 1px solid black;">VDRL</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->vdrl}}</td>
-  @endforeach
-  </tr>
-
-  <th style="background: #81BEF7;border: 1px solid black;">Plaquetas</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->plaquetas}}</td>
-  @endforeach
-  </tr>
-
   <th style="background: #81BEF7;border: 1px solid black;">Responsable</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->responsable_control}}</td>
@@ -750,6 +718,44 @@
 
             </div>
 
+            <label class="col-sm-1 control-label">Orina</label>
+            <div class="col-sm-2">
+            <strong>Resultado:</strong>:{{$c->orinap}}
+             <strong>Fecha:</strong>:{{$c->oridate}}
+
+
+            </div>
+
+
+             <label class="col-sm-1 control-label">Urocultivo</label>
+            <div class="col-sm-2">
+                 <strong>Resultado:</strong>:{{$c->urocultivo}}
+             <strong>Fecha:</strong>:{{$c->urodate}}
+
+            </div>
+
+             <label class="col-sm-1 control-label">Ant. Aust.</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->antigeno_australiano}}
+             <strong>Fecha:</strong>:{{$c->antdate}}
+
+            </div>
+
+            <label class="col-sm-1 control-label">Plaquetas</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->plaquetas}}
+             <strong>Fecha:</strong>:{{$c->plaqdate}}
+
+            </div>
+
+        </div>
+        <div class="row">
+        	<label class="col-sm-1 control-label">VDRL</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->vdrl}}
+             <strong>Fecha:</strong>:{{$c->vdrldate}}
+
+            </div>
         </div>
 
 		    	
@@ -879,73 +885,86 @@
               <input type="text" class="form-control" name="establecimiento_atencion" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion">
             </div>-->
 
-            <label class="col-sm-1 control-label">Orina</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="orinap" placeholder="Orina" data-toggle="tooltip" data-placement="bottom">
-            </div>
+            
 
         </div>
 
-        <div class="row">
-        	<label class="col-sm-1 control-label">Urocultivo</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="urocultivo" placeholder="Urocultivo" data-toggle="tooltip" data-placement="bottom">
-            </div>
 
-        	<label class="col-sm-1 control-label">Ant. Aust.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="antigeno_australiano" placeholder="Antigeno Australiano" data-toggle="tooltip" data-placement="bottom">
-            </div>
-
-            <label class="col-sm-1 control-label">VDRL</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="vdrl" placeholder="VDRL" data-toggle="tooltip" data-placement="bottom">
-            </div>
-        </div>
-
-        <div class="row">
-        	<label class="col-sm-1 control-label">Plaquetas</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="plaquetas" placeholder="Plaquetas" data-toggle="tooltip" data-placement="bottom">
-            </div>
-        </div>
 
 
         <div class="row">
              <label class="col-sm-1 control-label">Serologia</label>
-            <div class="col-sm-3">
-             <select id="el12" name="sero">
-							<option value="Negativo">Negativo</option>
-							<option value="Positivo">Positivo</option>
-						     <option value="No">No se hizo</option>
+            <div class="col-sm-2" style="width: 12%;">
+             <select id="el10" name="sero">
+				<option value="Negativo">Negativo</option>
+				<option value="Positivo">Positivo</option>
+			    <option value="No">No se hizo</option>
 			</select>
-				<input type="date" name="serod" style="line-height: 20px">	
+					
 
             </div>
+            <input class="col-sm-2" type="date" name="serod" style="line-height: 20px; width: 13%;">
 
 
              <label class="col-sm-1 control-label">Glucosa</label>
-            <div class="col-sm-3">
-               <select id="el12" name="gluco">
-							<option value="Normal">Normal</option>
-							<option value="Anormal">Anormal</option>
-						     <option value="No">No se hizo</option>
+            <div class="col-sm-2" style="width: 12%;">
+               <select id="el11" name="gluco">
+					<option value="Normal">Normal</option>
+					<option value="Anormal">Anormal</option>
+				    <option value="No">No se hizo</option>
 			</select>
-							<input type="date" name="glucod" style="line-height: 20px">	
+					
 
             </div>
+            <input class="col-sm-2" type="date" name="glucod" style="line-height: 20px; width: 13%;">
 
              <label class="col-sm-1 control-label">VIH</label>
-            <div class="col-sm-3">
+            <div class="col-sm-2" style="width: 12%;">
                <select id="el12" name="vih">
-							<option value="Positivo">Positivo</option>
-							<option value="Negativo">Negativo</option>
-						     <option value="No">No se hizo</option>
+					<option value="Positivo">Positivo</option>
+					<option value="Negativo">Negativo</option>
+				    <option value="No">No se hizo</option>
 			</select>
-							<input type="date" name="vihd" style="line-height: 20px">	
+					
 
             </div>
+            <input class="col-sm-2" type="date" name="vihd" style="line-height: 20px; width: 13%;">
 
+        </div>
+
+        <div class="row">
+        	<label class="col-sm-1 control-label">Orina</label>
+            <div class="col-sm-2" style="width: 12%;">
+              <input type="text" class="form-control" name="orinap" placeholder="Orina" data-toggle="tooltip" data-placement="bottom">
+            </div>
+            <input class="col-sm-2" type="date" name="oridate" style="line-height: 20px; width: 13%;">
+            
+        	<label class="col-sm-1 control-label">Urocultivo</label>
+            <div class="col-sm-2" style="width: 12%;">
+              <input type="text" class="form-control" name="urocultivo" placeholder="Urocultivo" data-toggle="tooltip" data-placement="bottom">
+            </div>
+            <input class="col-sm-2" type="date" name="urodate" style="line-height: 20px; width: 13%;">
+
+        	<label class="col-sm-1 control-label">Ant. Aust.</label>
+            <div class="col-sm-2" style="width: 12%;">
+              <input type="text" class="form-control" name="antigeno_australiano" placeholder="Antigeno Australiano" data-toggle="tooltip" data-placement="bottom" style="">
+            </div>
+            <input class="col-md-2" type="date" name="antdate" style="line-height: 20px; width: 13%;">
+
+            
+        </div>
+
+        <div class="row">
+        	<label class="col-sm-1 control-label">Plaquetas</label>
+            <div class="col-md-2" style="width: 12%;">
+              <input type="text" class="form-control" name="plaquetas" placeholder="Plaquetas" data-toggle="tooltip" data-placement="bottom">
+            </div>
+            <input class="col-md-2" type="date" name="plaqdate" style="line-height: 20px; width: 13%;">
+            <label class="col-sm-1 control-label">VDRL</label>
+            <div class="col-sm-2" style="width: 12%;">
+              <input type="text" class="form-control" name="vdrl" placeholder="VDRL" data-toggle="tooltip" data-placement="bottom">
+            </div>
+            <input class="col-md-2" type="date" name="vdrldate" style="line-height: 20px; width: 13%;">
         </div>
 
            <div class="row">
@@ -1037,13 +1056,22 @@
 
 // Run Select2 on element
 function Select2Test(){
-	$("#el2").select2();
 	$("#el1").select2();
+	$("#el2").select2();
 	$("#el3").select2();
-  $("#el5").select2();
+	$("#el4").select2();
+  	$("#el5").select2();
     $("#el6").select2();
-  $("#el7").select2();
-  $("#el4").select2();
+  	$("#el7").select2();
+  	$("#el8").select2();
+	$("#el9").select2();
+	$("#el10").select2();
+	$("#el11").select2();
+  	$("#el12").select2();
+    $("#el13").select2();
+  	$("#el14").select2();
+  	$("#el15").select2();
+  	
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this
