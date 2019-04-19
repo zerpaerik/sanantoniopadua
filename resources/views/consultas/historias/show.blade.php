@@ -35,43 +35,63 @@
 		<div class="col-sm-12">
 			<div class="rows">
 				<h3 class="col-sm-12"><strong>Consulta del {{$consulta->created_at}}</strong></h3>
-				<p class="col-sm-12"><strong>P/A:</strong> {{ $consulta->pa }}</p>
-				<p class="col-sm-12"><strong>Sed:</strong> {{ $consulta->sed }}</p>
-				<p class="col-sm-12"><strong>Apetito:</strong> {{ $consulta->apetito }}</p>
-				<p class="col-sm-12"><strong>Animo:</strong> {{ $consulta->animo }}</p>
-				<p class="col-sm-12"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}</p>
-				<p class="col-sm-12"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}</p>
-				<p class="col-sm-12"><strong>Frecuencia Cardìaca:</strong> {{ $consulta->card }}</p>
-				<p class="col-sm-12"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
-				<p class="col-sm-12"><strong>Temperatura:</strong> {{ $consulta->temperatura }}</p>
-				<p class="col-sm-12"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
-        <p class="col-sm-6"><strong>Talla:</strong> {{ $consulta->talla }}</p>
-				<p class="col-sm-12"><strong>FUR:</strong> {{ $consulta->fur }}</p>
-        <p class="col-sm-12"><strong>Amenorrea:</strong> {{ $consulta->amenorrea }}</p>
-        <p class="col-sm-12"><strong>Amenorrea:</strong> {{ $consulta->andria }}</p>
+				<h3 class="col-sm-12">II. AMANESIS</h3>
+        <p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
+        <p class="col-sm-6"><strong>Tiempo de Enfermedad:</strong> {{ $consulta->tiempo_enf }}</p>
+        <p class="col-sm-12"><strong>ANTECEDENTES MÉDICOS</strong></p>
+        <p class="col-sm-6"><strong>Antecedentes Patológicos:</strong> {{$consulta->antecedentes_patologicos}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Personales:</strong> {{$consulta->antecedentes_personales}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Familiares:</strong> {{$consulta->antecedentes_familiar}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Quirúrgicos:</strong> {{$consulta->antecedentes_quirurgicos}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Traumáticos:</strong> {{$consulta->antecedentes_traumaticos}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Genéticos:</strong> {{$consulta->antecedentes_geneticos}}</p>
+        <p class="col-sm-6"><strong>Alergias:</strong> {{$consulta->alergias}}</p>
+        <br>
+        <p class="col-sm-12"><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
+        <p class="col-sm-3"><strong>Menarquia:</strong> {{$consulta->menarquia}} años</p>
+        <p class="col-sm-3"><strong>R/C:</strong> {{$consulta->pulso}}</p>
+        <p class="col-sm-3"><strong>1º R.S:</strong> {{$consulta->prs}}</p>
+        <p class="col-sm-3"><strong>Nº PS:</strong> {{$consulta->andria}}</p>
+        <p class="col-sm-1"><strong>G:</strong> {{$consulta->g}}</p>
+        <p class="col-sm-1"><strong>P:</strong> {{$consulta->p}}</p>
+        <p class="col-sm-4"><strong>Fecha Últ. Emb.:</strong> {{$consulta->fechaemb}}</p>
+        <p class="col-sm-3"><strong>RN> peso:</strong> {{$consulta->rnpeso}}</p>
+        <p class="col-sm-3"><strong>FUR:</strong> {{$consulta->fur}}</p>
+        <p class="col-sm-12"><strong>Anticonceptivo:</strong> {{$consulta->anticon}}</p>
+        <p class="col-sm-3"><strong>Fecha Último PAP:</strong> {{$consulta->fecha}}</p>
+        <p class="col-sm-3"><strong>Resultado:</strong> {{$consulta->result}}</p>
+        <p class="col-sm-2"><strong>Grupo Sanguineo:</strong> {{$consulta->gsan}}</p>
+        <p class="col-sm-12"><strong>Procesos Hemorrágicos (Parto/Aborto):</strong> {{$consulta->phpa}}</p>
+        <p class="col-sm-6"><strong>Antecedentes de EPI:</strong> {{$consulta->antepi}}</p>
+        <p class="col-sm-3"><strong>ETS:</strong> {{$consulta->ets}}</p>
+        <p class="col-sm-6"><strong>OTROS:</strong> {{$consulta->etsotro}}</p>
 
-				<p class="col-sm-12"><strong>PAP:</strong> {{ $consulta->pap }}</p>
-			  <p class="col-sm-12"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
-				<p class="col-sm-12"><strong>P:</strong> {{ $consulta->p }},<strong>G:</strong>{{ $consulta->g }}</p>
-				<p class="col-sm-12"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
-				<p class="col-sm-12"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
-				<p class="col-sm-12"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
-				<p class="col-sm-12"><strong>Examen Fisico Regional: </strong></p>
-        <p class="col-sm-12"><strong>Piel/Mucosas: </strong>{{ $consulta->piel }}</p>
-        <p class="col-sm-12"><strong>Mamas: </strong>{{ $consulta->mamas }}</p>
-        <p class="col-sm-12"><strong>Abdomen: </strong>{{ $consulta->abdomen }}</p>
-        <p class="col-sm-12"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
-        <p class="col-sm-12"><strong>Genitales Internos: </strong>{{ $consulta->genint }}</p>
-        <p class="col-sm-12"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
-				<p class="col-sm-12"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
-				<p class="col-sm-12"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
-				<p class="col-sm-12"><strong>CIEX:</strong> {{ $consulta->CIEX }}</p>
-				<p class="col-sm-12"><strong>CIEX: </strong>{{ $consulta->CIEX2 }}</p>
-				<p class="col-sm-12"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
-				<p class="col-sm-12"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
-				<p class="col-sm-12"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
-				<p class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
-				<p class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
+        <h3 class="col-sm-12">III. EXAMEN FÍSICO/CLÍNICO</h3>
+        <p class="col-sm-12"><strong>FUNCIONES VITALES</strong></p>
+        <p class="col-sm-2"><strong>P/A:</strong> {{$consulta->pa}}</p>
+        <p class="col-sm-2"><strong>Pulso:</strong> {{$consulta->card}}</p>
+        <p class="col-sm-2"><strong>TºO:</strong> {{$consulta->temperatura}}</p>
+        <p class="col-sm-2"><strong>SO<sub>3</sub>:</strong> {{$consulta->so3}}</p>
+        <p class="col-sm-2"><strong>Peso:</strong> {{$consulta->peso}}</p>
+        <p class="col-sm-2"><strong>Talla:</strong> {{$consulta->talla}}</p>
+        <p class="col-sm-2"><strong>IMC:</strong> {{$consulta->imc}}</p>
+        <br>
+        <h3 class="col-sm-12">IV. DIAGNÓSTICO PRESUNTIVO:</h3>
+        <p class="col-sm-6">{{ $consulta->presuncion_diagnostica }}</p>
+        <p class="col-sm-6"><strong>CIEX Pres. Diag.:</strong> {{ $consulta->CIEX }}</p>
+        <br>
+        <h3 class="col-sm-12">V. EXÁMENES AUXILIARES</h3>
+        <p class="col-sm-12">{{ $consulta->examen_auxiliar }}</p>
+        <br>
+        <h3 class="col-sm-12">VI. DIAGNÓSTICO DEFINITIVO:</h3>
+        <p class="col-sm-6">{{ $consulta->diagnostico_final }}</p>
+        <p class="col-sm-6"><strong>CIEX Diag. Def.: </strong>{{ $consulta->CIEX2 }}</p>
+        <br>
+        <h3 class="col-sm-12">VII. TRATAMIENTO:</h3>
+        <p class="col-sm-12">{{ $consulta->plan_tratamiento }}</p>
+        <p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
+        <p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
+        <p  class="col-sm-6"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
 				<br>
 			</div>
 		</div>

@@ -19,28 +19,112 @@
 
 
 	<br>	
+	<br>
+	<h2>Resultados anteriores de {{$data->nombres}} {{$data->apellidos}}</h2>
+	@foreach($consultas as $consulta)
+	<div class="rows">
+		<div class="col-sm-12">
+			<div class="rows">
+				<h3 class="col-sm-12"><strong>Consulta del {{$consulta->created_at}}</strong></h3>
 
-	@if($historial)
-	<h2>Historia Base de {{$data->nombres}} {{$data->apellidos}}</h2>
-		<p>Alergias: {{$historial->alergias}}</p>
-		<p>Antecedentes Patológicos: {{$historial->antecedentes_patologicos}}</p>
-		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
-		<p>Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
-		<p>Antecedentes Quirúrgicos: {{$historial->antecedentes_quirurgicos}}</p>
-		<p>Antecedentes Traumáticos: {{$historial->antecedentes_traumaticos}}</p>
-		<p>Antecedentes Genéticos: {{$historial->antecedentes_geneticos}}</p>
-		<p>Menarquia: {{$historial->menarquia}} años</p>
-		<p>1º R.S : {{$historial->prs}} años</p>
+				<h3 class="col-sm-12">II. AMANESIS</h3>
+				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
+				<p class="col-sm-6"><strong>Tiempo de Enfermedad:</strong> {{ $consulta->tiempo_enf }}</p>
+				<p class="col-sm-12"><strong>ANTECEDENTES MÉDICOS</strong></p>
+				<p class="col-sm-6"><strong>Antecedentes Patológicos:</strong> {{$consulta->antecedentes_patologicos}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Personales:</strong> {{$consulta->antecedentes_personales}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Familiares:</strong> {{$consulta->antecedentes_familiar}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Quirúrgicos:</strong> {{$consulta->antecedentes_quirurgicos}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Traumáticos:</strong> {{$consulta->antecedentes_traumaticos}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Genéticos:</strong> {{$consulta->antecedentes_geneticos}}</p>
+				<p class="col-sm-6"><strong>Alergias:</strong> {{$consulta->alergias}}</p>
+				<br>
+				<p class="col-sm-12"><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
+				<p class="col-sm-3"><strong>Menarquia:</strong> {{$consulta->menarquia}} años</p>
+				<p class="col-sm-3"><strong>R/C:</strong> {{$consulta->pulso}}</p>
+				<p class="col-sm-3"><strong>1º R.S:</strong> {{$consulta->prs}}</p>
+				<p class="col-sm-3"><strong>Nº PS:</strong> {{$consulta->andria}}</p>
+				<p class="col-sm-1"><strong>G:</strong> {{$consulta->g}}</p>
+				<p class="col-sm-1"><strong>P:</strong> {{$consulta->p}}</p>
+				<p class="col-sm-4"><strong>Fecha Últ. Emb.:</strong> {{$consulta->fechaemb}}</p>
+				<p class="col-sm-3"><strong>RN> peso:</strong> {{$consulta->rnpeso}}</p>
+				<p class="col-sm-3"><strong>FUR:</strong> {{$consulta->fur}}</p>
+				<p class="col-sm-12"><strong>Anticonceptivo:</strong> {{$consulta->anticon}}</p>
+				<p class="col-sm-3"><strong>Fecha Último PAP:</strong> {{$consulta->fecha}}</p>
+				<p class="col-sm-3"><strong>Resultado:</strong> {{$consulta->result}}</p>
+				<p class="col-sm-2"><strong>Grupo Sanguineo:</strong> {{$consulta->gsan}}</p>
+				<p class="col-sm-12"><strong>Procesos Hemorrágicos (Parto/Aborto):</strong> {{$consulta->phpa}}</p>
+				<p class="col-sm-6"><strong>Antecedentes de EPI:</strong> {{$consulta->antepi}}</p>
+				<p class="col-sm-3"><strong>ETS:</strong> {{$consulta->ets}}</p>
+				<p class="col-sm-6"><strong>OTROS:</strong> {{$consulta->etsotro}}</p>
 
-	@else
-	<h4>Este usuario no cuenta con un historial base, por favor agregue uno</h4>
-		<div></div>
-		<form action="historial/create" method="post">
-			<div class="form-group">
-				{{ csrf_field() }}
-				<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
-				<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
-				<h3>Antecedentes Medicos</h3>
+				<h3 class="col-sm-12">III. EXAMEN FÍSICO/CLÍNICO</h3>
+				<p class="col-sm-12"><strong>FUNCIONES VITALES</strong></p>
+				<p class="col-sm-2"><strong>P/A:</strong> {{$consulta->pa}}</p>
+				<p class="col-sm-2"><strong>Pulso:</strong> {{$consulta->card}}</p>
+				<p class="col-sm-2"><strong>TºO:</strong> {{$consulta->temperatura}}</p>
+				<p class="col-sm-2"><strong>SO<sub>3</sub>:</strong> {{$consulta->so3}}</p>
+				<p class="col-sm-2"><strong>Peso:</strong> {{$consulta->peso}}</p>
+				<p class="col-sm-2"><strong>Talla:</strong> {{$consulta->talla}}</p>
+				<p class="col-sm-2"><strong>IMC:</strong> {{$consulta->imc}}</p>
+				<br>
+				<h3 class="col-sm-12">IV. DIAGNÓSTICO PRESUNTIVO:</h3>
+				<p class="col-sm-6">{{ $consulta->presuncion_diagnostica }}</p>
+				<p class="col-sm-6"><strong>CIEX Pres. Diag.:</strong> {{ $consulta->CIEX }}</p>
+				<br>
+				<h3 class="col-sm-12">V. EXÁMENES AUXILIARES</h3>
+				<p class="col-sm-12">{{ $consulta->examen_auxiliar }}</p>
+				<br>
+				<h3 class="col-sm-12">VI. DIAGNÓSTICO DEFINITIVO:</h3>
+				<p class="col-sm-6">{{ $consulta->diagnostico_final }}</p>
+				<p class="col-sm-6"><strong>CIEX Diag. Def.: </strong>{{ $consulta->CIEX2 }}</p>
+				<br>
+				<h3 class="col-sm-12">VII. TRATAMIENTO:</h3>
+				<p class="col-sm-12">{{ $consulta->plan_tratamiento }}</p>
+				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
+				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
+		        <p  class="col-sm-6"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
+				
+
+
+				<br>
+			</div>
+		</div>
+	
+	@endforeach
+	<div class="col-sm-12">
+	<h3>Registrar nueva Historia</h3>
+	<br>
+	<form action="observacion/create" method="post" class="form-horizontal">
+		{{ csrf_field() }}
+		<div class="form-group">
+			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
+			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
+		    <input type="hidden" name="evento" value="{{$evento->id}}">
+             <div class="row">
+			  <label class="col-sm-3 control-label">DEJAR PENDIENTE?:</label>
+			<div class="col-sm-2">
+				<select id="el3" name="pendiente" required="true">
+					<option value="0">No</option>
+					<option value="1">Si</option>
+				</select>
+			</div> 
+			</div>
+			<h2>II. ANAMNESIS</h2>
+           <div class="row">
+            <label for="" class="col-sm-2 control-label">Motivo de Consulta:</label>
+			<div class="col-sm-10">	
+				<textarea name="motivo_consulta" cols="10" rows="3" class="form-control" ></textarea>
+			</div>
+		  </div>
+		  <div class="row">
+            <label for="" class="col-sm-2 control-label">Tiempo de enfermedad:</label>
+			<div class="col-sm-10">	
+				<textarea name="tiempo_enf" cols="10" rows="3" class="form-control" ></textarea>
+			</div>
+		  </div>
+
+		  <p><strong>ANTECEDENTES MÉDICOS</strong></p>
 				<div class="row">
 
 				<label for="" class="col-sm-3">Antecedentes Familiares:</label>
@@ -152,104 +236,121 @@
 				</div>
 				
 				<br>
+				<p><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
 				<div class="row">
-				<label for="" class="col-sm-1">Menarquia:</label>
-				<div class="col-sm-3">
-					<input type="text" name="menarquia"> años.
+					<label for="" class="col-sm-1">Menarquia:</label>
+					<div class="col-sm-3">
+						<input class="form-control" type="text" name="menarquia">
+					</div>
+					<label for="" class="col-sm-1">R/C:</label>
+					<div class="col-sm-2">	
+						<input   class="form-control" type="text" name="pulso">
+					</div>
+					<label for="" class="col-sm-1">1º R.S:</label>
+					<div class="col-sm-1">
+						<input class="form-control" type="text" name="prs">
+					</div>
+					<label for="" class="col-sm-1">Nº PS:</label>
+					<div class="col-sm-2">	
+						<input class="form-control" type="text" name="andria">
+					</div>
 				</div>
-				<label for="" class="col-sm-1">1º R.S:</label>
-				<div class="col-sm-3">
-					<input type="text" name="prs"> años.
+				<div class="row">
+					<label for="" class="col-sm-1">G:</label>
+					<div class="col-sm-1">	
+						<input   class="form-control" type="text" name="g">
+					</div>
+					<label for="" class="col-sm-1">P:</label>
+					<div class="col-sm-1">	
+						<input  class="form-control" type="text" name="p">
+					</div>
+					<label for="" class="col-sm-2">Fecha Últ. Emb.:</label>
+					<div class="col-sm-3">			
+						<input  class="form-control" type="text" name="fechaemb" placeholder="fecha de último embarazo">
+					</div>
+					<label for="" class="col-sm-2">RN> peso:</label>
+					<div class="col-sm-1">	
+						<input class="form-control" type="text" name="rnpeso">
+					</div>
 				</div>
+				<div class="row">
+					<label for="" class="col-sm-1">FUR:</label>
+					<div class="col-sm-2">	
+						<input class="form-control" type="text" name="fur" placeholder="fecha FUR">
+					</div>
+
+					<label for="" class="col-sm-2">Anticonceptivo:</label>
+					<div class="col-sm-7">	
+						<input class="form-control" type="text" name="anticon">
+					</div>
 				</div>
-			
-			
+				<div class="row">
+					<label for="" class="col-sm-2">Fecha Último PAP:</label>
+					<div class="col-sm-3">			
+						<input  class="form-control" type="text" name="fecha" placeholder="fecha de último PAP">
+					</div>
+					<label for="" class="col-sm-1">Resultado:</label>
+					<div class="col-sm-2">			
+						<input  class="form-control" type="text" name="result">
+					</div>
+					<label for="" class="col-sm-2">Grupo Sanguineo:</label>
+					<div class="col-sm-2">			
+						<input  class="form-control" type="text" name="gsan">
+					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-4">Procesos Hemorrágicos (Parto/Aborto):</label>
+					<div class="col-sm-8">	
+						<input class="form-control" type="text" name="phpa">
+					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-2">Antecedentes de EPI:</label>
+					<div class="col-sm-4">	
+						<input class="form-control" type="text" name="antepi">
+					</div>
+					<label for="" class="col-sm-1">ETS:</label>
+					<div class="col-sm-5">	
+						<input class="form-control" type="text" name="ets">
+					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-1">Otros:</label>
+					<div class="col-sm-11">	
+						<input class="form-control" type="text" name="etsotro">
+					</div>
+				</div>
 				<br>
-				<div class="col-sm-12">
-					<input type="button" onclick="form.submit()" value="Registrar" class="btn btn-success">
+		<h2>III. EXAMEN FÍSICO/CLÍNICO</h2>
+		<br>
+		<p><strong>FUNCIONES VITALES</strong></p>
+			<div class="row">
+				<label for="" class="col-sm-1 control-label">P/A:</label>
+				<div class="col-sm-1">	
+					<input   class="form-control" type="text" name="pa" placeholder="mmgh-">
+				</div>
+				<label for="" class="col-sm-1 control-label">Pulso:</label>
+				<div class="col-sm-1">	
+					<input  class="form-control" type="text" name="card">
+				</div>
+				<label for="" class="col-sm-1 control-label">Tº O:</label>
+				<div class="col-sm-1">	
+					<input   class="form-control" type="text" name="temperatura" placeholder="">
+				</div>
+				<label for="" class="col-sm-1 control-label">SO<sub>3</sub>:</label>
+				<div class="col-sm-1">	
+					<input   class="form-control" type="text" name="so3" placeholder="">
+				</div>
+				<label for="" class="col-sm-1 control-label">Peso:</label>
+				<div class="col-sm-1">			
+					<input  class="form-control" type="text" name="peso" placeholder="Kg">
+				</div>
+				<label for="" class="col-sm-1 control-label">Talla:</label>
+				<div class="col-sm-1">			
+					<input  class="form-control" type="text" name="talla" placeholder="talla">
 				</div>
 			</div>
-		</form>
-	@endif
-	<br>
-	<h2>Resultados anteriores de {{$data->nombres}} {{$data->apellidos}}</h2>
-	@foreach($consultas as $consulta)
-	<div class="rows">
-		<div class="col-sm-12">
-			<div class="rows">
-				<h3 class="col-sm-12"><strong>Consulta del {{$consulta->created_at}}</strong></h3>
-				<p class="col-sm-6"><strong>P/A:</strong> {{ $consulta->pa }}mmhg-</p>
-
-				<p class="col-sm-6"><strong>Sed:</strong> {{ $consulta->sed }}</p>
-				<p class="col-sm-6"><strong>Apetito:</strong> {{ $consulta->apetito }}</p>
-				<p class="col-sm-6"><strong>Animo:</strong> {{ $consulta->animo }}</p>
-				<p class="col-sm-6"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}c 24/hrs</p>
-				<p class="col-sm-6"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}c 24/hrs</p>
-				<p class="col-sm-6"><strong>Frecuencia Cardìaca:</strong> {{ $consulta->card }}x min</p>
-				<p class="col-sm-6"><strong>R/C:</strong> {{ $consulta->pulso }}</p>
-				<p class="col-sm-6"><strong>Temperatura:</strong> {{ $consulta->temperatura }}ºC</p>
-				<p class="col-sm-6"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
-				<p class="col-sm-6"><strong>Talla:</strong> {{ $consulta->talla }}</p>
-				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
-				<p class="col-sm-6"><strong>Amenorrea:</strong> {{ $consulta->amenorrea}}</p>
-				<p class="col-sm-6"><strong>Ciclo Menstrual:</strong> {{ $consulta->andria }}</p>
-				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
-			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
-				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G</strong>:{{ $consulta->g }}</p>
-				<p class="col-sm-6"><strong>Fecha Ult. Emb.:</strong> {{ $consulta->fechaemb }}</p>
-				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
-				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
-				<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
-				<p class="col-sm-6"><strong>Examen Fisico Regional: </strong></p>
-				<p class="col-sm-6"><strong>Piel/Mucosas: </strong>{{ $consulta->piel }}</p>
-				<p class="col-sm-6"><strong>Mamas: </strong>{{ $consulta->mamas }}</p>
-				<p class="col-sm-6"><strong>Abdomen: </strong>{{ $consulta->abdomen }}</p>
-				<p class="col-sm-6"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
-				<p class="col-sm-6"><strong>Genitales Internos: </strong>{{ $consulta->genint }}</p>
-				<p class="col-sm-6"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
-				<p class="col-sm-6"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
-				<p class="col-sm-6"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
-				<p class="col-sm-6"><strong>CIEX Pres.Diag.:</strong> {{ $consulta->CIEX }}</p>
-				<p class="col-sm-6"><strong>CIEX Diag.Final: </strong>{{ $consulta->CIEX2 }}</p>
-				<p class="col-sm-6"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
-				<p class="col-sm-6"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
-				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
-		        <p  class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
-				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
-
-
-				<br>
-			</div>
-		</div>
-	
-	@endforeach
-	<div class="col-sm-12">
-	<h3>Registrar nueva Historia</h3>
-	<form action="observacion/create" method="post" class="form-horizontal">
-		{{ csrf_field() }}
-		<div class="form-group">
-			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
-			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
-		    <input type="hidden" name="evento" value="{{$evento->id}}">
-             <div class="row">
-			  <label class="col-sm-3">DEJAR PENDIENTE?:</label>
-			<div class="col-sm-2">
-				<select id="el3" name="pendiente" required="true">
-					<option value="0">No</option>
-					<option value="1">Si</option>
-				</select>
-			</div> 
-			</div>
-           <div class="row">
-            <label for="" class="col-sm-2 control-label">Motivo de Consulta</label>
-			<div class="col-sm-10">	
-				<textarea name="motivo_consulta" cols="10" rows="3" class="form-control" ></textarea>
-			</div>
-		  </div>
-
-		
-
-		  <div class="col-md-6">
+		  <!--<div class="col-md-6">
 		  	<label for="" class="col-sm-2 control-label">Func.Biològicas</label>
 		  </div>
 		  <div class="col-md-6">
@@ -264,11 +365,6 @@
 				</select>
 			</div>
 			
-		
-			<label for="" class="col-sm-2 control-label">P/A</label>
-			<div class="col-sm-4">
-				<input type="text" name="pa" class="form-control" placeholder="mmgh-">
-			</div>
 			<label for="" class="col-sm-2 control-label">Sed:</label>
 			<div class="col-sm-4">	
 				<select id="el8" name="sed">
@@ -277,23 +373,11 @@
 					<option value="Disminuido">Disminuido</option>
 				</select>
 			</div>
-			<label for=""class="col-sm-2 control-label">Frec.Cardìaca</label>
-			<div class="col-sm-4">
-				<input class="form-control" type="text" name="card" placeholder="x min">
-			</div>
 			
 
 			<label for="" class="col-sm-2 control-label">Frecuencia.Micciones</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" placeholder="Frecuencia Micciones" type="text" name="orina" placeholder="c 24/hrs">
-			</div>
-			<label for="" class="col-sm-2 control-label">Peso</label>
-			<div class="col-sm-4">			
-				<input  class="form-control" type="text" name="peso" placeholder="Kg">
-			</div>
-			<label for="" class="col-sm-2 control-label">Talla</label>
-			<div class="col-sm-4">			
-				<input  class="form-control" type="text" name="talla" placeholder="talla">
 			</div>
 			<label for="" class="col-sm-2 control-label">Animo</label>
 			<div class="col-sm-4">	
@@ -312,10 +396,6 @@
 			<div class="col-sm-4">	
 				<input  class="form-control" placeholder="Frecuencia Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs">
 			</div>
-			<label for="" class="col-sm-2 control-label">R/C:</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="pulso">
-			</div>
 			<label for="" class="col-sm-2 control-label">Evol.Enf</label>
 			<div class="col-sm-4">	
 				<select id="el16" name="evolucion_enfermedad">
@@ -333,85 +413,38 @@
 				</select>
 			</div>
 			<br>
-		
-
-			<label for="" class="col-sm-2 control-label">FUR:</label>
-			<div class="col-sm-4">	
-				<input class="form-control" type="date" name="fur">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">Amenorrea:</label>
-			<div class="col-sm-4">	
-				<input class="form-control" type="text" name="andria">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">Andria:</label>
-			<div class="col-sm-4">	
-				<input class="form-control" type="text" name="andria">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">PAP:</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="pap" placeholder="fecha">
-			</div>
 
 			<label for="" class="col-sm-2 control-label">MAC:</label>
 			<div class="col-sm-4">	
 				<input  class="form-control" type="text" name="mac">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">G:</label>
-			<div class="col-sm-1">	
-				<input   class="form-control" type="text" name="g">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">P:</label>
-			<div class="col-sm-1">	
-				<input  class="form-control" type="text" name="p">
-			</div>
-			<label for="" class="col-sm-2 control-label">Fecha Ult. Emb.:</label>
-			<div class="col-sm-4">			
-				<input  class="form-control" type="text" name="fechaemb" placeholder="fecha de último embarazo">
-			</div>
+			</div>-->
 
 			
 
 
-			<br>
-			<div class="row">
-			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
-			<div class="col-sm-4">Piel/Mucosas	
-				<input class="form-control" type="text" name="piel">
+		<br>
+		<div class="row">
+            <label for="" class="col-sm-2 control-label">Examen Físico General:</label>
+			<div class="col-sm-10">	
+				<textarea name="exagen" cols="10" rows="3" class="form-control" ></textarea>
 			</div>
-			<div class="col-sm-4">Mamas	
-				<input class="form-control" type="text" name="mamas">
+	  	</div>
+		<div class="row">
+        	<label for="" class="col-sm-2 control-label">Examen Físico Regional:</label>
+			<div class="col-sm-10">	
+				<textarea name="exareg" cols="10" rows="3" class="form-control" ></textarea>
 			</div>
-			<div class="col-sm-4">Abdomen	
-				<input class="form-control" type="text" name="abdomen">
-			</div>
-		    </div>
-		    <div class="row">
-		    <div class="col-sm-4">Genitales Externos	
-				<input class="form-control" type="text" name="genext">
-			</div>
-			<div class="col-sm-4">Genitales Internos	
-				<input class="form-control" type="text" name="genint">
-			</div>
-			<div class="col-sm-4">Miembros Inferiores	
-				<input class="form-control" type="text" name="miembros">
-			</div>
-		    </div>
-
-
-            <div class="row">
-			<label for="" class="col-sm-2 control-label">Pres.Diag</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Presunciòn Diagnostica" type="text" name="presuncion_diagnostica">
+		</div>
+		<br>
+        <div class="row">
+	        <h2>IV. DIAGNÓSTICO PRESUNTIVO</h2>
+			<div class="col-sm-6">	
+				<textarea   class="form-control" cols="10" rows="3" type="text" name="presuncion_diagnostica"></textarea>
 			</div>
 
 		
-			<label class="col-sm-2">CIE-X:</label>
-			<div class="col-sm-4">
+			<label class="col-sm-1">CIE-X:</label>
+			<div class="col-sm-5">
 				<select id="el6" name="ciex[]" multiple="">
 					@foreach($ciex as $c)
 					<option value="{{$c->codigo}}-{{$c->nombre}}">
@@ -420,17 +453,23 @@
 					@endforeach
 				</select>
 			</div> 
-			
-			</div>
-            
+		</div>
+		<br>
 		<div class="row">
-			<label for="" class="col-sm-2 control-label">Diag.Final</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final">
+	        <h2>V. EXÁMENES AUXILIARES</h2>
+			<div class="col-sm-12">	
+				<textarea   class="form-control" cols="10" rows="3" type="text" name="examen_auxiliar"></textarea>
+			</div>
+		</div>
+        <br>
+		<div class="row">
+			<h2>VI. DIAGNÓSTICO DEFINITIVO</h2>
+			<div class="col-sm-6">	
+				<textarea   class="form-control" cols="10" rows="3" type="text" name="diagnostico_final"></textarea>
 			</div>
 
-			<label class="col-sm-2">CIE-X:</label>
-			<div class="col-sm-4">
+			<label class="col-sm-1">CIE-X:</label>
+			<div class="col-sm-5">
 				<select id="el4" name="ciex2[]" multiple="">
 					@foreach($ciex as $c)
 					<option value="{{$c->codigo}}-{{$c->nombre}}">
@@ -441,34 +480,24 @@
 			</div> 
 			
 		</div>
+		<br>
+		<div class="row">
+		<h2>VII. TRATAMIENTO</h2>
+		<div class="col-sm-12">	
+				<textarea  class="form-control" type="text" cols="10" rows="3" name="plan_tratamiento"></textarea>
+			</div>
+	    </div>
 
-			<label for="" class="col-sm-2 control-label">Examen Auxiliar</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="examen_auxiliar">
-			</div>
-
-			<label for="" class="col-sm-2 control-label"></label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="" disabled="true">
-			</div>
-			
-			
-			<div class="row">
-			<label for="" class="col-sm-2 control-label"><strong>Plan de Tratamiento:</strong></label>
-		    </div>
-
-			<div class="col-sm-12">	
-				<input   class="form-control" type="text" name="plan_tratamiento">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">Observaciones</label>
-			<div class="col-sm-10">	
-				<textarea name="observaciones" cols="10" rows="10" class="form-control" ></textarea>
-			</div>
-			<label for="" class="col-sm-2 ">Pròxima Cita</label>
-			<div class="col-sm-3">
-				<input type="date" name="prox" class="form-control" >
-			</div>
+	    <div class="row">
+		<label for="" class="col-sm-2 control-label">Observaciones:</label>
+		<div class="col-sm-10">	
+			<textarea name="observaciones" cols="10" rows="10" class="form-control" ></textarea>
+		</div>
+		<label for="" class="col-sm-2 ">Pròxima Cita</label>
+		<div class="col-sm-3">
+			<input type="date" name="prox" class="form-control" >
+		</div>
+		</div>
 		
 			
 			<label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales Usados</label>
@@ -493,7 +522,7 @@
                     <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Cantidad Usada:</label>
                     <div class="col-sm-2">
 
-                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono]" type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
                     </div>
 
                     <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
