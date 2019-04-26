@@ -229,7 +229,7 @@
           </div>
           <br>
 
-            <label class="col-sm-3 control-label">Còmo llego a Madre Teresa:</label>
+            <label class="col-sm-3 control-label">Còmo llego a San Antonio de Padua:</label>
             <div class="col-sm-3">
               <select id="el6" name="comollego" required="true">
                   <option value="Seleccione">Seleccione</option>
