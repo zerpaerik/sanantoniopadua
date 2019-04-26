@@ -1,4 +1,4 @@
-<label class="col-sm-5 control-label">Profesional</label>
+<label class="col-sm-5 control-label">Referente</label>
 						<div class="col-sm-3">
 							<select id="el41" name="origen_usuario">
 								@foreach($profesional as $pac)

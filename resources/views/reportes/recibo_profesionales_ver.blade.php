@@ -55,7 +55,7 @@
 </head>
 <body>
 
-		 <img src="/var/www/html/sysmadeteresa/public/img/logo.jpeg"  style="width: 20%;"/>
+		 <img src="/var/www/html/padua/sysmadeteresa/public/img/logopadua.jpeg"  style="width: 20%;"/>
 
 
 	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>

@@ -278,6 +278,38 @@
 </div>
 
 
+<div style="font-weight: bold; font-size: 14px">
+		VENTAS
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Paciente</th>
+			<th>Producto</th>
+			<th>Monto</th>
+			<th>Cantidad</th>
+		</tr>
+		@foreach ($ventas as $serv)
+			<tr>
+				<td>{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td>{{ $serv->producto }}</td>
+				<td>{{ $serv->monto }}</td>
+				<td>{{ $serv->cantidad }}</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td width="80">{{$totalventas->monto}}</td>
+		</tr>
+	</table>
+</div>
+
+
+
 
 
 

@@ -9,6 +9,7 @@ use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\Pacientes;
+use App\Models\VentasProductos;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use App\Models\MaterialesMalogrados;
@@ -278,6 +279,15 @@ class ReportesController extends Controller
             $cuentasXcobrar->monto = 0;
         }
 
+        $ventas = Creditos::where('origen', 'VENTA DE PRODUCTOS')
+                                     ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($ventas->cantidad == 0) {
+            $ventas->monto = 0;
+        }
+
         $egresos = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
 		                    ->where('id_sede','=', $request->session()->get('sede'))
                             ->select(DB::raw('origen, descripcion, monto'))
@@ -313,7 +323,7 @@ class ReportesController extends Controller
             $metodos->monto = 0;
         }
 
-        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto;
+        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto + $ventas->monto;
 
         $totalEgresos = 0;
 
@@ -324,7 +334,7 @@ class ReportesController extends Controller
 
         $hoy=date('d-m-Y');
 
-        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos','metodos','hoy'));
+        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos','metodos','hoy','ventas'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
@@ -492,6 +502,16 @@ class ReportesController extends Controller
             $consultas->monto = 0;
         }
 
+          $ventas = Creditos::where('origen', 'VENTA DE PRODUCTOS')
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($ventas->cantidad == 0) {
+            $ventas->monto = 0;
+        }
+
         $otros_servicios = Creditos::where('origen', 'OTROS INGRESOS')
                                     ->where('id_sede','=', $request->session()->get('sede'))
                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
@@ -557,14 +577,14 @@ class ReportesController extends Controller
             $totalEgresos += $egreso->monto;
         }
     
-         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto;
+         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto + $ventas->monto;
 
         
  
 
 
        
-       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja','egresos','efectivo','tarjeta','totalEgresos','totalIngresos'));
+       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja','egresos','efectivo','tarjeta','totalEgresos','totalIngresos','ventas'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');
@@ -711,11 +731,45 @@ class ReportesController extends Controller
                                      array($fechainic, $fecha))
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
-    
+       
+         $ventas = DB::table('ventas_productos as a')
+        ->select('a.id','a.paciente','a.id_producto','a.cantidad','a.monto','a.created_at','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->join('pacientes as b','b.id','a.paciente')
+        ->join('productos as d','d.id','a.id_producto')
+        ->whereRaw("a.created_at >= ? AND a.created_at <= ?", 
+                                     array($fechainic, $fecha))
+        ->orderBy('a.created_at','desc')
+        ->get();
+
+         $totalventas = Creditos::where('origen','VENTA DE PRODUCTOS')
+                                     ->where('id_sede','=', $request->session()->get('sede'))
+                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first(); 
+
+         $metodos = DB::table('metodos as a')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->join('users as c','c.id','a.id_usuario')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('productos as d','d.id','a.id_producto')
+      ->whereRaw("a.created_at >= ? AND a.created_at <= ?", 
+                                     array($fechainic, $fecha))
+        ->orderBy('a.created_at','desc')
+        ->get(); 
+
+
+        $totalmetodos = Creditos::where('origen','METODOS ANTICONCEPTIVOS')
+                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
      
  
 
-        $view = \View::make('reportes.cierre_caja_verd', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalpaquetes','caja'));
+        $view = \View::make('reportes.cierre_caja_verd', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalpaquetes','caja','ventas','totalventas','metodos','totalmetodos'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');
@@ -832,6 +886,18 @@ class ReportesController extends Controller
         }
 
 
+         $ventas = Creditos::where('origen', 'VENTA DE PRODUCTOS')
+                                            ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($ventas->cantidad == 0) {
+            $ventas->monto = 0;
+        }
+
+
+
         $egresos = Debitos::whereRaw("created_at > ? AND created_at <= ?", 
                                      array($fechamañana, $fecha))
                             ->where('id_sede','=', $request->session()->get('sede'))
@@ -867,16 +933,10 @@ class ReportesController extends Controller
             $totalEgresos += $egreso->monto;
         }
     
-         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto ;
+         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto + $ventas->monto  ;
 
     
-
-        
- 
-
-
-       
-       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja','egresos','totalEgresos','totalIngresos','efectivo','tarjeta','caja'));
+       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja','egresos','totalEgresos','totalIngresos','efectivo','tarjeta','caja','ventas'));
              $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('recibo_cierre_caja_ver');
@@ -1045,11 +1105,44 @@ class ReportesController extends Controller
     
         
     
-       // $fecha = $caja->fecha;
+        $ventas = DB::table('ventas_productos as a')
+        ->select('a.id','a.paciente','a.id_producto','a.cantidad','a.monto','a.created_at','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->join('pacientes as b','b.id','a.paciente')
+        ->join('productos as d','d.id','a.id_producto')
+        ->whereRaw("a.created_at > ? AND a.created_at <= ?", 
+                                     array($fechamañana, $fecha))
+        ->orderBy('a.created_at','desc')
+        ->get();
+
+         $totalventas = Creditos::where('origen','VENTA DE PRODUCTOS')
+                                     ->where('id_sede','=', $request->session()->get('sede'))
+                                     ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first(); 
+
+
+
+        $metodos = DB::table('metodos as a')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('productos as d','d.id','a.id_producto')
+       ->whereRaw("a.created_at > ? AND a.created_at <= ?", 
+                                    array($fechamañana, $fecha))
+        ->get(); 
 
        
 
-        $view = \View::make('reportes.cierre_caja_verd', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalpaquetes','caja'));
+        $totalmetodos = Creditos::where('origen','METODOS ANTICONCEPTIVOS')
+                                     ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+       
+
+        $view = \View::make('reportes.cierre_caja_verd', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalpaquetes','caja','ventas','totalventas','metodos','totalmetodos'));
 
 
       
@@ -1252,13 +1345,28 @@ class ReportesController extends Controller
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
 
+         $ventas = DB::table('ventas_productos as a')
+        ->select('a.id','a.paciente','a.id_producto','a.cantidad','a.monto','a.created_at','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->join('pacientes as b','b.id','a.paciente')
+        ->join('productos as d','d.id','a.id_producto')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->orderBy('a.created_at','desc')
+        ->get(); 
+
+
+        $totalventas = Creditos::where('origen','VENTA DE PRODUCTOS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
 
     
     
      
         $hoy=date('d-m-Y');
        
-        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalPaquetes','metodos','totalmetodos','hoy'));
+        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalPaquetes','metodos','totalmetodos','hoy','ventas','totalventas'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
