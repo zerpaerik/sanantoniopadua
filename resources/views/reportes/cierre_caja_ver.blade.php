@@ -50,7 +50,7 @@
 </head>
 
 <div>
-<img src="/var/www/html/sysmadeteresa/public/img/logo2.jpeg"  style="width: 20%;"/>
+<img src="/var/www/html/padua/sysmadeteresa/public/img/logopadua.jpeg"  style="width: 20%;"/>
 	<div class="text-center title-header col-12">
 		<center><strong>REPORTE DE CIERRE DE CAJA</strong> </center>
 		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
@@ -126,6 +126,12 @@
 			<td>{{ $metodos->cantidad }}</td>
 			<td>{{ $metodos->monto }}</td>
 		</tr>
+			<tr>
+			<td>Ventas</td>
+			<td>{{ $ventas->cantidad }}</td>
+			<td>{{ $ventas->monto }}</td>
+		</tr>
+		
 		
 	</table>
 </div>

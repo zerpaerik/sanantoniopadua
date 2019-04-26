@@ -50,7 +50,7 @@
 </head>
 
 <div>
-			<img src="/var/www/html/sysmadeteresa/public/img/logo2.jpeg"  style="width: 20%;"/>
+<img src="/var/www/html/padua/sysmadeteresa/public/img/logopadua.jpeg"  style="width: 20%;"/>
 
 	<div class="text-center title-header col-12">
 		<center><strong>REPORTE DE CIERRE DE CAJA DETALLADO</strong> </center>
@@ -273,6 +273,65 @@
 			<td></td>
 			<td></td>
 			<td width="80">{{ $totalcuentasporcobrar->monto }}</td>
+		</tr>
+	</table>
+</div>
+
+<div style="font-weight: bold; font-size: 14px">
+		MÉTODOS ANTICONCEPTIVOS
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Paciente</th>
+			<th>Método</th>
+			<th>Monto</th>
+			<th>Tipo de Pago</th>
+		</tr>
+		@foreach ($metodos as $serv)
+			<tr>
+				<td>{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td>{{ $serv->producto }}</td>
+				<td>{{ $serv->monto }}</td>
+			    <td>EF</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td width="80">{{$totalmetodos->monto}}</td>
+		</tr>
+	</table>
+</div>
+
+<div style="font-weight: bold; font-size: 14px">
+		VENTAS
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Paciente</th>
+			<th>Producto</th>
+			<th>Monto</th>
+			<th>Cantidad</th>
+		</tr>
+		@foreach ($ventas as $con)
+			<tr>
+				<td>{{ $con->nombres }},{{ $con->apellidos }}</td>
+				<td>{{ $con->producto }}</td>
+				<td>{{ $con->monto }}</td>
+				<td>{{ $con->cantidad }}</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td width="80">{{ $totalventas->monto }}</td>
 		</tr>
 	</table>
 </div>

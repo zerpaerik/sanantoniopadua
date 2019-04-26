@@ -49,7 +49,7 @@
 							<select id="el2" name="origen">
 								    <option value="0">Seleccione el Origen</option>
 									<option value="1">Personal</option>
-									<option value="2">Profesional</option>
+									<option value="2">Referente</option>
 					       <option value="3">Particular</option>
 							</select>
 						</div>
