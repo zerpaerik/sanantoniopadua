@@ -10,24 +10,7 @@
 	<p>Grado de isntruccion del paciente: {{$data->gradoinstruccion}}</p>
 	<p>Ocupacion del paciente: {{$data->ocupacion}}</p>	
 </div>	
-<div class="col-sm-8">
-
-	@if($historial)
-	<h2>Historia Base de {{$data->nombres}} {{$data->apellidos}}</h2>
-		<p>Alergias: {{$historial->alergias}}</p>
-		<p>Antecedentes patologicos: {{$historial->antecedentes_patologicos}}</p>
-		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
-		<p>Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
-    <p>Antecedentes Quirúrgicos: {{$historial->antecedentes_quirurgicos}}</p>
-    <p>Antecedentes Traumáticos: {{$historial->antecedentes_traumaticos}}</p>
-    <p>Antecedentes Genéticos: {{$historial->antecedentes_geneticos}}</p>
-		<p>Menarquia: {{$historial->menarquia}}</p>
-		<p>1º R.S : {{$historial->prs}}</p>
-
-	@else
 	
-	@endif
-</div>	
 
 <br>
 	
