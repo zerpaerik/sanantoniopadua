@@ -597,7 +597,9 @@
 		<tr>
 			<div>
 
-    <th scope="col" style="background: #2E9AFE;">CONTROLES PRENATALES de {{$paciente->nombres}} {{$paciente->apellidos}}</th>
+    <th scope="col" style="background: #2E9AFE;">CONTROLES PRENATALES de {{$paciente->nombres}} {{$paciente->apellidos}}
+    	<td scope="col" style="background: #2E9AFE;"></td>
+    </th>
 
 
   
@@ -615,89 +617,82 @@
   </tr>
 
    <tr>
-
-    <th style="background: #81BEF7;border: 1px solid black;">Edad Gest(Semanas)</th>
+    <th style="background: #81BEF7;border: 1px solid black;">Tiempo de Embarazo</th>
  @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->gesta_semanas}}</td>
+    <td style="border: 1px solid black;">{{$c->tiempoemb}} {{$c->gesta_semanas}}</td>
   @endforeach
   </tr>
 
    <tr>
-
-    <th style="background: #81BEF7;border: 1px solid black;">PesoMadre(Kg)</th>
+    <th style="background: #81BEF7;border: 1px solid black;">Peso</th>
  @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->peso_madre}}</td>
+    <td style="border: 1px solid black;">{{$c->peso}}</td>
   @endforeach
   </tr>
 
   <tr>
-
-    <th style="background: #81BEF7;border: 1px solid black;">Temperatura(ºC)</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->temp}}</td>
-  @endforeach
-  </tr>
-
-   <th style="background: #81BEF7;border: 1px solid black;">Tensiòn Arterial(mmHg)</th>
+   <th style="background: #81BEF7;border: 1px solid black;">PA</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->tension}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;border: 1px solid black;">Altura Uterina</th>
+  <th style="background: #81BEF7;border: 1px solid black;">Pulso</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->pulso_materno}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+    <th style="background: #81BEF7;border: 1px solid black;">Temperatura</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->temp}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">SO<sub>2</sub></th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->consejeria}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">AU</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->altura_uterina}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;border: 1px solid black;">Presentaciòn(C/P/T/NA)</th>
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">Presentación</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->presentacion}}</td>
   @endforeach
   </tr>
 
-     <th style="background: #81BEF7;border: 1px solid black;">FCF</th>
+  <tr>
+     <th style="background: #81BEF7;border: 1px solid black;">LCF</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->fcf}}</td>
   @endforeach
   </tr>
 
-     <th style="background: #81BEF7;border: 1px solid black;">Mov. Fetal</th>
+  <tr>
+    <th style="background: #81BEF7;border: 1px solid black;">Mov. Fetal</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->movimiento_fetal}}</td>
   @endforeach
   </tr>
 
+  <tr>
    <th style="background: #81BEF7;border: 1px solid black;">Edema</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->edema}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;border: 1px solid black;">Pulso Materno</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->pulso_materno}}</td>
-  @endforeach
-  </tr>
-
-   <th style="background: #81BEF7;border: 1px solid black;">Consejeria PF</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->consejeria}}</td>
-  @endforeach
-  </tr>
-
-   <th style="background: #81BEF7;border: 1px solid black;">Sulfato Ferroso</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->sulfato}}</td>
-  @endforeach
-  </tr>
-
-     <th style="background: #81BEF7;border: 1px solid black;">Perfìl Biofìsico</th>
- @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->perfil_biofisico}}</td>
-  @endforeach
-  </tr>
-
+  <tr>
    <th style="background: #81BEF7;border: 1px solid black;">Responsable</th>
  @foreach($control as $c)
     <td style="border: 1px solid black;">{{$c->responsable_control}}</td>
@@ -705,83 +700,85 @@
   </tr>
 
  @foreach($control as $c)
-<div class="col-sm-12">
-   <h2>Fecha de Control: {{$c->created_at}}</h2>
-      
+	<div class="col-sm-12">
+	   <h2>Fecha de Control: {{$c->created_at}}</h2>
+	      
 
 
 
-		    </div>
-          <div class="row">
-			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
-			<div class="col-sm-2"><strong>Piel/Mucosas:</strong>	
-{{$c->piel}}			</div>
-			<div class="col-sm-2"><strong>Mamas:</strong>	
-{{$c->mamas}}			</div>
-			<div class="col-sm-2"><strong>Abdomen:</strong>	
-{{$c->abdomen}}			</div>
-			<div class="col-sm-2"><strong>Gen.Ext:</strong>		
-{{$c->genext}}			</div>
-			<div class="col-sm-2"><strong>Gen.Int:</strong>		
-{{$c->genint}}			</div>
-			<div class="col-sm-2"><strong>MiembrosInf.:</strong>		
-{{$c->miembros}}			</div>
-
-
-		    </div>
-
-		    <div class="row">
-		    	<div class="col-sm-6"><strong>Diag.Presuntivo:</strong>	
-{{$c->pres}}			    </div>
-
-			    <div class="col-sm-6"><strong>Exa.Auxiliares:</strong>		
-{{$c->exa}}			</div>
-		    </div>
-
-		    <div class="row">
-
-			<div class="col-sm-6"><strong>Diag.Definito:</strong>		
-{{$c->def}}			</div>
-
-			<div class="col-sm-6"><strong>PlanTratamiento:</strong>		
-{{$c->def}}			</div>
-
-			</div>
-			  <div class="row">
-
-
-
-             <label class="col-sm-1 control-label">Serologia</label>
-            <div class="col-sm-2">
-            <strong>Resultado:</strong>:{{$c->sero}}
-             <strong>Fecha:</strong>:{{$c->serod}}
-
-
-            </div>
-
-
-             <label class="col-sm-1 control-label">Glucosa</label>
-            <div class="col-sm-2">
-                 <strong>Resultado:</strong>:{{$c->glu}}
-             <strong>Fecha:</strong>:{{$c->glud}}
-
-            </div>
-
-             <label class="col-sm-1 control-label">VIH</label>
-            <div class="col-sm-2">
-                  <strong>Resultado:</strong>:{{$c->vih}}
-             <strong>Fecha:</strong>:{{$c->vihd}}
-
-            </div>
-
-            <label class="col-sm-1 control-label">Hemoglobina</label>
-            <div class="col-sm-2">
-                  <strong>Resultado:</strong>:{{$c->hemo}}
-             <strong>Fecha:</strong>:{{$c->hemod}}
-
-            </div>
-
-        </div>
+	</div>
+	<div class="row">
+		<label class="col-sm-12" for="">Exámenes de laboratorio</label>
+		<label class="col-sm-1">Hemoglobina</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->hemo}}
+		<br>
+		<strong>Fecha:</strong> {{$c->hemod}}
+		</div>
+		<label class="col-sm-1">Glucosa</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->glu}}
+		<br>
+		<strong>Fecha:</strong> {{$c->glud}}
+		</div>
+		<label class="col-sm-1">Plaquetas</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->plaquetas}}
+		<br>
+		<strong>Fecha:</strong> {{$c->plaqdate}}
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<label class="col-sm-1">Urea</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->urea}}
+		<br>
+		<strong>Fecha:</strong> {{$c->uread}}
+		</div>
+		<label class="col-sm-1">Creatinina</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->creati}}
+		<br>
+		<strong>Fecha:</strong> {{$c->creatid}}
+		</div>
+		<label class="col-sm-1">HBSAg</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->hbsa}}
+		<br>
+		<strong>Fecha:</strong> {{$c->hbsad}}
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<label class="col-sm-1">Orina completa</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong>{{$c->orinap}}
+		<br>
+		<strong>Fecha:</strong>{{$c->oridate}}
+		</div>
+		<label class="col-sm-1">Urocultivo</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->urocultivo}}
+		<br>
+		<strong>Fecha:</strong> {{$c->urodate}}
+		</div>
+		<label class="col-sm-1">VIH</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->vih}}
+		<br>
+		<strong>Fecha:</strong> {{$c->vihd}}
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<label class="col-sm-1">Sifilis</label>
+		<div class="col-sm-3">
+		<strong>Resultado:</strong> {{$c->sifi}}
+		<br>
+		<strong>Fecha:</strong> {{$c->sifid}}
+		</div>	
+	</div>
 
 		    	
 </div>
@@ -811,202 +808,153 @@
              <input type="hidden" name="paciente" value="{{$paciente->id}}">
             <label for="">Fecha Control</label>
             <input type="date" name="fecha_cont" style="line-height: 20px"> 
-            <br>  
+            <br>
+
             <div class="row">
 
-            <label class="col-sm-1 control-label">Gestaciòn</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="gesta_semanas" placeholder="Semanas de gestacion" data-toggle="tooltip" data-placement="bottom" title="gesta_semanas">
-            </div>
+	            <label class="col-sm-1 control-label">Tiemp. Emb.</label>
+	            <div class="col-sm-4">
+	            	<input type="text" class="form-control" name="tiempoemb" placeholder="Tiempo de Embarazo" data-toggle="tooltip" data-placement="bottom" title="tiempoemb">
+	            </div>
+	            <div class="col-sm-1">
+	              <select id="el16" name="gesta_semanas">
+	              	<option value="" disabled selected hidden>Select</option>
+	              	<option value="FUR">FUR</option>
+	              	<option value="ECO">ECO</option>
+	              </select>
+	            </div>
 
-            <label class="col-sm-1 control-label">PesoMadre.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="peso_madre" placeholder="Peso de Madre" data-toggle="tooltip" data-placement="bottom" title="m37m">
-            </div>
+	            <label class="col-sm-1 control-label">A.U.</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="altura_uterina" placeholder="Altura Uterina" data-toggle="tooltip" data-placement="bottom" title="altura uterina">
+	            </div>
+	        </div>
+	        <div class="row">
+	            <label class="col-sm-1 control-label">Peso</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="peso" placeholder="Peso" data-toggle="tooltip" data-placement="bottom" title="peso">
+	            </div>
 
-            <label class="col-sm-1 control-label">Temp.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="temp" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura">
-            </div>
+	            <label class="col-sm-1 control-label">Presentación</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="presentacion" placeholder="presentacion" data-toggle="tooltip" data-placement="bottom" title="presentacion">
+	            </div>
 
-            </div>
+	            <label class="col-sm-1 control-label">PA</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="tension" placeholder="PA" data-toggle="tooltip" data-placement="bottom" title="tension">
+	            </div>
+
+	            <label class="col-sm-1 control-label">L.C.F.</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="fcf" placeholder="LCF" data-toggle="tooltip" data-placement="bottom" title="lcf">
+	            </div>
+
+            	<label class="col-sm-1 control-label">Pulso</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="pulso_materno" placeholder="Pulso Materno" data-toggle="tooltip" data-placement="bottom" title="pulso_materno">
+	            </div>
+
+	             <label class="col-sm-1 control-label">Mov. Fetal</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="movimiento_fetal" placeholder="Movimiento Fetal" data-toggle="tooltip" data-placement="bottom" title="movimiento_fetal">
+	            </div>
+
+	            <label class="col-sm-1 control-label">Temp.</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="temp" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura">
+	            </div>
+
+	             <label class="col-sm-1 control-label">Edema</label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="edema" placeholder="Edema" data-toggle="tooltip" data-placement="bottom" title="edema">
+	            </div>
+
+	             <label class="col-sm-1 control-label">SO<sub>2</sub></label>
+	            <div class="col-sm-5">
+	              <input type="text" class="form-control" name="consejeria" placeholder="SO2" data-toggle="tooltip" data-placement="bottom" title="consejeria">
+	            </div>
+
+        	</div>
+        	<br>
+        	<h3>Exámenes de laboratorio</h3>
             <div class="row">
 
-            <label class="col-sm-1 control-label">Tensiòn.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="tension" placeholder="tension arterial" data-toggle="tooltip" data-placement="bottom" title="tension">
-            </div>
+            	<label class="col-sm-1 control-label">Hemoglobina</label>
+	            <div class="col-sm-3">
+	             	<input type="text" name="hemo" style="line-height: 20px; width: 140px;">	
+					<input type="date" name="hemod" style="line-height: 20px; width: 140px;">	
+	            </div>
 
-             <label class="col-sm-1 control-label">Alt.Ute.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="altura_uterina" placeholder="Altura Uterina" data-toggle="tooltip" data-placement="bottom" title="altura uterina">
-            </div>
+	            <label class="col-sm-1 control-label">Glucosa</label>
+	            <div class="col-sm-3">
+	               <input type="text" name="gluco" style="line-height: 20px; width: 140px;">
+					<input type="date" name="glucod" style="line-height: 20px; width: 140px;">	
+	            </div>
 
-            <label class="col-sm-1 control-label">Presentaciòn.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="presentacion" placeholder="presentacion" data-toggle="tooltip" data-placement="bottom" title="presentacion">
-            </div>
+	            <label class="col-sm-1 control-label">Plaquetas</label>
+	            <div class="col-sm-3">
+	               <input type="text" name="plaquetas" style="line-height: 20px; width: 140px;">
+					<input type="date" name="plaqdate" style="line-height: 20px; width: 140px;">	
+	            </div>
 
-            </div>
+        	</div>
+        	<br>
+        	<div class="row">
+            	
+            	<label class="col-sm-1 control-label">Urea</label>
+	            <div class="col-sm-3">
+	             	<input type="text" name="urea" style="line-height: 20px; width: 140px;">	
+					<input type="date" name="uread" style="line-height: 20px; width: 140px;">	
+	            </div>
 
-                        <div class="row">
+	            <label class="col-sm-1 control-label">Creatinina</label>
+	            <div class="col-sm-3">
+	               <input type="text" name="creati" style="line-height: 20px; width: 140px;">
+					<input type="date" name="creatid" style="line-height: 20px; width: 140px;">	
+	            </div>
 
+	            <label class="col-sm-1 control-label">HBSAg</label>
+	            <div class="col-sm-3">
+	               <input type="text" name="hbsa" style="line-height: 20px; width: 140px;">
+					<input type="date" name="hbsad" style="line-height: 20px; width: 140px;">	
+	            </div>
 
-            <label class="col-sm-1 control-label">F.C.F.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="fcf" placeholder="FCF" data-toggle="tooltip" data-placement="bottom" title="fcf">
-            </div>
+        	</div>
+        	<br>
+        	<div class="row">
+            	
+            	<label class="col-sm-1 control-label">Orina completa</label>
+	            <div class="col-sm-3">
+	             	<input type="text" name="orinap" style="line-height: 20px; width: 140px;">	
+					<input type="date" name="oridate" style="line-height: 20px; width: 140px;">	
+	            </div>
 
-             <label class="col-sm-1 control-label">Movimiento.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="movimiento_fetal" placeholder="Movimiento Fetal" data-toggle="tooltip" data-placement="bottom" title="movimiento_fetal">
-            </div>
+	            <label class="col-sm-1 control-label">Urocultivo</label>
+	            <div class="col-sm-3">
+	               <input type="text" name="urocultivo" style="line-height: 20px; width: 140px;">
+					<input type="date" name="urodate" style="line-height: 20px; width: 140px;">	
+	            </div>
 
-             <label class="col-sm-1 control-label">Edema.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="edema" placeholder="Edema" data-toggle="tooltip" data-placement="bottom" title="edema">
-            </div>
-        </div>
+	            <label class="col-sm-1 control-label">VIH</label>
+	            <div class="col-sm-3">
+	            	<input type="text" name="vih" style="line-height: 20px; width: 140px;">
+					<input type="date" name="vihd" style="line-height: 20px; width: 140px;">
+	            </div>
 
-                    <div class="row">
+        	</div>
+        	<br>
+            <div class="row">
 
+            	<label class="col-sm-1 control-label">Sifilis</label>
+	            <div class="col-sm-3">
+	            	<input type="text" name="sifi" style="line-height: 20px; width: 140px;">
+					<input type="date" name="sifid" style="line-height: 20px; width: 140px;">
+	            </div>
 
-             <label class="col-sm-1 control-label">Pulso.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="pulso_materno" placeholder="Pulso Materno" data-toggle="tooltip" data-placement="bottom" title="pulso_materno">
-            </div>
-
-
-             <label class="col-sm-1 control-label">Consejeria</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="consejeria" placeholder="Consejeria PF" data-toggle="tooltip" data-placement="bottom" title="consejeria">
-            </div>
-
-
-             <label class="col-sm-1 control-label">Sulfato.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="sulfato" placeholder="Sulfato Ferroso" data-toggle="tooltip" data-placement="bottom" title="sulfato">
-            </div>
-
-        </div>
-
-                    <div class="row">
-
-
-
-             <label class="col-sm-1 control-label">Perfil.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="perfil_biofisico" placeholder="Perfil Biosfisico" data-toggle="tooltip" data-placement="bottom" title="perfil_biofisico">
-            </div>
-
-
-             <label class="col-sm-1 control-label">Visita.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="visita_domicilio" placeholder="Visita a domicilio" data-toggle="tooltip" data-placement="bottom" title="visita_domicilio">
-            </div>
-
-             <label class="col-sm-1 control-label">Establ.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="establecimiento_atencion" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion">
-            </div>
-
-        </div>
-
-
-                    <div class="row">
-             <label class="col-sm-1 control-label">Serologia</label>
-            <div class="col-sm-3">
-             <select id="el11" name="sero">
-							<option value="Negativo">Negativo</option>
-							<option value="Positivo">Positivo</option>
-						     <option value="No">No se hizo</option>
-			</select>
-				<input type="date" name="serod" style="line-height: 20px">	
-
-            </div>
-
-
-             <label class="col-sm-1 control-label">Glucosa</label>
-            <div class="col-sm-3">
-               <select id="el12" name="gluco">
-							<option value="Normal">Normal</option>
-							<option value="Anormal">Anormal</option>
-						     <option value="No">No se hizo</option>
-			</select>
-							<input type="date" name="glucod" style="line-height: 20px">	
-
-            </div>
-
-             <label class="col-sm-1 control-label">VIH</label>
-            <div class="col-sm-3">
-               <select id="el13" name="vih">
-							<option value="Positivo">Positivo</option>
-							<option value="Negativo">Negativo</option>
-						     <option value="No">No se hizo</option>
-			</select>
-							<input type="date" name="vihd" style="line-height: 20px">	
-
-            </div>
-
-        </div>
-
-           <div class="row">
-
-
-
-             <label class="col-sm-1 control-label">Hemoglobina</label>
-            <div class="col-sm-3">
-             	<input type="text" name="hemo" style="line-height: 20px">gr/dl	
-				<input type="date" name="hemod" style="line-height: 20px">	
-
-            </div>
-
-
-          </div>
+	        </div>
      
-          <div class="row">
-			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
-			<div class="col-sm-2">Piel/Mucosas	
-				<input class="form-control" type="text" name="piel">
-			</div>
-			<div class="col-sm-2">Mamas	
-				<input class="form-control" type="text" name="mamas">
-			</div>
-			<div class="col-sm-2">Abdomen	
-				<input class="form-control" type="text" name="abdomen">
-			</div>
-			<div class="col-sm-2">Genitales Externos	
-				<input class="form-control" type="text" name="genext">
-			</div>
-			<div class="col-sm-2">Genitales Internos	
-				<input class="form-control" type="text" name="genint">
-			</div>
-			<div class="col-sm-2">Miembros Inferiores	
-				<input class="form-control" type="text" name="miembros">
-			</div>
-
-
-		    </div>
-
-		    <div class="row">
-		    	<div class="col-sm-3">Diag.Pres	
-				<input class="form-control" type="text" name="pres">
-			    </div>
-
-			    <div class="col-sm-3">Exa.Auxiliares	
-				<input class="form-control" type="text" name="exa">
-			</div>
-
-			<div class="col-sm-3">Diag.Def	
-				<input class="form-control" type="text" name="def">
-			</div>
-
-			<div class="col-sm-3">PlanTratamiento	
-				<input class="form-control" type="text" name="tra">
-			</div>
-
-		    	
-		    </div>
+          
 
         </div>
 
@@ -1039,21 +987,22 @@
 
 // Run Select2 on element
 function Select2Test(){
-	$("#el2").select2();
 	$("#el1").select2();
+	$("#el2").select2();
 	$("#el3").select2();
-  $("#el5").select2();
+	$("#el4").select2();
+  	$("#el5").select2();
     $("#el6").select2();
-  $("#el7").select2();
-  $("#el4").select2();
-  $("#el8").select2();
-  $("#el9").select2();
-  $("#el10").select2();
-  $("#el11").select2();
-  $("#el12").select2();
-  $("#el13").select2();
-  $("#el14").select2();
-  $("#el15").select2();
+ 	$("#el7").select2();
+  	$("#el8").select2();
+ 	$("#el9").select2();
+ 	$("#el10").select2();
+  	$("#el11").select2();
+	$("#el12").select2();
+  	$("#el13").select2();
+  	$("#el14").select2();
+  	$("#el15").select2();
+  	$("#el16").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this
