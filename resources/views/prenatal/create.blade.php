@@ -3,10 +3,10 @@
 @section('content')
 
 	@if($prenatal)
-	<h2>Control Prenatal Base de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
-<div class="rows">
+	<h2>Control Prenatal Baseeeee de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
+<div class="row">
 		<div class="col-sm-12">
-			<div class="rows">
+			<div class="row">
 				<h3 class="col-sm-12"><strong>Consulta del {{$prenatal->created_at}}</strong></h3>
 
 				<h3 class="col-sm-12">II. AMANESIS</h3>
@@ -67,14 +67,12 @@
 				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $prenatal->prox }}</p>
 		        <p  class="col-sm-6"><strong>Atendido Por: </strong> {{ $prenatal->personal }}</p>
 				
-
-
-				<br>
 			</div>
 		</div>
+	</div>
 
 	@else 
-	<h3>Registrar nuevo control prenatal</h3>
+	<h3>Registrar Nuevo Control Prenatal</h3>
 	<br>
 	<div class="box-content">
 	<form class="form-horizontal" role="form" method="post" action="prenatal/create">
