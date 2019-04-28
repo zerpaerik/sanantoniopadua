@@ -21,32 +21,76 @@ use Auth;
 class PrenatalController extends Controller
 {
 
-	public function index(){
+	public function index(Request $request){
+
+		$prenatal = DB::table('prenatals as a')
+    	->select( 'a.id',
+    			'a.pa',
+				'a.id as consulta',
+				'a.pulso',
+				'a.temperatura',
+				'a.peso',
+				'a.talla',
+				'a.fur',
+				'a.motivo_consulta',
+				'a.presuncion_diagnostica',
+				'a.diagnostico_final',
+				'a.CIEX',
+				'a.CIEX2',
+				'a.examen_auxiliar',
+				'a.plan_tratamiento',
+				'a.observaciones',
+				'a.paciente_id',
+				'a.profesional_id',
+				'a.created_at',
+				'a.prox',
+				'a.personal',
+				'a.card',
+				'a.g',
+				'a.p',
+				'a.fechaemb',
+				'a.tiempo_enf',
+				'a.rnpeso',
+				'a.anticon',
+				'a.result',
+				'a.gsan',
+				'a.antepi',
+				'a.ets',
+				'a.etsotro',
+				'a.exagen',
+				'a.exareg',
+				'a.so3',
+				'a.phpa',
+				'a.imc',
+    			'a.antecedentes_familiar',
+    			'a.antecedentes_personales',
+    			'a.antecedentes_patologicos',
+    			'a.antecedentes_quirurgicos',
+    			'a.antecedentes_traumaticos',
+    			'a.alergias',
+    			'a.menarquia',
+				'p.nombres',
+				'p.apellidos',
+				'p.dni',
+				'p.id as idPaciente',
+				'per.name as nombrePro',
+				'per.lastname as apellidoPro',
+				'per.id as profesionalId')
+	    	->join('pacientes as p','p.id','a.paciente_id')
+	    	->join('personals as per','per.id','=','a.profesional_id')
+	        ->where('a.paciente_id','=',$request->paciente)
+	        ->get();
     
-        $prenatal = $this->elasticSearch('');
+
+        $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.dni')
+        ->join('prenatals as pr','pr.paciente_id','a.id')
+        ->get();
    
-        return view('prenatal.index', ["prenatal" => $prenatal]);
+        return view('prenatal.index',compact('prenatal','pacientes'));
 	}
 
-    public function search(Request $request)
-    {
-      $search = $request->dni;
-      $split = explode(" ",$search);
-    
-
-      if (!isset($split[1])) {
-       
-        $split[1] = '';
-        $prenatal = $this->elasticSearch($split[0],$split[1]);
-      
-        return view('prenatal.search', ["prenatal" => $prenatal]); 
-
-      }else{
-        $prenatal = $this->elasticSearch($split[0],$split[1]); 
-      
-        return view('prenatal.search', ["prenatal" => $prenatal]);   
-      }    
-    }
+  
 
       private function elasticSearch($dni)
   {
@@ -110,8 +154,7 @@ class PrenatalController extends Controller
 				'per.id as profesionalId')
 	    	->join('pacientes as p','p.id','a.paciente_id')
 	    	->join('personals as per','per.id','=','a.profesional_id')
-	        ->where('p.dni','like','%'.$dni.'%')
-	        ->groupBy('a.paciente_id')
+	        ->where('a.paciente_id','=',$request->paciente)
 	        ->get();
 	        return $prenatal;
   }
