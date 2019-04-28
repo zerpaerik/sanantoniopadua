@@ -119,6 +119,7 @@ class PrenatalController extends Controller
     public function createView(Request $request,$paciente,$evento)
     {
     	$event= Event::where('id','=',$evento)->first();
+    	
     	$control  = Control::where('id_paciente','=',$paciente)->get();
     	$prenatal = Prenatal::where('paciente_id',$paciente)->first();
     	$paciente = Paciente::where('id','=',$paciente)->first();
