@@ -150,7 +150,7 @@ class PrenatalController extends Controller
     public function show($id)
     {
        // $data = Prenatal::where('paciente', $id)->first();
-//        $paciente = Paciente::where('id',$data->id)->first();
+  $paciente = Paciente::where('id',$id)->first();
 
         $prenatal = DB::table('prenatals as a')
     	->select( 'a.id',
@@ -214,12 +214,16 @@ class PrenatalController extends Controller
 	        ->where('paciente_id','=',$id)
 	        ->first();
 
+
        $control = Control::where('id_paciente','=',$id)->get();
+
+
        
 
         return view('prenatal.show',[
         	'prenatal' => $prenatal,
-        	'control' => $control
+        	'control' => $control,
+        	'paciente' => $paciente
         ]);
     }
 

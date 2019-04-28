@@ -7,13 +7,25 @@
       <div class="box-header">
         <div class="box-name">
           <i class="fa fa-users"></i>
-          <span><strong>Control Prenatal del Paciente: {{$prenatal->nombres}}, {{$prenatal->apellidos}}</strong></span>
-            <span><strong>Fecha: {{$prenatal->created_at}}</strong></span>
-    <div class="col-sm-12">
-      <div class="rows">
+          <span><strong>Control Prenatal del Paciente: {{$paciente->nombres}},{{$paciente->apellidos}}</strong></span>
 
-        <h3 class="col-sm-12">II. AMANESIS</h3>
-        <p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $prenatal->motivo_consulta }}</p>
+        </div>
+        <div class="box-icons">
+          <a class="collapse-link">
+            <i class="fa fa-chevron-up"></i>
+          </a>
+          <a class="expand-link">
+            <i class="fa fa-expand"></i>
+          </a>
+        </div>
+        <div class="no-move"></div>
+      </div>
+      <div class="box-content"> 
+          {{ csrf_field() }}
+        <div class="row">
+
+        <h3>II. ANAMNESIS</h3>
+        <p class="col-sm-6"><strong>Motivo de Consulta:</strong>{{ $prenatal->motivo_consulta }}</p>
         <p class="col-sm-6"><strong>Tiempo de Enfermedad:</strong> {{ $prenatal->tiempo_enf }}</p>
         <p class="col-sm-12"><strong>ANTECEDENTES MÉDICOS</strong></p>
         <p class="col-sm-6"><strong>Antecedentes Patológicos:</strong> {{$prenatal->antecedentes_patologicos}}</p>
@@ -69,10 +81,13 @@
         <p  class="col-sm-12"><strong>Observaciones: </strong> {{ $prenatal->observaciones }}</p>
         <p class="col-sm-6"><strong>Proxima CITA </strong>{{ $prenatal->prox }}</p>
         <p  class="col-sm-6"><strong>Atendido Por: </strong> {{ $prenatal->personal }}</p>
-        
-        <br>
-      </div>
-    </div>
+
+
+
+
+            
+          </div>
+        </div>
 
            @foreach($control as $c)
 
