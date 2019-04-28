@@ -178,7 +178,7 @@
     <ul class="dropdown-menu">
       
       <li>
-        <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pers.</a>
+        <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Ref.</a>
       </li>
 
        <li>
@@ -539,7 +539,7 @@
     <ul class="dropdown-menu">
       
       <li>
-        <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pers.</a>
+        <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Ref.</a>
       </li>
 
        <li>
