@@ -3,11 +3,13 @@
 @section('content')
 
 	@if($prenatal)
-	<h2>Control Prenatal Baseeeee de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
-<div class="row">
+	<h2>Control Prenatal Base de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
+	<br>
+	<div class="row">
 		<div class="col-sm-12">
 			<div class="row">
 				<h3 class="col-sm-12"><strong>Consulta del {{$prenatal->created_at}}</strong></h3>
+				<br>
 
 				<h3 class="col-sm-12">II. AMANESIS</h3>
 				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $prenatal->motivo_consulta }}</p>
@@ -545,6 +547,7 @@
 
  @foreach($control as $c)
 	<div class="col-sm-12">
+	<br>
 	   <h2>Fecha de Control: {{$c->created_at}}</h2>
 	      
 
@@ -552,25 +555,24 @@
 
 	</div>
 	<div class="row">
-		<label class="col-sm-12" for="">Exámenes de laboratorio</label>
 		<label class="col-sm-1">Hemoglobina</label>
-		<div class="col-sm-3">
-		<strong>Resultado:</strong> {{$c->hemo}}
-		<br>
-		<strong>Fecha:</strong> {{$c->hemod}}
-		</div>
-		<label class="col-sm-1">Glucosa</label>
-		<div class="col-sm-3">
-		<strong>Resultado:</strong> {{$c->glu}}
-		<br>
-		<strong>Fecha:</strong> {{$c->glud}}
-		</div>
-		<label class="col-sm-1">Plaquetas</label>
-		<div class="col-sm-3">
-		<strong>Resultado:</strong> {{$c->plaquetas}}
-		<br>
-		<strong>Fecha:</strong> {{$c->plaqdate}}
-		</div>
+	    <div class="col-sm-3" style="margin-left: 5px;">
+	    <strong>Resultado:</strong> {{$c->hemo}}
+	    <br>
+	    <strong>Fecha:</strong> {{$c->hemod}}
+	    </div>
+	    <label class="col-sm-1">Glucosa</label>
+	    <div class="col-sm-3">
+	    <strong>Resultado:</strong> {{$c->glu}}
+	    <br>
+	    <strong>Fecha:</strong> {{$c->glud}}
+	    </div>
+	    <label class="col-sm-1">Plaquetas</label>
+	    <div class="col-sm-3" style="margin-left: -5px;">
+	    <strong>Resultado:</strong> {{$c->plaquetas}}
+	    <br>
+	    <strong>Fecha:</strong> {{$c->plaqdate}}
+	    </div>
 	</div>
 	<br>
 	<div class="row">
@@ -657,12 +659,12 @@
             <div class="row">
 
 	            <label class="col-sm-1 control-label">Tiemp. Emb.</label>
-	            <div class="col-sm-4">
+	            <div class="col-sm-3">
 	            	<input type="text" class="form-control" name="tiempoemb" placeholder="Tiempo de Embarazo" data-toggle="tooltip" data-placement="bottom" title="tiempoemb">
 	            </div>
-	            <div class="col-sm-1">
+	            <div class="col-sm-2">
 	              <select id="el23" name="gesta_semanas">
-	              	<option value="" disabled selected hidden>Select</option>
+	              	<option value="" disabled selected hidden>Seleccione</option>
 	              	<option value="FUR">FUR</option>
 	              	<option value="ECO">ECO</option>
 	              </select>
@@ -683,7 +685,8 @@
 	            <div class="col-sm-5">
 	              <input type="text" class="form-control" name="presentacion" placeholder="presentacion" data-toggle="tooltip" data-placement="bottom" title="presentacion">
 	            </div>
-
+	        </div>
+	        <div class="row">
 	            <label class="col-sm-1 control-label">PA</label>
 	            <div class="col-sm-5">
 	              <input type="text" class="form-control" name="tension" placeholder="PA" data-toggle="tooltip" data-placement="bottom" title="tension">
@@ -693,7 +696,8 @@
 	            <div class="col-sm-5">
 	              <input type="text" class="form-control" name="fcf" placeholder="LCF" data-toggle="tooltip" data-placement="bottom" title="lcf">
 	            </div>
-
+	        </div>
+	        <div class="row">
             	<label class="col-sm-1 control-label">Pulso</label>
 	            <div class="col-sm-5">
 	              <input type="text" class="form-control" name="pulso_materno" placeholder="Pulso Materno" data-toggle="tooltip" data-placement="bottom" title="pulso_materno">
@@ -703,7 +707,8 @@
 	            <div class="col-sm-5">
 	              <input type="text" class="form-control" name="movimiento_fetal" placeholder="Movimiento Fetal" data-toggle="tooltip" data-placement="bottom" title="movimiento_fetal">
 	            </div>
-
+	        </div>
+	        <div class="row">
 	            <label class="col-sm-1 control-label">Temp.</label>
 	            <div class="col-sm-5">
 	              <input type="text" class="form-control" name="temp" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura">
@@ -713,12 +718,13 @@
 	            <div class="col-sm-5">
 	              <input type="text" class="form-control" name="edema" placeholder="Edema" data-toggle="tooltip" data-placement="bottom" title="edema">
 	            </div>
-
+	        </div>
+	        <div class="row">
 	             <label class="col-sm-1 control-label">SO<sub>2</sub></label>
 	            <div class="col-sm-5">
 	              <input type="text" class="form-control" name="consejeria" placeholder="SO2" data-toggle="tooltip" data-placement="bottom" title="consejeria">
 	            </div>
-
+	        </div>
         	</div>
         	<br>
         	<h3>Exámenes de laboratorio</h3>
@@ -797,16 +803,16 @@
 	            </div>
 
 	        </div>
-     
+     	
+            <br>
           
-
+	        <div class="col-sm-3">
+            <input type="button" onclick="form.submit()" class="btn btn-primary" value="Guardar">  
+            </div> 
         </div>
 
 
-            <br>
-            <div class="col-sm-3">
-            <input type="button" onclick="form.submit()" class="btn btn-primary" value="Guardar">  
-            </div>                         
+                                    
       </form>
   </div>
 

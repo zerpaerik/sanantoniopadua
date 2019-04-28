@@ -89,172 +89,202 @@
           </div>
         </div>
 
-           @foreach($control as $c)
+           <div class="box-content">
+    <div style="background: #eaeaea;">
+  <table style="width: 100%;text-align: center;margin: 10px 0;border:1px solid black;">
 
-    <h2>Control Mensual de {{$prenatal->nombres}} {{$prenatal->apellidos}}</h2>
-    <h2>Fecha {{$c->created_at}}</h2>
+    <tr>
+      <div>
 
-     <div class="row">
-
-            <label class="col-sm-1 control-label">Gestaciòn</label>
-            <div class="col-sm-3">
-              {{$c->gesta_semanas}}
-            </div>
-
-            <label class="col-sm-1 control-label">PesoMadre.</label>
-            <div class="col-sm-3">
-             
-              {{$c->peso_madre}}
-            </div>
-
-            <label class="col-sm-1 control-label">Temp.</label>
-            <div class="col-sm-3">
-              {{$c->temp}}
-            </div>
-
-            </div>
-            <div class="row">
-
-            <label class="col-sm-1 control-label">Tensiòn.</label>
-            <div class="col-sm-3">
-              {{$c->tension}}
-            </div>
-
-             <label class="col-sm-1 control-label">Alt.Ute.</label>
-            <div class="col-sm-3">
-            {{$c->altura_uterina}}
-            </div>
-
-            <label class="col-sm-1 control-label">Presentaciòn.</label>
-            <div class="col-sm-3">
-               {{$c->presentacion}}
-            </div>
-
-            </div>
-
-                        <div class="row">
+    <th scope="col" style="background: #2E9AFE;">CONTROLES PRENATALES de {{$paciente->nombres}} {{$paciente->apellidos}}
+      @foreach($control as $c)
+      <td scope="col" style="background: #2E9AFE;"></td>
+      @endforeach
+    </th>
 
 
-            <label class="col-sm-1 control-label">F.C.F.</label>
-            <div class="col-sm-3">
-              {{$c->fcf}}
-            </div>
-
-             <label class="col-sm-1 control-label">Movimiento.</label>
-            <div class="col-sm-3">
-               {{$c->movimiento_fetal}}
-            </div>
-
-             <label class="col-sm-1 control-label">Edema.</label>
-            <div class="col-sm-3">
-               {{$c->edema}}
-            </div>
-        </div>
-
-                    <div class="row">
+  
 
 
-             <label class="col-sm-1 control-label">Pulso.</label>
-            <div class="col-sm-3">
-               {{$c->pulso_materno}}
-            </div>
+  </tr>
+
+  <tr>
+    
+
+    <th style="background: #81BEF7;border: 1px solid black;">Fecha de Control</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->created_at}}</td>
+  @endforeach
+  </tr>
+
+   <tr>
+    <th style="background: #81BEF7;border: 1px solid black;">Tiempo de Embarazo</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->tiempoemb}} {{$c->gesta_semanas}}</td>
+  @endforeach
+  </tr>
+
+   <tr>
+    <th style="background: #81BEF7;border: 1px solid black;">Peso</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->peso}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">PA</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->tension}}</td>
+  @endforeach
+  </tr>
+
+  <th style="background: #81BEF7;border: 1px solid black;">Pulso</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->pulso_materno}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+    <th style="background: #81BEF7;border: 1px solid black;">Temperatura</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->temp}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">SO<sub>2</sub></th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->consejeria}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">AU</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->altura_uterina}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">Presentación</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->presentacion}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+     <th style="background: #81BEF7;border: 1px solid black;">LCF</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->fcf}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+    <th style="background: #81BEF7;border: 1px solid black;">Mov. Fetal</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->movimiento_fetal}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">Edema</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->edema}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+   <th style="background: #81BEF7;border: 1px solid black;">Responsable</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->responsable_control}}</td>
+  @endforeach
+  </tr>
+
+ @foreach($control as $c)
+  <div class="col-sm-12">
+     <h2>Fecha de Control: {{$c->created_at}}</h2>
+        
 
 
-             <label class="col-sm-1 control-label">Consejeria</label>
-            <div class="col-sm-3">
-              {{$c->consejeria}}
-            </div>
 
-
-             <label class="col-sm-1 control-label">Vitaminas.</label>
-            <div class="col-sm-3">
-              {{$c->sulfato}}
-            </div>
-
-        </div>
-
-                    <div class="row">
-
-
-
-             <label class="col-sm-1 control-label">Perfil.</label>
-            <div class="col-sm-3">
-              {{$c->perfil_biofisico}}
-            </div>
-
-
-             <label class="col-sm-1 control-label">Visita.</label>
-            <div class="col-sm-3">
-               {{$c->visita_domicilio}}
-            </div>
-
-             <label class="col-sm-1 control-label">Establ.</label>
-            <div class="col-sm-3">
-            
-               {{$c->establecimiento_atencion}}
-            </div>
-
-        </div>
-
-             <label class="col-sm-1 control-label">Responsable.</label>
-            <div class="col-sm-3">
-
-                             {{$c->responsable_control}}
-
-            </div> 
-
-            <label class="col-sm-1 control-label">Examenes.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="EXAMENES" placeholder="EXAMENES" data-toggle="tooltip" data-placement="bottom" title="responsable_control" readonly="true">
-            </div> 
-
-
-            <label class="col-sm-1 control-label">.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="EXAMENES" placeholder="EXAMENES" data-toggle="tooltip" data-placement="bottom" title="responsable_control" readonly="true">
-            </div> 
-
-
+  </div>
+  
+    <label class="col-sm-12" for="">Exámenes de laboratorio</label>
+  <div class="row">
+    <label class="col-sm-1">Hemoglobina</label>
+    <div class="col-sm-3" style="margin-left: 5px;">
+    <strong>Resultado:</strong> {{$c->hemo}}
+    <br>
+    <strong>Fecha:</strong> {{$c->hemod}}
+    </div>
+    <label class="col-sm-1">Glucosa</label>
+    <div class="col-sm-3">
+    <strong>Resultado:</strong> {{$c->glu}}
+    <br>
+    <strong>Fecha:</strong> {{$c->glud}}
+    </div>
+    <label class="col-sm-1">Plaquetas</label>
+    <div class="col-sm-3" style="margin-left: -5px;">
+    <strong>Resultado:</strong> {{$c->plaquetas}}
+    <br>
+    <strong>Fecha:</strong> {{$c->plaqdate}}
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <label class="col-sm-1">Urea</label>
+    <div class="col-sm-3">
+    <strong>Resultado:</strong> {{$c->urea}}
+    <br>
+    <strong>Fecha:</strong> {{$c->uread}}
+    </div>
+    <label class="col-sm-1">Creatinina</label>
+    <div class="col-sm-3">
+    <strong>Resultado:</strong> {{$c->creati}}
+    <br>
+    <strong>Fecha:</strong> {{$c->creatid}}
+    </div>
+    <label class="col-sm-1">HBSAg</label>
+    <div class="col-sm-3">
+    <strong>Resultado:</strong> {{$c->hbsa}}
+    <br>
+    <strong>Fecha:</strong> {{$c->hbsad}}
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <label class="col-sm-1">Orina completa</label>
+    <div class="col-sm-3">
+    <strong>Resultado:</strong>{{$c->orinap}}
+    <br>
+    <strong>Fecha:</strong>{{$c->oridate}}
+    </div>
+    <label class="col-sm-1">Urocultivo</label>
+    <div class="col-sm-3">
+    <strong>Resultado:</strong> {{$c->urocultivo}}
+    <br>
+    <strong>Fecha:</strong> {{$c->urodate}}
+    </div>
+    <label class="col-sm-1">VIH</label>
+    <div class="col-sm-3">
+    <strong>Resultado:</strong> {{$c->vih}}
+    <br>
+    <strong>Fecha:</strong> {{$c->vihd}}
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <label class="col-sm-1">Sifilis</label>
+    <div class="col-sm-3">
+    <strong>Resultado:</strong> {{$c->sifi}}
+    <br>
+    <strong>Fecha:</strong> {{$c->sifid}}
+    </div>  
+  </div>
 
           
-                    <div class="row">
-
-
-
-             <label class="col-sm-1 control-label">Serologia</label>
-            <div class="col-sm-2">
-            <strong>Resultado:</strong>:{{$c->sero}}
-             <strong>Fecha:</strong>:{{$c->serod}}
-
-
-            </div>
-
-
-             <label class="col-sm-1 control-label">Glucosa</label>
-            <div class="col-sm-2">
-                 <strong>Resultado:</strong>:{{$c->glu}}
-             <strong>Fecha:</strong>:{{$c->glud}}
-
-            </div>
-
-             <label class="col-sm-1 control-label">VIH</label>
-            <div class="col-sm-2">
-                  <strong>Resultado:</strong>:{{$c->vih}}
-             <strong>Fecha:</strong>:{{$c->vihd}}
-
-            </div>
-
-            <label class="col-sm-1 control-label">Hemoglobina</label>
-            <div class="col-sm-2">
-                  <strong>Resultado:</strong>:{{$c->hemo}}
-             <strong>Fecha:</strong>:{{$c->hemod}}
-
-            </div>
-
-        </div>
-
-
-   @endforeach
+</div>
+  @endforeach
 
 
 
