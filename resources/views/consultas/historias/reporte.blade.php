@@ -17,6 +17,7 @@
             <p style="margin-bottom: 8px;">Nombre: {{$data->nombres}}, {{$data->apellidos}}</p>
             <p style="margin-left:380px;margin-top: -30px;">DNI paciente: {{$data->dni}}</p>
             <p style="margin-bottom: 8px;">Dirección del paciente: {{$data->direccion}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Edad: {{$data->age}}</p>
             <p style="margin-bottom: 8px;">Fecha de nacimiento: {{$data->fechanac}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Grado de isntruccion del paciente: {{$data->gradoinstruccion}}</p>
             <p style="margin-bottom: 8px;">Ocupacion del paciente: {{$data->ocupacion}}</p>
@@ -24,25 +25,19 @@
 
         </fieldset> 
      </div> 
-
-    @if($historial)
+     
      <div style="width: 100%;">
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>HISTORIA BASE DE {{$data->nombres}} {{$data->apellidos}}</strong></legend>
-            <p style="margin-bottom: 8px;">Alergias: {{$historial->alergias}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Antecedentes patologicos: {{$historial->antecedentes_patologicos}}</p>
-            <p style="margin-bottom: 8px;">Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
-            <p style="margin-bottom: 8px;">Menarquia: {{$historial->menarquia}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">1º R.S : {{$historial->prs}}</p>
+            <p style="margin-bottom: 8px;">Alergias: {{$consulta->alergias}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Antecedentes patologicos: {{$consulta->antecedentes_patologicos}}</p>
+            <p style="margin-bottom: 8px;">Antecedentes Personales: {{$consulta->antecedentes_personales}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Antecedentes Familiares: {{$consulta->antecedentes_familiar}}</p>
+            <p style="margin-bottom: 8px;">Menarquia: {{$consulta->menarquia}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">1º R.S : {{$consulta->prs}}</p>
         </fieldset> 
      </div>
-
-    @else
-    
-    @endif
  
-
 <br>
     
     <br>

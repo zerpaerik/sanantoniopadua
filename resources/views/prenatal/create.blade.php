@@ -4,580 +4,476 @@
 
 	@if($prenatal)
 	<h2>Control Prenatal Base de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
-	<div class="row">
-		    <strong><p>I. Antecedentes Obstètricos</p></strong>
-			<div class="col-sm-8">
-              
-            <div class="col-sm-3">
-            	<strong><p>Gestas:</strong> {{$prenatal->gesta}}</p>  
-            </div>
-
-            
-            <div class="col-sm-3">
-            	<strong><p>Aborto:</strong> {{$prenatal->aborto}}</p> 
-            </div>
-
-            
-            <div class="col-sm-3">
-            	<strong><p>Vaginales:</strong> {{$prenatal->vaginales}}</p> 
-            </div>
-
-            
-            <div class="col-sm-3">
-            	<strong><p>Nac. Vivos:</strong> {{$prenatal->vivos}}</p> 
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div class="row">
-            <div class="col-sm-7">
-            	<strong><p>Viven:</strong> {{$prenatal->viven}}</p> 
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-sm-7">
-            	<strong><p>Mueren 1Sem:</strong> {{$prenatal->semana1}}</p> 
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-sm-7">
-            	<strong><p>Mueren 2Sem:</strong> {{$prenatal->semana2}}</p> 
-            </div>
-            </div>
-
-          </div>
-
-          <div class="col-sm-8" style="margin-top: -50px;">
-            <div class="col-sm-3">
-            	<p>{{$prenatal->num}}</p>
-            </div>
-            <div class="col-sm-3">
-            	<strong><p>Partos:</strong> {{$prenatal->parto}}</p>
-            </div>
-
-            <div class="col-sm-3">
-            	<strong><p>Cesarea:</strong> {{$prenatal->cesaria}}</p>
-            </div>
-
-            <div class="col-sm-3">
-            	<strong><p>Nac.Muertos:</strong> {{$prenatal->muertos}}</p>
-            </div>
-          </div>
-		    <br>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			@if($prenatal->af == '1')
-		    <strong><p>II. Antecedentes Familiares</p></strong>
-		    Otro: {{$prenatal->at_fami}}
-		    @else
-		    <strong><p>II. Antecedentes Familiares</p></strong>
-		    {{ $prenatal->af }}
-		    @endif
-		</div>
-		<div class="col-md-6">
-			@if($prenatal->ap == '1')
-			<strong><p>II. Antecedentes Personales</p></strong>
-		    Otro: {{$prenatal->at_perso}}
-		    @else
-		    <strong><p>II. Antecedentes Personales</p></strong>
-		    {{ $prenatal->ap }}
-		    @endif
-		</div>
-    </div>
-    <br>
-
-    <div class="row">
-   <strong><p>III. Fin de Gestaciòn Anterior</p></strong>
-   <div class="col-md-3">
-   	<strong>Terminaciòn:</strong> {{ $prenatal->terminacion_gestacion }}
-   	
-   </div>
-
-    <div class="col-md-3">
-
-    <strong>Fecha:</strong> {{ $prenatal->fecha_terminacion }}
-
-   	
-   </div>
-
-    <div class="col-md-3">
-
-    <strong>Tipò de Aborto:</strong> {{ $prenatal->aborto_gestacion }}
-   	
-   </div>
-
-    <div class="col-md-3">
-
-    <strong>RN Mayor Peso:</strong>{{ $prenatal->peso_gestacion }} Kg
-   	
-   </div>
-
-    </div>
-    <br>
-    <div class="row">
-    <strong><p>IV. Peso y Talla</p></strong>
-    	<div class="col-md-3">
-    		<strong>Peso:</strong>{{ $prenatal->peso_pregestacional }} Kg
-    	</div>
-
-    	<div class="col-md-3">
-			<strong>Talla:</strong>{{ $prenatal->talla_pregestacional }} Cms
-    	</div>
-    	
-    	<div class="col-md-3">
-    		   <strong>IMC:</strong>{{ $prenatal->imc }}
-    	</div>
-
-    	<div class="col-md-3">
-    		<strong>Conclusión:</strong>
-	    	@if($prenatal->imc <= 24)
-	    	<strong>Normal</strong>
-	    	@elseif($prenatal->imc <=29)
-	    	<strong>Sobrepeso</strong>
-	    	@elseif($prenatal->imc <=34)
-	    	<strong>Obesidad I</strong>
-	    	@elseif($prenatal->imc >= 35)
-	    	<strong>Obesidad II</strong>
-	    	@endif
-    	</div>
-    	
-    </div>
-    <br>
-<div class="row">
-	<div class="col-md-6">
-<strong><p>V. Tipo de Sangre</p></strong>	
-
-	<div class="col-md-3">
-		<strong>Grupo</strong>: {{ $prenatal->sangre }}
-		
-	</div>
-
-	<div class="col-md-3">
-		<strong>RH</strong>: {{ $prenatal->sangrerh }}
-		
-	</div>
-	</div>
-
-<div class="col-md-6">
-			<strong><p>VI. F.U.M</p></strong>	
-
-	<div class="col-md-2">
-		<strong>FUM</strong>: {{ $prenatal->ultima_menstruacion }}
-		
-	</div>
-
-
-	<div class="col-md-2">
-
-	<strong>FPP</strong>: {{ $prenatal->parto_probable }}
-		
-	</div>
-
-	<div class="col-md-4">
-
-	<strong>ECO EG</strong>: {{ $prenatal->eco_eg }}
-		{{ $prenatal->eco_eg_text}}
-	</div>
-
-	</div>
-</div>
-<br>
-<div class="row">
-	<strong><p>Examenes</p></strong>	
-
-	<div class="col-md-2">
-
-		<strong>Orina</strong>: {{ $prenatal->orina }}
-		
-	</div>
-
-		<div class="col-md-2">
-					<strong>Urea</strong>: {{ $prenatal->urea }}
-
-		
-	</div>
-
-		<div class="col-md-2">
-
-					<strong>Creatinina</strong>: {{ $prenatal->creatinina }}
-
-		
-	</div>
-
-		<div class="col-md-2">
-
-					<strong>BK</strong>: {{ $prenatal->bic }}
-
-		
-	</div>
-
-		<div class="col-md-2">
-
-					<strong>Torch</strong>: {{ $prenatal->torch }}
-
-		
-	</div>
-	
-</div>
-<br>
-
-	@else
-	<h4>Este usuario no cuenta con un historial base, por favor agregue uno</h4>
-			<div class="box-content">	
-				<form class="form-horizontal" role="form" method="post" action="prenatal/create">
-					{{ csrf_field() }}
-
-		             <input type="hidden" name="paciente" value="{{$paciente->id}}">
-						<h3>I. Antecedentes Obstetricos</h3>
-
-						<div class="col-sm-8">
-              
-				            <div class="col-sm-3">
-				              <input type="text" class="form-control" name="gesta" placeholder="gesta" data-toggle="tooltip" data-placement="bottom" title="gesta">
-				              <label class="col-sm-2 control-label">Gestas</label>
-				            </div>
-
-				            
-				            <div class="col-sm-3">
-				              <input type="text" class="form-control" name="aborto"   placeholder="Noabortombres" data-toggle="tooltip" data-placement="bottom" title="aborto">
-				              <label class="col-sm-2 control-label">Aborto</label>
-				            </div>
-
-				            
-				            <div class="col-sm-3">
-				              <input type="text" class="form-control" name="vaginales"   placeholder="vaginales" data-toggle="tooltip" data-placement="bottom" title="vaginales">
-				              <label class="col-sm-2 control-label">Vaginales</label>
-				            </div>
-
-				            
-				            <div class="col-sm-3">
-				              <input type="text" class="form-control" name="vivos" placeholder="vivos"  data-toggle="tooltip" data-placement="bottom" title="vivos">
-				              <label class="col-sm-2 control-label">Nac.Vivos</label>
-				            </div>
-				          </div>
-
-				          <div class="col-sm-4">
-				            <div class="row">
-				            <div class="col-sm-4">
-				              <input type="text" class="form-control" name="viven" placeholder="viven"  data-toggle="tooltip" data-placement="bottom" title="viven">
-				              <label class="col-sm-2 control-label">Viven</label>
-				            </div>
-				            </div>
-				            <div class="row">
-				            <div class="col-sm-4">
-				              <input type="text" class="form-control" name="semana1" placeholder="semana1"  data-toggle="tooltip" data-placement="bottom" title="semana1">
-				              <label class="col-sm-2 control-label">Mueren.1Sem</label>
-				            </div>
-				            </div>
-				            <div class="row">
-				            <div class="col-sm-4">
-				              <input type="text" class="form-control" name="semana2" placeholder="semana2"   data-toggle="tooltip" data-placement="bottom" title="semana2">
-				              <label class="col-sm-2 control-label">Despues.1Sem</label>
-				            </div>
-				            </div>
-
-				          </div>
-
-				          <div class="col-sm-8" style="margin-top: -50px;">
-				            <div class="col-sm-3">
-			                <select id="el1" name="num">
-			                	<option value="" disabled hidden selected>Seleccione</option>
-			                	<option value="0o+3">0 o +3</option>
-								<option value="<2500gr"><2500gr</option>
-								<option value="Gemelar">Gemelar</option>
-								<option value="37 sem">37 sem</option>           	
-			                </select>
-				            </div>
-				            <div class="col-sm-3">
-				                <input type="text" class="form-control" name="parto" placeholder="parto"  data-toggle="tooltip" data-placement="bottom" title="parto">
-				                <label class="col-sm-2 control-label">Partos</label>
-				            </div>
-
-				            <div class="col-sm-3">
-				                <input type="text" class="form-control" name="cesaria" placeholder="cesarea"  data-toggle="tooltip" data-placement="bottom" title="cesaria">
-				                <label class="col-sm-2 control-label">Cesarea</label>
-				            </div>
-
-				            <div class="col-sm-3">
-				                <input type="text" class="form-control" name="muertos" placeholder="muertos"  data-toggle="tooltip" data-placement="bottom" title="muertos">
-				                <label class="col-sm-2 control-label">Nac.Muertos</label>
-				            </div>
-				          </div>
-
-					<br>
-
-					<div class="row">
-
-						<div class="col-md-6">
-
-
-						   <h3>II. Antecedentes Familiares</h3>
-					    <p>
-							
-                         <div class="col-sm-12">
-							<select id="el2" multiple="true" name="af[]" style="width: 350px;">
-							<option value="Ninguno">Ninguno</option>
-							<option value="Alergias">Alergias</option>
-							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
-							<option value="Epilepsia">Epilepsia</option>
-							<option value="Diabetes">Diabetes</option>
-							<option value="Gemelares">Gemelares</option>
-							<option value="Hipertension Arterial">Hipertension Arterial</option>
-							<option value="Neoplasia">Neoplasia</option>
-							<option value="TBC Pulmonar">TBC Pulmonar</option>
-							<option value="1">Otro</option>
-						    </select>
-						</div>
-						</p>
-						<div class="col-sm-12">
-						<br>
-							<div id="af1"></div>
-						</div>
-
-						</div>
-
-						<div class="col-md-6">
-
-
-						   <h3>III. Antecedentes Personales</h3>
-					    <p>
-							
-                         <div class="col-sm-12">
-							<select id="el3" multiple="true" name="ap[]" style="width: 350px;">
-							<option value="Ninguno">Ninguno</option>
-							<option value="Alergias">Alergias</option>
-							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
-							<option value="Epilepsia">Epilepsia</option>
-							<option value="Diabetes">Diabetes</option>
-							<option value="Gemelares">Gemelares</option>
-							<option value="Hipertension Arterial">Hipertension Arterial</option>
-							<option value="Neoplasia">Neoplasia</option>
-							<option value="TBC Pulmonar">TBC Pulmonar</option>
-							<option value="1">Otro</option>
-						    </select>
-						</div>
-						</p>
-						<div class="col-sm-12">
-						<br>
-							<div id="ap1"></div>
-						</div>
-
-						</div>
-
-
-          			</div>
-
-          			<br>
-
-          	<div class="row">
-
-
-						<h3>IV. Fin Gestacion Anterior</h3>
-						<div class="col-md-3">
-							<label for="">Terminación de gestación:</label>
-							<select id="el4" name="terminacion_gestacion" style="width: 200px;">
-								<option value="" disabled selected hidden>Seleccione</option>
-								<option value="Parto">Parto</option>
-								<option value="Aborto">Aborto</option>
-								<option value="Ectopico">Ectopico</option>
-								<option value="Molar">Molar</option>
-								<option value="Otro">Otro</option>
-								<option value="Noaplica">No aplica</option>
-						    </select>
-						</div>
-
-			          	<div class="col-md-3">
-
-
-						<label for="">Fecha:</label>
-						<div class="row">
-							<div class="col-md-3">
-								<input type="date" name="fecha_terminacion" style="line-height: 20px">
-							</div>
-						</div>
-						</div>
-
-			          	<div class="col-md-3">
-
-						<label for="">Si fue aborto, qué tipo de aborto:</label>
-						<select id="el5" name="aborto_gestacion" style="width: 200px;">
-							<option value="" disabled selected hidden>Seleccione</option>
-							<option value="Incompleto">Incompleto</option>
-							<option value="Completo">Completo</option>
-							<option value="Frustro">Frustro</option>
-							<option value="Septico">Septico</option>
-							<option value="Otro">Otro</option>
-							<option value="Noaplica">No aplica</option>
-						</select>
-						
-					</div>
-
-				<div class="col-md-3">
-
-						<label for="">RN de mayor peso:</label>
-						<input type="text" name="peso_gestacion">Gr
-						<br>
-					</div>
-
+<div class="rows">
+		<div class="col-sm-12">
+			<div class="rows">
+				<h3 class="col-sm-12"><strong>Consulta del {{$prenatal->created_at}}</strong></h3>
+
+				<h3 class="col-sm-12">II. AMANESIS</h3>
+				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $prenatal->motivo_consulta }}</p>
+				<p class="col-sm-6"><strong>Tiempo de Enfermedad:</strong> {{ $prenatal->tiempo_enf }}</p>
+				<p class="col-sm-12"><strong>ANTECEDENTES MÉDICOS</strong></p>
+				<p class="col-sm-6"><strong>Antecedentes Patológicos:</strong> {{$prenatal->antecedentes_patologicos}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Personales:</strong> {{$prenatal->antecedentes_personales}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Familiares:</strong> {{$prenatal->antecedentes_familiar}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Quirúrgicos:</strong> {{$prenatal->antecedentes_quirurgicos}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Traumáticos:</strong> {{$prenatal->antecedentes_traumaticos}}</p>
+				<p class="col-sm-6"><strong>Antecedentes Genéticos:</strong> {{$prenatal->antecedentes_geneticos}}</p>
+				<p class="col-sm-6"><strong>Alergias:</strong> {{$prenatal->alergias}}</p>
+				<br>
+				<p class="col-sm-12"><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
+				<p class="col-sm-3"><strong>Menarquia:</strong> {{$prenatal->menarquia}} años</p>
+				<p class="col-sm-3"><strong>R/C:</strong> {{$prenatal->pulso}}</p>
+				<p class="col-sm-3"><strong>1º R.S:</strong> {{$prenatal->prs}}</p>
+				<p class="col-sm-3"><strong>Nº PS:</strong> {{$prenatal->andria}}</p>
+				<p class="col-sm-1"><strong>G:</strong> {{$prenatal->g}}</p>
+				<p class="col-sm-1"><strong>P:</strong> {{$prenatal->p}}</p>
+				<p class="col-sm-4"><strong>Fecha Últ. Emb.:</strong> {{$prenatal->fechaemb}}</p>
+				<p class="col-sm-3"><strong>RN> peso:</strong> {{$prenatal->rnpeso}}</p>
+				<p class="col-sm-3"><strong>FUR:</strong> {{$prenatal->fur}}</p>
+				<p class="col-sm-12"><strong>Anticonceptivo:</strong> {{$prenatal->anticon}}</p>
+				<p class="col-sm-3"><strong>Fecha Último PAP:</strong> {{$prenatal->fecha}}</p>
+				<p class="col-sm-3"><strong>Resultado:</strong> {{$prenatal->result}}</p>
+				<p class="col-sm-2"><strong>Grupo Sanguineo:</strong> {{$prenatal->gsan}}</p>
+				<p class="col-sm-12"><strong>Procesos Hemorrágicos (Parto/Aborto):</strong> {{$prenatal->phpa}}</p>
+				<p class="col-sm-6"><strong>Antecedentes de EPI:</strong> {{$prenatal->antepi}}</p>
+				<p class="col-sm-3"><strong>ETS:</strong> {{$prenatal->ets}}</p>
+				<p class="col-sm-6"><strong>OTROS:</strong> {{$prenatal->etsotro}}</p>
+
+				<h3 class="col-sm-12">III. EXAMEN FÍSICO/CLÍNICO</h3>
+				<p class="col-sm-12"><strong>FUNCIONES VITALES</strong></p>
+				<p class="col-sm-2"><strong>P/A:</strong> {{$prenatal->pa}}</p>
+				<p class="col-sm-2"><strong>Pulso:</strong> {{$prenatal->card}}</p>
+				<p class="col-sm-2"><strong>TºO:</strong> {{$prenatal->temperatura}}</p>
+				<p class="col-sm-2"><strong>SO<sub>3</sub>:</strong> {{$prenatal->so3}}</p>
+				<p class="col-sm-2"><strong>Peso:</strong> {{$prenatal->peso}}</p>
+				<p class="col-sm-2"><strong>Talla:</strong> {{$prenatal->talla}}</p>
+				<p class="col-sm-2"><strong>IMC:</strong> {{$prenatal->imc}}</p>
+				<br>
+				<h3 class="col-sm-12">IV. DIAGNÓSTICO PRESUNTIVO:</h3>
+				<p class="col-sm-6">{{ $prenatal->presuncion_diagnostica }}</p>
+				<p class="col-sm-6"><strong>CIEX Pres. Diag.:</strong> {{ $prenatal->CIEX }}</p>
+				<br>
+				<h3 class="col-sm-12">V. EXÁMENES AUXILIARES</h3>
+				<p class="col-sm-12">{{ $prenatal->examen_auxiliar }}</p>
+				<br>
+				<h3 class="col-sm-12">VI. DIAGNÓSTICO DEFINITIVO:</h3>
+				<p class="col-sm-6">{{ $prenatal->diagnostico_final }}</p>
+				<p class="col-sm-6"><strong>CIEX Diag. Def.: </strong>{{ $prenatal->CIEX2 }}</p>
+				<br>
+				<h3 class="col-sm-12">VII. TRATAMIENTO:</h3>
+				<p class="col-sm-12">{{ $prenatal->plan_tratamiento }}</p>
+				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $prenatal->observaciones }}</p>
+				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $prenatal->prox }}</p>
+		        <p  class="col-sm-6"><strong>Atendido Por: </strong> {{ $prenatal->personal }}</p>
+				
+
+
+				<br>
 			</div>
-			<br>
-                      
-						<div class="row">
-						<h3>V. Peso y Talla</h3>
-						<div class="col-md-4">
-						<label for="">Peso KG.</label>
-						<input type="text" name="peso_pregestacional">
-					    </div>
-					    <div class="col-md-4">
-						<label for="">Talla (Cm)</label>
-						<input type="text" name="talla_pregestacional">
-						</div>
+		</div>
 
-						</div>
-						<br>
+	@else 
+	<h3>Registrar nuevo control prenatal</h3>
+	<br>
+	<div class="box-content">
+	<form class="form-horizontal" role="form" method="post" action="prenatal/create">
+		{{ csrf_field() }}
+		<div class="form-group">
+			<input type="hidden" name="paciente_id" value="{{$paciente->id}}">
+			<input type="hidden" name="profesional_id" value="{{$paciente->profesionalId}}">
+		    <input type="hidden" name="evento" value="{{$evento->id}}">
+            <div class="row">
+			  <label class="col-sm-3 control-label">DEJAR PENDIENTE?:</label>
+				<div class="col-sm-2">
+				<select id="el3" name="pendiente" required="true">
+					<option value="0">No</option>
+					<option value="1">Si</option>
+				</select>
+				</div> 
+			</div>
+			<h2>II. ANAMNESIS</h2>
+           <div class="row">
+            <label for="" class="col-sm-2 control-label">Motivo de Consulta:</label>
+			<div class="col-sm-10">	
+				<textarea name="motivo_consulta" cols="10" rows="3" class="form-control" ></textarea>
+			</div>
+		  </div>
+		  <div class="row">
+            <label for="" class="col-sm-2 control-label">Tiempo de enfermedad:</label>
+			<div class="col-sm-10">	
+				<textarea name="tiempo_enf" cols="10" rows="3" class="form-control" ></textarea>
+			</div>
+		  </div>
 
-						<div class="row">
-					<div class="col-md-4">		
+		  <p><strong>ANTECEDENTES MÉDICOS</strong></p>
+				<div class="row">
 
-
-						<h3>VI. Tipo de Sangre</h3>	
-						<div class="col-md-3">	
-						<label for="">Grupo</label>
-							<p>
-
-					    <select id="el6" name="sangre">
-							<option value="A">A</option>
-							<option value="B">B</option>
-						     <option value="AB">AB</option>
-							<option value="O">O</option>
+				<label for="" class="col-sm-3">Antecedentes Familiares:</label>
+				<div class="col-sm-3">
+					<select id="el12" name="af">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
 						</select>
-						</p>
-					     </div>
-					     <div class="col-md-6">
-						<label for="">RH</label>
-							<p>
-							
-							<select id="el7" name="sangrerh">
-							<option value="Rh+">Rh+</option>
-							<option value="Rh-Sen Desc">Rh-Sen Desc</option>
-						     <option value="Rh-Nosen">Rh-Nosen</option>
-							<option value="Rh-Sen">Rh-Sen</option>
+				</div>
+				<div class="col-sm-3">
+					<div id="af1"></div>
+				</div>
+
+
+
+				</div>
+				<div class="row">
+
+				<label for="" class="col-sm-3">Antecedentes Personales:</label>
+				<div class="col-sm-3">			
+						<select id="el11" name="ap">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
 						</select>
-						</p>
-					     </div>
-					 </div>
-					 <div class="col-md-8">
+				</div>
 
-					     <h3>VI. F.U.M</h3>	
+				<div class="col-sm-3">
+					<div id="ap1"></div>
+				</div>
+			  </div>
 
-					     <div class="col-md-2">
-                        <label for="">FUM</label>
-						<input type="date" name="ultima_menstruacion" style="line-height: 20px">
-					     </div>
+			  <div class="row">
 
+				<label for="" class="col-sm-3">Antecedentes Patológicos:</label>
+				<div class="col-sm-3">			
+					<select id="el14" name="apa">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+					<div class="col-sm-3">
+					<div id="apa1"></div>
+				</div>
 
-					     <div class="col-md-2">
-                        <label for="">FPP</label>
-						<input type="date" name="parto_probable" style="line-height: 20px">
-					     </div>
+				</div>
+				<div class="row">
 
-					      <div class="col-md-2">
-                        <label for="">Eco: EG</label>
-						<input type="date" name="eco_eg" style="line-height: 20px; width: 130px;">	
-						<input type="text" name="eco_eg_text" style="line-height: 20px; width: 130px;">
-					     </div>
+				<label for="" class="col-sm-3">Antecedentes Quirúrgicos:</label>
+				<div class="col-sm-3">			
+					<select id="el20" name="aq">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+					<div class="col-sm-3">
+					<div id="aq1"></div>
+				</div>
 
+				</div>
+				<div class="row">
 
+				<label for="" class="col-sm-3">Antecedentes Traumáticos:</label>
+				<div class="col-sm-3">			
+					<select id="el21" name="at">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+					<div class="col-sm-3">
+					<div id="at1"></div>
+				</div>
 
-					  </div>
+				</div>
+				<div class="row">
 
+				<label for="" class="col-sm-3">Antecedentes Genéticos:</label>
+				<div class="col-sm-3">			
+					<select id="el22" name="ag">
+							<option value="0" selected disabled hidden>Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+					<div class="col-sm-3">
+					<div id="ag1"></div>
+				</div>
 
+				</div>
+				<div class="row">
+
+				<label for="" class="col-sm-3">Alergias:</label>
+				<div class="col-sm-3">
+					<select id="el10" name="al">
+					<option value="0" selected disabled hidden>Seleccione</option>
+					<option value="1">No</option>
+					<option value="2">Si</option>
+				</select>
+
+				</div>
+					<div class="col-sm-3">
+					<div id="alerg"></div>
+				</div>
+
+				</div>
+				
+				<br>
+				<p><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
+				<div class="row">
+					<label for="" class="col-sm-1">Menarquia:</label>
+					<div class="col-sm-3">
+						<input class="form-control" type="text" name="menarquia">
+					</div>
+					<label for="" class="col-sm-1">R/C:</label>
+					<div class="col-sm-2">	
+						<input   class="form-control" type="text" name="pulso">
+					</div>
+					<label for="" class="col-sm-1">1º R.S:</label>
+					<div class="col-sm-1">
+						<input class="form-control" type="text" name="prs">
+					</div>
+					<label for="" class="col-sm-1">Nº PS:</label>
+					<div class="col-sm-2">	
+						<input class="form-control" type="text" name="andria">
+					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-1">G:</label>
+					<div class="col-sm-1">	
+						<input   class="form-control" type="text" name="g">
+					</div>
+					<label for="" class="col-sm-1">P:</label>
+					<div class="col-sm-1">	
+						<input  class="form-control" type="text" name="p">
+					</div>
+					<label for="" class="col-sm-2">Fecha Últ. Emb.:</label>
+					<div class="col-sm-3">			
+						<input  class="form-control" type="text" name="fechaemb" placeholder="fecha de último embarazo">
+					</div>
+					<label for="" class="col-sm-2">RN> peso:</label>
+					<div class="col-sm-1">	
+						<input class="form-control" type="text" name="rnpeso">
+					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-1">FUR:</label>
+					<div class="col-sm-2">	
+						<input class="form-control" type="text" name="fur" placeholder="fecha FUR">
 					</div>
 
-					<div class="row">
-
-					<div class="col-md-2">
-
-					<h3>Orina</h3>	
-					<p>
-						<select id="el8" name="orina">
-							<option value="Normal">Normal</option>
-							<option value="Anormal">Anormal</option>
-						    <option value="No">No se hizo</option>
-						</select>
-
-						<input type="date" name="orinad" style="line-height: 20px; width: 140px;">	
-						</p>
-
-					</div>	
-
-					<div class="col-md-2">
-
-					<h3>Urea</h3>	
-					<p>
-							
-						<input type="text" name="urea" style="line-height: 23px; width: 140px;">	
-
-						<input type="date" name="uread" style="line-height: 20px; width: 140px;">	
-						</p>
-
-					</div>	
-
-					<div class="col-md-2">
-
-					<h3>Creati.</h3>	
-					<p>
-							
-						<input type="text" placeholder="creatinina" name="creatinina" style="line-height: 23px; width: 140px;">	
-
-						<input type="date" name="creatininad" style="line-height: 20px; width: 140px;">	
-						</p>
-
+					<label for="" class="col-sm-2">Anticonceptivo:</label>
+					<div class="col-sm-7">	
+						<input class="form-control" type="text" name="anticon">
 					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-2">Fecha Último PAP:</label>
+					<div class="col-sm-3">			
+						<input  class="form-control" type="text" name="fecha" placeholder="fecha de último PAP">
+					</div>
+					<label for="" class="col-sm-1">Resultado:</label>
+					<div class="col-sm-2">			
+						<input  class="form-control" type="text" name="result">
+					</div>
+					<label for="" class="col-sm-2">Grupo Sanguineo:</label>
+					<div class="col-sm-2">			
+						<input  class="form-control" type="text" name="gsan">
+					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-4">Procesos Hemorrágicos (Parto/Aborto):</label>
+					<div class="col-sm-8">	
+						<input class="form-control" type="text" name="phpa">
+					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-2">Antecedentes de EPI:</label>
+					<div class="col-sm-4">	
+						<input class="form-control" type="text" name="antepi">
+					</div>
+					<label for="" class="col-sm-1">ETS:</label>
+					<div class="col-sm-5">	
+						<input class="form-control" type="text" name="ets">
+					</div>
+				</div>
+				<div class="row">
+					<label for="" class="col-sm-1">Otros:</label>
+					<div class="col-sm-11">	
+						<input class="form-control" type="text" name="etsotro">
+					</div>
+				</div>
+				<br>
+		<h2>III. EXAMEN FÍSICO/CLÍNICO</h2>
+		<br>
+		<p><strong>FUNCIONES VITALES</strong></p>
+			<div class="row">
+				<label for="" class="col-sm-1 control-label">P/A:</label>
+				<div class="col-sm-1">	
+					<input   class="form-control" type="text" name="pa" placeholder="mmgh-">
+				</div>
+				<label for="" class="col-sm-1 control-label">Pulso:</label>
+				<div class="col-sm-1">	
+					<input  class="form-control" type="text" name="card">
+				</div>
+				<label for="" class="col-sm-1 control-label">Tº O:</label>
+				<div class="col-sm-1">	
+					<input   class="form-control" type="text" name="temperatura" placeholder="">
+				</div>
+				<label for="" class="col-sm-1 control-label">SO<sub>3</sub>:</label>
+				<div class="col-sm-1">	
+					<input   class="form-control" type="text" name="so3" placeholder="">
+				</div>
+				<label for="" class="col-sm-1 control-label">Peso:</label>
+				<div class="col-sm-1">			
+					<input  class="form-control" type="text" name="peso" placeholder="Kg">
+				</div>
+				<label for="" class="col-sm-1 control-label">Talla:</label>
+				<div class="col-sm-1">			
+					<input  class="form-control" type="text" name="talla" placeholder="talla">
+				</div>
+			</div>
+		<br>
+		<div class="row">
+            <label for="" class="col-sm-2 control-label">Examen Físico General:</label>
+			<div class="col-sm-10">	
+				<textarea name="exagen" cols="10" rows="3" class="form-control" ></textarea>
+			</div>
+	  	</div>
+		<div class="row">
+        	<label for="" class="col-sm-2 control-label">Examen Físico Regional:</label>
+			<div class="col-sm-10">	
+				<textarea name="exareg" cols="10" rows="3" class="form-control" ></textarea>
+			</div>
+		</div>
+		<br>
+		<h2>IV. DIAGNÓSTICO PRESUNTIVO</h2>
+        <div class="row">
+	        
+			<div class="col-sm-6">	
+				<textarea   class="form-control" cols="10" rows="3" type="text" name="presuncion_diagnostica"></textarea>
+			</div>
 
-					<div class="col-md-2">
+		
+			<label class="col-sm-1">CIE-X:</label>
+			<div class="col-sm-5">
+				<select id="el6" name="ciex[]" multiple="">
+					@foreach($ciex as $c)
+					<option value="{{$c->codigo}}-{{$c->nombre}}">
+						{{$c->codigo}}-{{$c->nombre}}
+					</option>
+					@endforeach
+				</select>
+			</div> 
+		</div>
+		<br>
+		<h2>V. EXÁMENES AUXILIARES</h2>
+		<div class="row">
+	        
+			<div class="col-sm-12">	
+				<textarea   class="form-control" cols="10" rows="3" type="text" name="examen_auxiliar"></textarea>
+			</div>
+		</div>
+        <br>
+        <h2>VI. DIAGNÓSTICO DEFINITIVO</h2>
+		<div class="row">
+			
+			<div class="col-sm-6">	
+				<textarea   class="form-control" cols="10" rows="3" type="text" name="diagnostico_final"></textarea>
+			</div>
 
-					<h3>BK</h3>	
-					<p>
-							
-							<select id="el9" name="bic">
-							<option value="SinExamen">Sin Examen</option>
-							<option value="Neg">Negativo</option>
-						     <option value="Pos">Positivo</option>
-						     <option value="N/A">N/A</option>
-						</select>
+			<label class="col-sm-1">CIE-X:</label>
+			<div class="col-sm-5">
+				<select id="el4" name="ciex2[]" multiple="">
+					@foreach($ciex as $c)
+					<option value="{{$c->codigo}}-{{$c->nombre}}">
+						{{$c->codigo}}-{{$c->nombre}}
+					</option>
+					@endforeach
+				</select>
+			</div> 
+			
+		</div>
+		<br>
+		<h2>VII. TRATAMIENTO</h2>
+		<div class="row">
+		
+		<div class="col-sm-12">	
+				<textarea  class="form-control" type="text" cols="10" rows="3" name="plan_tratamiento"></textarea>
+			</div>
+	    </div>
 
-						<input type="date" name="bicd" style="line-height: 20px; width: 140px;">	
-						</p>
+	    <div class="row">
+		<label for="" class="col-sm-2 control-label">Observaciones:</label>
+		<div class="col-sm-10">	
+			<textarea name="observaciones" cols="10" rows="10" class="form-control" ></textarea>
+		</div>
+		<label for="" class="col-sm-2 ">Pròxima Cita</label>
+		<div class="col-sm-3">
+			<input type="date" name="prox" class="form-control" >
+		</div>
+		</div>
+		
+			
+			<label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales Usados</label>
+            <!-- sheepIt Form -->
+            <div id="laboratorios" class="embed ">
+            
+                <!-- Form template-->
+                <div id="laboratorios_template" class="template row">
 
-					</div>	
+                    <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Materiales</label>
+                    <div class="col-sm-4">
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                        <option value="1">Seleccionar Material</option>
+                        @foreach($productos as $pac)
+                          <option value="{{$pac->id}}">
+                            {{$pac->nombre}}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
 
-					<div class="col-md-2">
+                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Cantidad Usada:</label>
+                    <div class="col-sm-2">
 
-					<h3>TORCH</h3>	
-					<p>
-							
-							<select id="el10" name="torch">
-							<option value="Normal">Normal</option>
-							<option value="Anormal">Anormal</option>
-						     <option value="No">No se hizo</option>
-						</select>
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono]" type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
+                    </div>
 
-						<input type="date" name="torchd" style="line-height: 20px; width: 140px;">	
-						</p>
-
-					</div>		
-
-
+                    <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="laboratorios_noforms_template" class="noItems col-sm-12 text-center">Ningún laboratorios</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="laboratorios_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="laboratorios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Producto</span></a></div>
+                    <div id="laboratorios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="laboratorios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                </div>
+                <!-- /Controls -->
+                
+            </div>
+            <!-- /sheepIt Form --> 
 						
 					</div>
+          <hr>
 
-
-
-						
-							<input type="button" onclick="form.submit()" class="btn btn-primary" value="Guardar">														
-					</div>
+          <div class="form-group form-inline">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                Total Solicitados:
+              </div>
+              <input type="text" name="total_a" class="number form-control" value="0.00" id="total_a" readonly="readonly" style="width: 150px">
+            </div>
+          </div>
+			
+		
+			<div class="col-sm-12">
+				<input type="button" onclick="form.submit()" value="Registrar" class="btn btn-success" class="form-control">
+			</div>
 
 					</div>																																																										
 					</div>
@@ -585,12 +481,9 @@
 				</form>
 			</div>	
 		</div>
-		@endif
-
+@endif
  
-
-
-   <div class="box-content">
+<div class="box-content">
    	<div style="background: #eaeaea;">
 	<table style="width: 100%;text-align: center;margin: 10px 0;border:1px solid black;">
 
@@ -817,7 +710,7 @@
 	            	<input type="text" class="form-control" name="tiempoemb" placeholder="Tiempo de Embarazo" data-toggle="tooltip" data-placement="bottom" title="tiempoemb">
 	            </div>
 	            <div class="col-sm-1">
-	              <select id="el16" name="gesta_semanas">
+	              <select id="el23" name="gesta_semanas">
 	              	<option value="" disabled selected hidden>Select</option>
 	              	<option value="FUR">FUR</option>
 	              	<option value="ECO">ECO</option>
@@ -987,22 +880,27 @@
 
 // Run Select2 on element
 function Select2Test(){
-	$("#el1").select2();
 	$("#el2").select2();
+	$("#el1").select2();
 	$("#el3").select2();
+	$("#el5").select2();
 	$("#el4").select2();
-  	$("#el5").select2();
-    $("#el6").select2();
- 	$("#el7").select2();
-  	$("#el8").select2();
- 	$("#el9").select2();
- 	$("#el10").select2();
-  	$("#el11").select2();
+	$("#el6").select2();
+	$("#el7").select2();
+	$("#el8").select2();
+	$("#el9").select2();
+	$("#el10").select2();
+	$("#el11").select2();
 	$("#el12").select2();
-  	$("#el13").select2();
-  	$("#el14").select2();
-  	$("#el15").select2();
-  	$("#el16").select2();
+	$("#el13").select2();
+	$("#el14").select2();
+	$("#el15").select2();
+	$("#el16").select2();
+	$("#el17").select2();
+	$("#el20").select2();
+	$("#el21").select2();
+	$("#el22").select2();
+	$("#el23").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this
@@ -1085,6 +983,305 @@ $('#my-select2').multiSelect()
 
 </script>
 
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el12').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/af1/otros/';
+          } else {
+           link = '/af1/ningunof/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#af1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el11').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/ap1/otros/';
+          } else {
+           link = '/ap1/ningunop/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#ap1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+        <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el14').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/apa1/otros/';
+          } else {
+           link = '/apa1/ningunopa/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#apa1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+	<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el20').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/aq1/otros/';
+          } else {
+           link = '/aq1/ningunoaq/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#aq1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el21').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/at1/otros/';
+          } else {
+           link = '/at1/ningunoat/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#at1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el22').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/ag1/otros/';
+          } else {
+           link = '/ag1/ningunoag/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#ag1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+
+        <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el10').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/alerg1/si/';
+          } else {
+           link = '/alerg1/no/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#alerg').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    $(".monto").keyup(function(event) {
+      var montoId = $(this).attr('id');
+      var montoArr = montoId.split('_');
+      var id = montoArr[1];
+      var montoH = parseFloat($('#servicios_'+id+'_montoHidden').val());
+      var monto = parseFloat($(this).val());
+      $('#servicios_'+id+'_montoHidden').val(monto);
+      calcular();
+      calculo_general();
+    });
+
+    $(".montol").keyup(function(event) {
+      var montoId = $(this).attr('id');
+      var montoArr = montoId.split('_');
+      var id = montoArr[1];
+      var montoH = parseFloat($('#laboratorios_'+id+'_montoHidden').val());
+      var monto = parseFloat($(this).val());
+      $('#laboratorios_'+id+'_montoHidden').val(monto);
+      calcular();
+      calculo_general();
+    });
+
+    $(".abonoL, .abonoS").keyup(function(){
+      var total = 0;
+      var selectId = $(this).attr('id');
+      var selectArr = selectId.split('_');
+      
+      if(selectArr[0] == 'servicios'){
+          if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
+              alert('La cantidad insertada en abono es mayor al monto.');
+              $(this).val('0.00');
+              calculo_general();
+          } else {
+              calculo_general();
+          }
+      } else {
+        if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
+              alert('La cantidad insertada en abono es mayor al monto.');
+              $(this).val('0.00');
+              calculo_general();
+          } else {
+              calculo_general();
+          }
+      }
+    });
+
+    var botonDisabled = true;
+
+    // Main sheepIt form
+    var phonesForm = $("#laboratorios").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        
+        afterRemoveCurrent: function(source, event){
+          calcular();
+          calculo_general();
+        }
+    });
+
+ 
+    $(document).on('change', '.selectLab', function(){
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "analisis/getAnalisi/"+$(this).val(),
+         success: function(a) {
+            $('#laboratorios_'+id+'_montoHidden').val(a.preciopublico);
+            $('#laboratorios_'+id+'_monto').val(a.preciopublico);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.preciopublico));
+            calcular();
+            calculo_general();
+         }
+      });
+    })
+});
+
+
+function calcular() {
+  var total = 0;
+      $(".monto").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $(".montol").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $("#total").val(total);
+}
+
+function calculo_general() {
+  var total = 0;
+  $(".abonoL").each(function(){
+    total += parseFloat($(this).val());
+  })
+
+  $(".abonoS").each(function(){
+    total += parseFloat($(this).val());
+  })
+
+  $("#total_a").val(total);
+  $("#total_g").val(parseFloat($("#total").val()) - parseFloat(total));
+}
+
+</script>
 
 
    

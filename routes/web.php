@@ -164,8 +164,20 @@ Route::get('metodos-delete-{id}','MetodosController@delete');
 Route::get('metodos-llamar-{id}','MetodosController@llamar');
 Route::get('metodos-ticket-ver-{id}','MetodosController@ticket_ver');
 
-Route::get('antf/otro','PrenatalController@atf');
-Route::get('antp/otro','PrenatalController@atp');
+Route::get('af1/otros','PrenatalController@af');
+Route::get('af1/ningunof','PrenatalController@ningunof');
+Route::get('ap1/otros','PrenatalController@ap');
+Route::get('ap1/ningunop','PrenatalController@ningunop');
+Route::get('apa1/otros','PrenatalController@apa');
+Route::get('apa1/ningunopa','PrenatalController@ningunopa');
+Route::get('aq1/otros', 'PrenatalController@aq');
+Route::get('aq1/ningunoaq', 'PrenatalController@ningunoaq');
+Route::get('at1/otros', 'PrenatalController@at');
+Route::get('at1/ningunoat', 'PrenatalController@ningunoat');
+Route::get('ag1/otros', 'PrenatalController@ag');
+Route::get('ag1/ningunoag', 'PrenatalController@ningunoag');
+Route::get('alerg1/si','PrenatalController@alsi');
+Route::get('alerg1/no','PrenatalController@alno');
 
 /**
  **   Atenciones

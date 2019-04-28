@@ -9,311 +9,70 @@
           <i class="fa fa-users"></i>
           <span><strong>Control Prenatal del Paciente: {{$data->nombres}},{{$data->apellidos}}</strong></span>
             <span><strong>Fecha: {{$data->created_at}}</strong></span>
-        </div>
-        <div class="box-icons">
-          <a class="collapse-link">
-            <i class="fa fa-chevron-up"></i>
-          </a>
-          <a class="expand-link">
-            <i class="fa fa-expand"></i>
-          </a>
-        </div>
-        <div class="no-move"></div>
+    <div class="col-sm-12">
+      <div class="rows">
+
+        <h3 class="col-sm-12">II. AMANESIS</h3>
+        <p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $prenatal->motivo_consulta }}</p>
+        <p class="col-sm-6"><strong>Tiempo de Enfermedad:</strong> {{ $prenatal->tiempo_enf }}</p>
+        <p class="col-sm-12"><strong>ANTECEDENTES MÉDICOS</strong></p>
+        <p class="col-sm-6"><strong>Antecedentes Patológicos:</strong> {{$prenatal->antecedentes_patologicos}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Personales:</strong> {{$prenatal->antecedentes_personales}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Familiares:</strong> {{$prenatal->antecedentes_familiar}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Quirúrgicos:</strong> {{$prenatal->antecedentes_quirurgicos}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Traumáticos:</strong> {{$prenatal->antecedentes_traumaticos}}</p>
+        <p class="col-sm-6"><strong>Antecedentes Genéticos:</strong> {{$prenatal->antecedentes_geneticos}}</p>
+        <p class="col-sm-6"><strong>Alergias:</strong> {{$prenatal->alergias}}</p>
+        <br>
+        <p class="col-sm-12"><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
+        <p class="col-sm-3"><strong>Menarquia:</strong> {{$prenatal->menarquia}} años</p>
+        <p class="col-sm-3"><strong>R/C:</strong> {{$prenatal->pulso}}</p>
+        <p class="col-sm-3"><strong>1º R.S:</strong> {{$prenatal->prs}}</p>
+        <p class="col-sm-3"><strong>Nº PS:</strong> {{$prenatal->andria}}</p>
+        <p class="col-sm-1"><strong>G:</strong> {{$prenatal->g}}</p>
+        <p class="col-sm-1"><strong>P:</strong> {{$prenatal->p}}</p>
+        <p class="col-sm-4"><strong>Fecha Últ. Emb.:</strong> {{$prenatal->fechaemb}}</p>
+        <p class="col-sm-3"><strong>RN> peso:</strong> {{$prenatal->rnpeso}}</p>
+        <p class="col-sm-3"><strong>FUR:</strong> {{$prenatal->fur}}</p>
+        <p class="col-sm-12"><strong>Anticonceptivo:</strong> {{$prenatal->anticon}}</p>
+        <p class="col-sm-3"><strong>Fecha Último PAP:</strong> {{$prenatal->fecha}}</p>
+        <p class="col-sm-3"><strong>Resultado:</strong> {{$prenatal->result}}</p>
+        <p class="col-sm-2"><strong>Grupo Sanguineo:</strong> {{$prenatal->gsan}}</p>
+        <p class="col-sm-12"><strong>Procesos Hemorrágicos (Parto/Aborto):</strong> {{$prenatal->phpa}}</p>
+        <p class="col-sm-6"><strong>Antecedentes de EPI:</strong> {{$prenatal->antepi}}</p>
+        <p class="col-sm-3"><strong>ETS:</strong> {{$prenatal->ets}}</p>
+        <p class="col-sm-6"><strong>OTROS:</strong> {{$prenatal->etsotro}}</p>
+
+        <h3 class="col-sm-12">III. EXAMEN FÍSICO/CLÍNICO</h3>
+        <p class="col-sm-12"><strong>FUNCIONES VITALES</strong></p>
+        <p class="col-sm-2"><strong>P/A:</strong> {{$prenatal->pa}}</p>
+        <p class="col-sm-2"><strong>Pulso:</strong> {{$prenatal->card}}</p>
+        <p class="col-sm-2"><strong>TºO:</strong> {{$prenatal->temperatura}}</p>
+        <p class="col-sm-2"><strong>SO<sub>3</sub>:</strong> {{$prenatal->so3}}</p>
+        <p class="col-sm-2"><strong>Peso:</strong> {{$prenatal->peso}}</p>
+        <p class="col-sm-2"><strong>Talla:</strong> {{$prenatal->talla}}</p>
+        <p class="col-sm-2"><strong>IMC:</strong> {{$prenatal->imc}}</p>
+        <br>
+        <h3 class="col-sm-12">IV. DIAGNÓSTICO PRESUNTIVO:</h3>
+        <p class="col-sm-6">{{ $prenatal->presuncion_diagnostica }}</p>
+        <p class="col-sm-6"><strong>CIEX Pres. Diag.:</strong> {{ $prenatal->CIEX }}</p>
+        <br>
+        <h3 class="col-sm-12">V. EXÁMENES AUXILIARES</h3>
+        <p class="col-sm-12">{{ $prenatal->examen_auxiliar }}</p>
+        <br>
+        <h3 class="col-sm-12">VI. DIAGNÓSTICO DEFINITIVO:</h3>
+        <p class="col-sm-6">{{ $prenatal->diagnostico_final }}</p>
+        <p class="col-sm-6"><strong>CIEX Diag. Def.: </strong>{{ $prenatal->CIEX2 }}</p>
+        <br>
+        <h3 class="col-sm-12">VII. TRATAMIENTO:</h3>
+        <p class="col-sm-12">{{ $prenatal->plan_tratamiento }}</p>
+        <p  class="col-sm-12"><strong>Observaciones: </strong> {{ $prenatal->observaciones }}</p>
+        <p class="col-sm-6"><strong>Proxima CITA </strong>{{ $prenatal->prox }}</p>
+        <p  class="col-sm-6"><strong>Atendido Por: </strong> {{ $prenatal->personal }}</p>
+        
+        <br>
       </div>
-      <div class="box-content"> 
-          {{ csrf_field() }}
-
-            <h3>I. Antecedentes Obstetricos</h3>
-
-            <div class="col-sm-8">
-              
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="gesta" value="{{$data->gesta}}" placeholder="gesta" data-toggle="tooltip" data-placement="bottom" title="gesta" readonly="">
-              <label class="col-sm-2 control-label">Gestas</label>
-            </div>
-
-            
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="aborto" value="{{$data->aborto}}"  placeholder="Noabortombres" data-toggle="tooltip" data-placement="bottom" title="aborto" readonly="">
-              <label class="col-sm-2 control-label">Aborto</label>
-            </div>
-
-            
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="vaginales" value="{{$data->vaginales}}"  placeholder="vaginales" data-toggle="tooltip" data-placement="bottom" title="vaginales" readonly="">
-              <label class="col-sm-2 control-label">Vaginales</label>
-            </div>
-
-            
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="vivos" placeholder="vivos" value="{{$data->vivos}}" data-toggle="tooltip" data-placement="bottom" title="vivos" readonly="">
-              <label class="col-sm-2 control-label">Nac.Vivos</label>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div class="row">
-            <div class="col-sm-4">
-              <input type="text" class="form-control" name="viven" placeholder="viven" value="{{$data->viven}}" data-toggle="tooltip" data-placement="bottom" title="viven" readonly="">
-              <label class="col-sm-2 control-label">Viven</label>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-sm-4">
-              <input type="text" class="form-control" name="semana1" placeholder="semana1" value="{{$data->semana1}}" data-toggle="tooltip" data-placement="bottom" title="semana1" readonly="">
-              <label class="col-sm-2 control-label">Mueren.1Sem</label>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-sm-4">
-              <input type="text" class="form-control" name="semana2" placeholder="semana2" value="{{$data->semana2}}"  data-toggle="tooltip" data-placement="bottom" title="semana2" readonly="">
-              <label class="col-sm-2 control-label">Despues.1Sem</label>
-            </div>
-            </div>
-
-          </div>
-
-          <div class="col-sm-8" style="margin-top: -50px;">
-            <div class="col-sm-3">
-                <input type="text" class="form-control" name="num" placeholder="" value="{{$data->num}}"  data-toggle="tooltip" data-placement="bottom" title="num" readonly="">
-            </div>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" name="parto" placeholder="" value="{{$data->parto}}"  data-toggle="tooltip" data-placement="bottom" title="parto" readonly="">
-                <label class="col-sm-2 control-label">Partos</label>
-            </div>
-
-            <div class="col-sm-3">
-                <input type="text" class="form-control" name="cesaria" placeholder="" value="{{$data->cesaria}}"  data-toggle="tooltip" data-placement="bottom" title="cesaria" readonly="">
-                <label class="col-sm-2 control-label">Cesarea</label>
-            </div>
-
-            <div class="col-sm-3">
-                <input type="text" class="form-control" name="muertos" placeholder="" value="{{$data->muertos}}"  data-toggle="tooltip" data-placement="bottom" title="muertos" readonly="">
-                <label class="col-sm-2 control-label">Nac.Muertos</label>
-            </div>
-          </div>
-
-
-          <br>
-
-          <div class="row">
-            @if($data->af == '1')
-            <div class="col-md-6">
-              <h3>II. Antecedentes Familiares</h3>
-              <p>
-                <div class="col-sm-12">
-                  <label>Otro: </label>
-                  <input readonly="true" type="text"  value="{{$data->at_fami}}" disabled=""> 
-                </div>
-              </p>
-            </div>
-            @else
-            <div class="col-md-6">
-              <h3>II. Antecedentes Familiares</h3>
-              <p>
-                <div class="col-sm-12">
-                  {{$data->af}}
-                </div>
-              </p>
-            </div>
-            @endif
-
-            @if($data->ap == '1')
-            <div class="col-md-6">
-              <h3>II. Antecedentes Familiares</h3>
-              <p>
-                <div class="col-sm-12">
-                  <label>Otro: </label>
-                  <input readonly="true" type="text"  value="{{$data->at_perso}}" disabled="">
-                </div>
-              </p>
-            </div>
-            @else
-            <div class="col-md-6">
-              <h3>III. Antecedentes Personales</h3>
-              <p>
-                <div class="col-sm-12">
-                  {{$data->ap}}
-                </div>
-              </p>
-            </div>
-            @endif
-
-
-          </div>
-
-          <br>
-
-          <div class="row">
-
-
-          <h3>IV. Fin Gestacion Anterior</h3>
-
-          <div class="col-md-3">
-          <label for="">Terminación de Gestación:</label>
-          <input readonly="true" type="text"  value="{{$data->terminacion_gestacion}}" disabled="">
-            
-            <br>
-          </div>
-
-          <div class="col-md-3">
-          <label for="">Fecha:</label>
-          <input readonly="true" type="text"  value="{{$data->fecha_terminacion}}" disabled="">
-          </div>
-
-          <div class="col-md-3">
-
-          <label for="">Si fue aborto, qué tipo de aborto:</label>
-          <input readonly="true" type="text"  value="{{$data->aborto_gestacion}}" disabled="">
-          </div>
-
-          <div class="col-md-3">
-
-            <label for="">RN de mayor peso:</label>
-            <input readonly="true" type="text"  value="{{$data->peso_gestacion}}" disabled="">Gr
-          </div>
     </div>
-    <br>
-                      
-            <div class="row">
-            <h3>V. Peso y Talla</h3>
-            <div class="col-md-3">
-            <label for="">Peso Gr.</label>
-            <input type="text" name="peso_pregestacional" value="{{$data->peso_pregestacional}}" disabled="" style="width: 150px;">
-              </div>
-              <div class="col-md-3">
-            <label for="">Talla (Cm)</label>
-            <input type="text" name="talla_pregestacional" value="{{$data->talla_pregestacional}}" disabled="" style="width: 150px;">
-            </div>
-
-            <div class="col-md-3">
-            <label for="">IMC</label>
-              <input type="text" value="{{$data->imc}}" disabled="" style="width: 150px;">
-            </div>
-
-            <div class="col-md-3">
-            <label for="">Conclusión</label>
-              @if($data->imc <= 24)
-              <input type="text" value="Normal" disabled="" style="width: 110px;">
-              @elseif($data->imc <=29)
-              <input type="text" value="Sobrepeso" disabled="" style="width: 110px;">
-              @elseif($data->imc <=34)
-              <input type="text" value="Obesidad I" disabled="" style="width: 110px;">
-              @elseif($data->imc >= 35)
-              <input type="text" value="Obesidad II" disabled="" style="width: 110px;">
-              @endif
-            </div>
-
-            </div>
-            <br>
-
-            <div class="row">
-            <div class="col-md-4">    
-
-
-            <h3>VI. Tipo de Sangre</h3>
-
-            <div class="col-md-2">  
-              <label for="">Grupo</label>
-              <input readonly="true" type="text"  value="{{$data->sangre}}" disabled="" style="width: 40px">
-            </div>
-
-            <div class="col-md-2">
-              <label for="">RH</label>
-              <input readonly="true" type="text"  value="{{$data->sangrerh}}" disabled="" style="width: 140px">
-            </div>
-            </div>
-
-            <div class="col-md-8">
-
-               <h3>VI. F.U.M</h3> 
-
-               <div class="col-md-2">
-                  <label for="">FUM</label>
-                  <input type="date" name="ultima_menstruacion" value="{{$data->ultima_menstruacion}}" style="line-height: 20px" disabled="">
-               </div>
-
-
-               <div class="col-md-2">
-                  <label for="">FPP</label>
-                  <input type="date" name="parto_probable" value="{{$data->parto_probable}}"  style="line-height: 20px" disabled>
-               </div>
-
-                <div class="col-md-2">
-                  <label for="">Eco: EG</label>
-                  <input type="date" name="eco_eg" value="{{$data->eco_eg}}"  style="line-height: 20px; width: 130px;" disabled="">
-                  <input type="text" name="eco_eg_text" value="{{$data->eco_eg_text}}"  style="line-height: 20px; width: 130px;" disabled="">
-                   
-               </div>
-
-            </div>
-
-
-          </div>
-
-          <div class="row">
-
-          <div class="col-md-2">
-
-          <h3>Orina</h3>  
-          <p>
-            <input type="date" name="orina" style="line-height: 20px; width: 150px;" value="{{$data->orina}}" disabled="">
-            
-            <input type="date" name="orinad" style="line-height: 20px; width: 150px;" value="{{$data->orinad}}" disabled=""> 
-          </p>
-
-          </div>  
-
-          <div class="col-md-2">
-
-          <h3>Urea</h3> 
-          <p>
-              
-            <input type="text" name="urea" style="line-height: 20px; width: 150px;" value="{{$data->urea}}" disabled=""> 
-
-            <input type="date" name="uread" style="line-height: 20px; width: 150px;" value="{{$data->uread}}" disabled="">  
-            </p>
-
-          </div>  
-
-          <div class="col-md-2">
-
-          <h3>Creati.</h3>  
-          <p>
-              
-            <input type="text" placeholder="creatinina" name="creatinina" style="line-height: 20px; width: 150px;" value="{{$data->creatinina}}" disabled="">  
-
-            <input type="date" name="creatininad" style="line-height: 20px; width: 150px;" value="{{$data->creatininad}}" disabled="">  
-            </p>
-
-          </div>
-
-          <div class="col-md-2">
-
-          <h3>BK</h3>  
-          <p>
-            <input type="text" name="bic" style="line-height: 20px; width: 150px;" value="{{$data->bic}}" disabled="">
-
-
-            <input type="date" name="bicd" style="line-height: 20px; width: 150px;" value="{{$data->bicd}}" disabled=""> 
-          </p>
-
-          </div>  
-
-          <div class="col-md-2">
-
-          <h3>TORCH</h3>  
-          <p>
-            <input type="text" name="torch" style="line-height: 20px; width: 150px;" value="{{$data->torch}}" disabled="">
-          
-            <input type="date" name="torchd" style="line-height: 20px; width: 150px;" value="{{$data->torchd}}" disabled=""> 
-          </p>
-
-          </div>    
-
-
-            
-          </div>
 
            @foreach($control as $c)
 
