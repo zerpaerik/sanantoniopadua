@@ -412,9 +412,6 @@
 			<input type="date" name="prox" class="form-control" >
 		</div>
 		</div>
-		
-			
-			<label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales Usados</label>
             <!-- sheepIt Form -->
            
             <!-- /sheepIt Form --> 
@@ -445,7 +442,9 @@
 			<div>
 
     <th scope="col" style="background: #2E9AFE;">CONTROLES PRENATALES de {{$paciente->nombres}} {{$paciente->apellidos}}
+    	@foreach($control as $c)
     	<td scope="col" style="background: #2E9AFE;"></td>
+    	@endforeach
     </th>
 
 

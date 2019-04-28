@@ -119,7 +119,6 @@ class PrenatalController extends Controller
     public function createView(Request $request,$paciente,$evento)
     {
     	$event= Event::where('id','=',$evento)->first();
-    	
     	$control  = Control::where('id_paciente','=',$paciente)->get();
     	$prenatal = Prenatal::where('paciente_id',$paciente)->first();
     	$paciente = Paciente::where('id','=',$paciente)->first();
@@ -152,7 +151,8 @@ class PrenatalController extends Controller
     {
        // $data = Prenatal::where('paciente', $id)->first();
 //        $paciente = Paciente::where('id',$data->id)->first();
-        $data = DB::table('prenatals as a')
+
+        $prenatal = DB::table('prenatals as a')
     	->select( 'a.id',
 				'a.pa',
 				'a.id as consulta',
@@ -191,11 +191,15 @@ class PrenatalController extends Controller
 				'a.so3',
 				'a.phpa',
 				'a.imc',
+				'a.prs',
+				'a.andria',
+				'a.fecha',
     			'a.antecedentes_familiar',
     			'a.antecedentes_personales',
     			'a.antecedentes_patologicos',
     			'a.antecedentes_quirurgicos',
     			'a.antecedentes_traumaticos',
+    			'a.antecedentes_geneticos',
     			'a.alergias',
     			'a.menarquia',
 				'p.nombres',
@@ -207,14 +211,14 @@ class PrenatalController extends Controller
 				'per.id as profesionalId')
 	    	->join('pacientes as p','p.id','a.paciente_id')
 	    	->join('personals as per','per.id','=','a.profesional_id')
-	        ->where('p.id','=',$id)
+	        ->where('paciente_id','=',$id)
 	        ->first();
 
        $control = Control::where('id_paciente','=',$id)->get();
        
 
         return view('prenatal.show',[
-        	'data' => $data,
+        	'prenatal' => $prenatal,
         	'control' => $control
         ]);
     }

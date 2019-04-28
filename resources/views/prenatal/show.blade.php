@@ -7,8 +7,8 @@
       <div class="box-header">
         <div class="box-name">
           <i class="fa fa-users"></i>
-          <span><strong>Control Prenatal del Paciente: {{$data->nombres}},{{$data->apellidos}}</strong></span>
-            <span><strong>Fecha: {{$data->created_at}}</strong></span>
+          <span><strong>Control Prenatal del Paciente: {{$prenatal->nombres}}, {{$prenatal->apellidos}}</strong></span>
+            <span><strong>Fecha: {{$prenatal->created_at}}</strong></span>
     <div class="col-sm-12">
       <div class="rows">
 
@@ -76,7 +76,7 @@
 
            @foreach($control as $c)
 
-    <h2>Control Mensual de {{$data->nombres}} {{$data->apellidos}}</h2>
+    <h2>Control Mensual de {{$prenatal->nombres}} {{$prenatal->apellidos}}</h2>
     <h2>Fecha {{$c->created_at}}</h2>
 
      <div class="row">
