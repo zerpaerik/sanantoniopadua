@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Movimientos/Comisiones Por Pagar Profesional</span>
+					<span>Movimientos/Comisiones Por Pagar Referente</span>
 
 				</div>
 

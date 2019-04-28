@@ -158,7 +158,7 @@
     <ul class="dropdown-menu">
       
       <li>
-        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Prof.</a>
+        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Ref.</a>
       </li>
       <li>
         <a href="{{route('comporpagar.index2')}}"><i class="fa fa-list-alt"></i> Comis. Pers.</a>
@@ -348,18 +348,18 @@
        <li>
         <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
       </li> 
-      <li>
+      <!--<li>
         <a href="{{route('correlativo.index')}}"><i class="fa fa-hospital-o"></i> Nùmeros de Ticket</a>
-      </li> 
+      </li>--> 
       <li>
         <a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
-      <li>
+      <!--<li>
         <a href="{{route('role.index')}}"><i class="fa fa-user-md"></i> Roles</a>
       </li>     
       <li>
         <a href="{{route('sedes.index')}}"><i class="fa fa-hospital-o"></i> Sedes</a>
-      </li>  
+      </li>-->  
       <li>
         <a href="{{route('proveedores.index')}}"><i class="fa fa-hospital-o"></i> Proveedores</a>
       </li>	  
@@ -519,7 +519,7 @@
     <ul class="dropdown-menu">
       
       <li>
-        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Prof.</a>
+        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Ref.</a>
       </li>
       <li>
         <a href="{{route('comporpagar.index2')}}"><i class="fa fa-list-alt"></i> Comis. Pers.</a>
@@ -705,13 +705,7 @@
       </li>     
       <li>
         <a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
-      </li>
-      <li>
-        <a href="{{route('role.index')}}"><i class="fa fa-user-md"></i> Roles</a>
-      </li>     
-      <li>
-        <a href="{{route('sedes.index')}}"><i class="fa fa-hospital-o"></i> Sedes</a>
-      </li>  
+      </li> 
       <li>
         <a href="{{route('proveedores.index')}}"><i class="fa fa-hospital-o"></i> Proveedores</a>
       </li>	  

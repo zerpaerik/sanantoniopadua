@@ -65,7 +65,7 @@ margin-top: -20px;
 
 
    <div class="" style="font-size: 40px; text-align: center;">
-		<p><strong>GRUPO MASTER SALUD</strong></p>
+		<p><strong>SAN ANTONIO PADUA</strong></p>
 	    <p><strong>TICKET:0000{{$ticket->id}}</strong></p>
 	</div>
 

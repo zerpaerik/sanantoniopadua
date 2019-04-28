@@ -50,7 +50,7 @@
 </head>
 
 <div>
-<img src="/var/www/html/padua/sysmadeteresa/public/img/logopadua.jpeg"  style="width: 20%;"/>
+<img src="/var/www/html/padua/sanantoniopadua/public/img/logopadua.jpeg"  style="width: 20%;"/>
 	<div class="text-center title-header col-12">
 		<center><strong>REPORTE DE CIERRE DE CAJA</strong> </center>
 		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
