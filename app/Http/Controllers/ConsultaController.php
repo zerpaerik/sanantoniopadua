@@ -289,7 +289,7 @@ class ConsultaController extends Controller
 
     $tiempos = RangoConsulta::all();
 
-    $productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
+    $productos = Producto::where('almacen','=',1)->where("sede_id", "=", $request->session()->get('sede'))->get();
     
     $ciex = Ciex::all();
 
