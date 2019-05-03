@@ -62,12 +62,22 @@
 										</option>
 									@endforeach
 								</select>
-							</div>						
-
-						<br>
+							</div>
+						<label class="col-sm-1 control-label">Servicios</label>
+						<div class="col-sm-3">
+							<select id="el2" name="especialista">
+								@foreach($servicios as $servicio)
+									<option value="{{$especialista->id}}">
+										{{$servicio->detalle}}
+									</option>
+								@endforeach
+							</select>
+						</div>						
+						<div class="col-xs-12">
 						<input type="button" onclick="form.submit()"style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
 
 						<a href="#" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
+						</div>
 					</div>			
 				</form>	
 			</div>
