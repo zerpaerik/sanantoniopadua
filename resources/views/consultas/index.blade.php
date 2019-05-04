@@ -72,6 +72,7 @@
 							<th>Horas</th>
 							<th>Estatus</th>
 							<th>Tipo</th>
+							<th>TP</th>
 							<th>Registrado por</th>
 							<th>Acciones:</th>
 						</tr>
@@ -92,6 +93,7 @@
 						<td style="background: #FE642E;">No ha sido Atendido</td>
 						@endif
 						<td>{{$d->tipo}}</td>
+						<td>{{$d->tipo_ingreso}}</td>
 						<td>{{$d->nombreU}} {{$d->apellidoU}}</td>
 						<td>
 
@@ -131,6 +133,7 @@
 							<th>Horas</th>
 							<th>Estatus</th>
 							<th>Tipo</th>
+							<th>TP</th>
 							<th>Registrado por</th>
 							<th>Acciones:</th>
 						</tr>
