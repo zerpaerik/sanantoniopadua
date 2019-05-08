@@ -22,8 +22,7 @@ class PersonalController extends Controller
 
   public function index(){
 
-      //$personal = Personal::all();
-    //  $personal =Personal::where("estatus", '=', 1)->get();
+    
 	  $personal = DB::table('personals as a')
         ->select('a.id','a.name','a.lastname as apellido','a.dni','a.phone','a.address','a.email','a.cargo','c.name as user','c.lastname')
 		    ->join('users as c','c.id','a.usuario')
