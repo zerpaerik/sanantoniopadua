@@ -238,7 +238,7 @@
 						
 					</div>
           <hr>
-            		<input type="hidden" name="id" value="{{$historias->consulta}}">
+            		<input type="hidden" name="id" value="{{$historias->id}}">
 
 			
 	

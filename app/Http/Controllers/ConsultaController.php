@@ -273,7 +273,7 @@ class ConsultaController extends Controller
    public function editview(Request $request,$id)
   {
   
-    $historias = DB::table('events as e')
+   /* $historias = DB::table('events as e')
         ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
     'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id',
     'a.pa','a.id as consulta','a.pulso','a.temperatura','a.peso','a.talla','a.fur','a.motivo_consulta','a.pendiente','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.andria','a.prox','a.personal','a.card','a.g','a.p','a.fechaemb','a.tiempo_enf','a.rnpeso','a.anticon','a.result','a.gsan','a.antepi','a.ets','a.etsotro','a.exagen','a.exareg','a.so3','a.phpa','a.imc',
@@ -284,6 +284,10 @@ class ConsultaController extends Controller
     ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->where('a.id','=',$id)
     ->first();
+
+    */
+
+    $historias=Consulta::where('id','=',$id)->first();
 
     $especialistas =  Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get();
 
