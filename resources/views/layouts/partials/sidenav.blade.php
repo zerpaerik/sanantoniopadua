@@ -12,7 +12,7 @@
       <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros Medicos</a>
     </li>
     <li>
-      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
+      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Referente</a>
     </li>
     <li>
       <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Laboratorios</a>
@@ -379,7 +379,7 @@
       <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros Medicos</a>
     </li>
     <li>
-      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
+      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Referente</a>
     </li>
     <li>
       <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Laboratorios</a>
@@ -1106,7 +1106,7 @@
       <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros Medicos</a>
     </li>
     <li>
-      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
+      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Referente</a>
     </li>
 
    

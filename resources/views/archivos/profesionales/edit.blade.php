@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Editar Profesional</strong></span>
+					<span><strong>Editar Referente</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">

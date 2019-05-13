@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Archivos/Profesionales</span>
+					<span>Archivos/Referentes</span>
 				    <a href="{{route('profesionales.create')}}" class="btn btn-success">Agregar</a>
 
 				</div>
