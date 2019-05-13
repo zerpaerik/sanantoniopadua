@@ -550,14 +550,13 @@ class AtencionesController extends Controller
               ->first();  
         
      // $porcentaje = $searchServicio->porcentaje;
-    $programa = $searchServicio->programa;
-    $sesion= $searchServicio->sesion;
+   
 
 
               if ($request->origen == 1 ){
                 $porcentaje = $searcPaquete->por_per;
             } else {
-                $porcentaje = $searchServicio->porcentaje;
+                $porcentaje = $searcPaquete->porcentaje;
             }
               $paquete = Paquetes::findOrFail($paquete['paquete']);
               $paq = new Atenciones();
