@@ -482,7 +482,7 @@ class AtencionesController extends Controller
            if ($request->origen == 2 ){
         $porcentaje = $searchAnalisis->porcentaje;
     } elseif($request->origen == 1) {
-        $porcentaje = 0;
+        $porcentaje = $searchAnalisis->por_per;
     } else {
       $porcentaje=0;
     }   
@@ -896,11 +896,14 @@ $paciente = DB::table('pacientes')
                     ->first();   
 
                              
-    if ($request->origen == 2 ){
+       if ($request->origen == 2 ){
         $porcentaje = $searchAnalisis->porcentaje;
+    } elseif($request->origen == 1) {
+        $porcentaje = $searchAnalisis->por_per;
     } else {
       $porcentaje=0;
     }   
+ 
 
           $lab = new Atenciones();
           $lab->id_paciente = $request->id_paciente;
