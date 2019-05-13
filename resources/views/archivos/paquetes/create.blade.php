@@ -35,9 +35,19 @@
 							<input type="text" class="form-control" name="precio" placeholder="Precio" title="Precio">
 						</div>
 					
-						<label class="col-sm-1 control-label">Porcentaje</label>
+						<label class="col-sm-1 control-label">Porc.Referente</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="porcentaje" placeholder="Porcentaje" title="Porcentaje">
+							<input type="text" class="form-control" name="porcentaje" placeholder="Porcentaje Profesional" title="Porcentaje">
+						</div>
+
+						<label class="col-sm-1 control-label">Porc.Personal</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="por_per" placeholder="Porcentaje Personal" title="Porcentaje">
+						</div>
+
+						<label class="col-sm-1 control-label">Porc.Tecn</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="por_tec" placeholder="Porcentaje Tecnologo" title="Porcentaje Tecnologo">
 						</div>
 					</div>
 						

@@ -18,7 +18,7 @@ class AnalisisController extends Controller
 
 
 	$analisis = DB::table('analises as a')
-        ->select('a.id','a.name','a.preciopublico','a.costlab','a.usuario','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio','c.name as user','c.lastname')
+        ->select('a.id','a.name','a.preciopublico','a.porcentaje','a.por_per','a.costlab','a.usuario','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio','c.name as user','c.lastname')
         ->join('laboratorios as b','a.laboratorio','b.id')
 		->join('users as c','c.id','a.usuario')
         ->orderby('a.id','desc')
@@ -27,9 +27,9 @@ class AnalisisController extends Controller
         return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "analisis",
-        "headers" => ["Nombre", "Precio al Pùblico", "Costo", "Tiempo", "Material","Laboratorio","Registrado Por:", "Editar", "Eliminar"],
+        "headers" => ["Nombre", "Precio","Porc.Ref","Porc.Pers", "Costo", "Tiempo", "Material","Laboratorio","Registrado Por:", "Editar", "Eliminar"],
         "data" => $analisis,
-        "fields" => [ "name", "preciopublico", "costlab", "tiempo", "material","laboratorio","user"],
+        "fields" => [ "name", "preciopublico","porcentaje","por_per", "costlab", "tiempo", "material","laboratorio","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -73,6 +73,7 @@ class AnalisisController extends Controller
 	      'costlab' => $request->costlab,
 	      'laboratorio' => $request->laboratorio,
         'porcentaje' => $request->porcentaje,
+        'por_per' => $request->por_per,
 	      'tiempo' => $request->tiempo,
 	      'material' => $request->material,
 		  'usuario' => 	Auth::user()->id
@@ -110,7 +111,7 @@ class AnalisisController extends Controller
 
     public function editView($id){
       $p = Analisis::find($id);
-      return view('archivos.analisis.edit', ["laboratorios" => Laboratorios::all(),"name" => $p->name, "preciopublico" => $p->preciopublico,"costlab" => $p->costlab,"tiempo" => $p->tiempo, "laboratorio" => $p->laboratorio,"porcentaje" => $p->porcentaje, "material" => $p->material,"id" => $p->id]);
+      return view('archivos.analisis.edit', ["laboratorios" => Laboratorios::all(),"name" => $p->name, "preciopublico" => $p->preciopublico,"por_per" => $p->por_per,"porcentaje" => $p->porcentaje,"costlab" => $p->costlab,"tiempo" => $p->tiempo, "laboratorio" => $p->laboratorio,"porcentaje" => $p->porcentaje, "material" => $p->material,"id" => $p->id]);
     }
 
       public function edit(Request $request){
@@ -122,6 +123,7 @@ class AnalisisController extends Controller
       $p->tiempo = $request->tiempo;
       $p->material = $request->material;
       $p->porcentaje = $request->porcentaje;
+      $p->por_per = $request->por_per;
       $res = $p->save();
       return redirect()->action('Archivos\AnalisisController@index', ["edited" => $res]);
     }

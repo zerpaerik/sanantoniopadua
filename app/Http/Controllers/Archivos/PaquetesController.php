@@ -28,7 +28,7 @@ class PaquetesController extends Controller
         
 
         $paquetes = DB::table('paquetes as a')
-        ->select('a.id','a.detalle','a.precio', 'a.porcentaje','a.estatus','a.usuario','b.name as user','b.lastname')
+        ->select('a.id','a.detalle','a.precio','a.por_per','a.por_tec','a.porcentaje','a.estatus','a.usuario','b.name as user','b.lastname')
 		->join('users as b','b.id','a.usuario')
         ->where('a.estatus','=',1)
         ->paginate(5000);
@@ -64,8 +64,8 @@ class PaquetesController extends Controller
     public function createView()
     {
       //$servicios = Servicios::all();
-      $servicios =Servicios::where("estatus", '=', 1)->get();
-      $laboratorios =Analisis::where("estatus", '=', 1)->get();
+      $servicios =Servicios::where("estatus", '=', 1)->orderbY('detalle','asc')->get();
+      $laboratorios =Analisis::where("estatus", '=', 1)->orderbY('name','asc')->get();
       //$laboratorios = Analisis::all();
        
       return view('archivos.paquetes.create', compact('servicios','laboratorios'));
@@ -77,6 +77,8 @@ class PaquetesController extends Controller
       $paquete->detalle    = $request->detalle;
       $paquete->precio     = $request->precio;
       $paquete->porcentaje = $request->porcentaje;
+      $paquete->por_per = $request->por_per;
+      $paquete->por_tec = $request->por_tec;
 	  $paquete->usuario = 	Auth::user()->id;
 
      
@@ -156,7 +158,9 @@ class PaquetesController extends Controller
       $paquete = Paquetes::where('id',$id)
                           ->update([
                               'precio' => $request->precio,
-                              'porcentaje' => $request->porcentaje
+                              'porcentaje' => $request->porcentaje,
+                              'por_per' => $request->por_per,
+                              'por_tec' => $request->por_tec
                           ]);
       if ($paquete) {
         if (isset($request->id_servicio)) {
@@ -208,6 +212,8 @@ class PaquetesController extends Controller
       $paquete = Paquetes::findOrFail($id);
       $paquete->precio = $request->precio;
       $paquete->porcentaje = $request->porcentaje;
+      $paquete->por_per = $request->por_per;
+      $paquete->por_tec = $request->por_tec;
       if ($paquete->save()) {
         if (isset($request->id_servicio)) {
             foreach ($request->id_servicio['servicios'] as $servicio) {

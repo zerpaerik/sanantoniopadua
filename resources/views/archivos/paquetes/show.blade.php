@@ -14,7 +14,10 @@
 						<strong>Precio:</strong> {{$paquete->precio}}
 					</div>
 					<div class="col-sm-6">
-						<strong>Porcentaje:</strong> {{$paquete->porcentaje}}
+						<strong>PorcentajeRef:</strong> {{$paquete->porcentaje}}
+					</div>
+					<div class="col-sm-6">
+						<strong>PorcentajePers:</strong> {{$paquete->por_per}}
 					</div>
 				</div>			
 					

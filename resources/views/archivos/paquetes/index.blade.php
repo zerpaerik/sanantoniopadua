@@ -33,7 +33,9 @@
 							<th>Id</th>
 							<th>Nombre</th>
 							<th>Precio</th>
-							<th>Porcentaje</th>
+							<th>Porc.Ref</th>
+							<th>Porc.Pers</th>
+							<th>Porc.Tecn.</th>
 							<th>Registrado Por:</th>
 							<th>Acciones:</th>
 
@@ -47,6 +49,8 @@
 						<td>{{$p->detalle}}</td>
 						<td>{{$p->precio}}</td>
 						<td>{{$p->porcentaje}}</td>
+						<td>{{$p->por_per}}</td>
+						<td>{{$p->por_tec}}</td>
 						<td>{{$p->user}}</td>
 						<td>
 						<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$p->id}}">ver</a>

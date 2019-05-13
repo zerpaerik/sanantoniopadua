@@ -33,6 +33,16 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="preciopublico" placeholder="Precio al Pùblico" data-toggle="tooltip" data-placement="bottom" title="Precio">
 						</div>
+						
+						<label class="col-sm-1 control-label">Porc.Referente</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="porcentaje" placeholder="Porcentate Referente" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
+						</div>	
+
+						<label class="col-sm-1 control-label">Porc.Personal</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="por_per" placeholder="Porcentaje Personal" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
+						</div>	
 						<label class="col-sm-1 control-label">Costo</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="costlab" placeholder="Costo" data-toggle="tooltip" data-placement="bottom" title="Costo">
@@ -48,10 +58,7 @@
 							<input type="text" class="form-control" name="material" placeholder="Material" data-toggle="tooltip" data-placement="bottom" title="Material">
 						</div>	
 
-						<label class="col-sm-1 control-label">Porcentaje</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="porcentaje" placeholder="porcentaje" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
-						</div>	
+						
 						
 						
 						<label class="col-sm-1 control-label">Laboratorio</label>

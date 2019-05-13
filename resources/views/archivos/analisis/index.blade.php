@@ -28,6 +28,8 @@
 						<tr>
 							<th>Nombre</th>
 							<th>Precio</th>
+							<th>Porcentaje Referente</th>
+							<th>Porcentaje Personal</th>
 							<th>Laboratorio</th>
 							<th>Tiempo</th>
 							<th>Material</th>
@@ -39,6 +41,8 @@
 							<tr>
 								<td>{{$ana->name}}</td>
 								<td>{{$ana->preciopublico}}</td>
+								<td>{{$ana->porcentaje}}</td>
+								<td>{{$ana->por_per}}</td>
 								<td>{{$ana->laboratorio}}</td>
 								<td>{{$ana->tiempo}}</td>
 								<td>{{$ana->material}}</td>

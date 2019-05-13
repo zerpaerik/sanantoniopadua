@@ -35,9 +35,19 @@
 							<input type="text" class="form-control" value="{{$paquete->precio}}" name="precio" placeholder="Precio" title="Precio">
 						</div>
 					
-						<label class="col-sm-1 control-label">Porcentaje</label>
+						<label class="col-sm-1 control-label">Porc.Ref</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" value="{{$paquete->porcentaje}}" name="porcentaje" placeholder="Porcentaje" title="Porcentaje">
+						</div>
+
+						<label class="col-sm-1 control-label">Porc.Pers</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" value="{{$paquete->por_per}}" name="por_per" placeholder="Porcentaje" title="Porcentaje">
+						</div>
+
+						<label class="col-sm-1 control-label">Porc.Tecn</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" value="{{$paquete->por_tec}}" name="por_tec" placeholder="Porcentaje" title="Porcentaje">
 						</div>
 					</div>
 						

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Analisis extends Model
 {
     protected $fillable = [
-    	'name', 'laboratorio', 'preciopublico','costlab','material','tiempo','porcentaje','estatus','usuario'
+    	'name', 'laboratorio', 'preciopublico','costlab','material','tiempo','porcentaje','estatus','usuario','por_per'
     ];
 
     public function Atenciones()

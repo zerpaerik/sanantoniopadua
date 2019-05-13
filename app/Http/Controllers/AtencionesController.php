@@ -160,6 +160,8 @@ class AtencionesController extends Controller
       
       foreach ($request->id_paquete['paquetes'] as $key => $paquete) {
         if (!is_null($paquete['paquete'])) {
+
+
               $paquete = Paquetes::findOrFail($paquete['paquete']);
               $paq = new Atenciones();
               $paq->id_paciente = $request->id_paciente;
@@ -541,6 +543,22 @@ class AtencionesController extends Controller
       
       foreach ($request->id_paquete['paquetes'] as $key => $paquete) {
         if (!is_null($paquete['paquete'])) {
+
+                $searcPaquete = DB::table('paquetes')
+              ->select('*')
+              ->where('id','=', $paquete['paquete'])
+              ->first();  
+        
+     // $porcentaje = $searchServicio->porcentaje;
+    $programa = $searchServicio->programa;
+    $sesion= $searchServicio->sesion;
+
+
+              if ($request->origen == 1 ){
+                $porcentaje = $searcPaquete->por_per;
+            } else {
+                $porcentaje = $searchServicio->porcentaje;
+            }
               $paquete = Paquetes::findOrFail($paquete['paquete']);
               $paq = new Atenciones();
               $paq->id_paciente = $request->id_paciente;

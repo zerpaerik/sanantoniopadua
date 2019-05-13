@@ -29,9 +29,17 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="name" placeholder="name" data-toggle="tooltip" data-placement="bottom" value="{{$name}}" title="name">
 						</div>
-						<label class="col-sm-1 control-label">Precio al Pùblico</label>
+						<label class="col-sm-1 control-label">Precio</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="preciopublico" placeholder="preciopublico" data-toggle="tooltip" data-placement="bottom" value="{{$preciopublico}}" title="preciopublico">
+						</div>
+						<label class="col-sm-1 control-label">Porc.Ref</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="porcentaje" placeholder="preciopublico" data-toggle="tooltip" data-placement="bottom" value="{{$porcentaje}}" title="preciopublico">
+						</div>
+						<label class="col-sm-1 control-label">Porc.Pers</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="por_per" placeholder="preciopublico" data-toggle="tooltip" data-placement="bottom" value="{{$por_per}}" title="preciopublico">
 						</div>
 						<label class="col-sm-1 control-label">Costo</label>
 						<div class="col-sm-3">
