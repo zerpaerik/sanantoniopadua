@@ -491,6 +491,7 @@ Route::get('historiasr-{id}', 'ConsultaController@report');
 
 //Servicios
 Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index')->middleware('auth');
+Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index')->middleware('auth');
 Route::get('services-create','ServiceController@createView')->name('service.create')->middleware('auth');
 Route::get('services-delete-{id}','ServiceController@delete')->name('service.delete')->middleware('auth');
 Route::get('services-edit-{id}','ServiceController@editView')->name('service.edit')->middleware('auth');
@@ -498,6 +499,9 @@ Route::post('services/edit','ServiceController@edit')->name('service.editar')->m
 Route::get('services-inicio','ServiceController@inicio')->name('service.inicio')->middleware('auth');
 Route::post('services/create', 'ServiceController@create')->middleware('auth');
 Route::get('service-{id}','ServiceController@show')->middleware('auth');
+Route::get('service/consultas','ServiceController@consultas');
+Route::get('service/servicios','ServiceController@servicios');
+Route::get('service/controles','ServiceController@controles');
 //Route::get('service-available-time/{e}/{d}/{m}/{y}', 'ServiceController@availableTime');
 /**
  * Reportes
