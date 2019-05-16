@@ -18,113 +18,30 @@
     <p>Edad del paciente: {{$edad}} años</p>	
 
 
+	<br>
 	<br>	
-	<br>
-	<h2>Resultados anteriores de {{$data->nombres}} {{$data->apellidos}}</h2>
-	@foreach($consultas as $consulta)
-	<div class="rows">
-		<div class="col-sm-12">
-			<div class="rows">
-				<h3 class="col-sm-12"><strong>Consulta del {{$consulta->created_at}}</strong></h3>
 
-				<h3 class="col-sm-12">II. AMANESIS</h3>
-				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
-				<p class="col-sm-6"><strong>Tiempo de Enfermedad:</strong> {{ $consulta->tiempo_enf }}</p>
-				<p class="col-sm-12"><strong>ANTECEDENTES MÉDICOS</strong></p>
-				<p class="col-sm-6"><strong>Antecedentes Patológicos:</strong> {{$consulta->antecedentes_patologicos}}</p>
-				<p class="col-sm-6"><strong>Antecedentes Personales:</strong> {{$consulta->antecedentes_personales}}</p>
-				<p class="col-sm-6"><strong>Antecedentes Familiares:</strong> {{$consulta->antecedentes_familiar}}</p>
-				<p class="col-sm-6"><strong>Antecedentes Quirúrgicos:</strong> {{$consulta->antecedentes_quirurgicos}}</p>
-				<p class="col-sm-6"><strong>Antecedentes Traumáticos:</strong> {{$consulta->antecedentes_traumaticos}}</p>
-				<p class="col-sm-6"><strong>Antecedentes Genéticos:</strong> {{$consulta->antecedentes_geneticos}}</p>
-				<p class="col-sm-6"><strong>Alergias:</strong> {{$consulta->alergias}}</p>
-				<br>
-				<p class="col-sm-12"><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
-				<p class="col-sm-3"><strong>Menarquia:</strong> {{$consulta->menarquia}} años</p>
-				<p class="col-sm-3"><strong>R/C:</strong> {{$consulta->pulso}}</p>
-				<p class="col-sm-3"><strong>1º R.S:</strong> {{$consulta->prs}}</p>
-				<p class="col-sm-3"><strong>Nº PS:</strong> {{$consulta->andria}}</p>
-				<p class="col-sm-1"><strong>G:</strong> {{$consulta->g}}</p>
-				<p class="col-sm-1"><strong>P:</strong> {{$consulta->p}}</p>
-				<p class="col-sm-4"><strong>Fecha Últ. Emb.:</strong> {{$consulta->fechaemb}}</p>
-				<p class="col-sm-3"><strong>RN> peso:</strong> {{$consulta->rnpeso}}</p>
-				<p class="col-sm-3"><strong>FUR:</strong> {{$consulta->fur}}</p>
-				<p class="col-sm-12"><strong>Anticonceptivo:</strong> {{$consulta->anticon}}</p>
-				<p class="col-sm-3"><strong>Fecha Último PAP:</strong> {{$consulta->fecha}}</p>
-				<p class="col-sm-3"><strong>Resultado:</strong> {{$consulta->result}}</p>
-				<p class="col-sm-2"><strong>Grupo Sanguineo:</strong> {{$consulta->gsan}}</p>
-				<p class="col-sm-12"><strong>Procesos Hemorrágicos (Parto/Aborto):</strong> {{$consulta->phpa}}</p>
-				<p class="col-sm-6"><strong>Antecedentes de EPI:</strong> {{$consulta->antepi}}</p>
-				<p class="col-sm-3"><strong>ETS:</strong> {{$consulta->ets}}</p>
-				<p class="col-sm-6"><strong>OTROS:</strong> {{$consulta->etsotro}}</p>
+	@if($historial)
+	<h2>Historia Base de {{$data->apellidos}} {{$data->nombres}} </h2>
+		<p>Antecedentes Patologicos: {{$historial->antecedentes_patologicos}}</p>
+		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
+		<p>Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
+		<p>Antecedentes Quirurgicos: {{$historial->antecedentes_quirurgicos}}</p>
+		<p>Antecedentes Traumàticos: {{$historial->antecedentes_traumaticos}}</p>
+	    <p>Antecedentes Geneticos: {{$historial->antecedentes_geneticos}}</p>
+		<p>Alergias: {{$historial->alergias}}</p>
+		<p>Menarquia: {{$historial->menarquia}} años.</p> 
+		<p>1º R.S : {{$historial->prs}} años.</p> 
 
-				<h3 class="col-sm-12">III. EXAMEN FÍSICO/CLÍNICO</h3>
-				<p class="col-sm-12"><strong>FUNCIONES VITALES</strong></p>
-				<p class="col-sm-2"><strong>P/A:</strong> {{$consulta->pa}}</p>
-				<p class="col-sm-2"><strong>Pulso:</strong> {{$consulta->card}}</p>
-				<p class="col-sm-2"><strong>TºO:</strong> {{$consulta->temperatura}}</p>
-				<p class="col-sm-2"><strong>SO<sub>3</sub>:</strong> {{$consulta->so3}}</p>
-				<p class="col-sm-2"><strong>Peso:</strong> {{$consulta->peso}}</p>
-				<p class="col-sm-2"><strong>Talla:</strong> {{$consulta->talla}}</p>
-				<p class="col-sm-2"><strong>IMC:</strong> {{$consulta->imc}}</p>
-				<br>
-				<h3 class="col-sm-12">IV. DIAGNÓSTICO PRESUNTIVO:</h3>
-				<p class="col-sm-6">{{ $consulta->presuncion_diagnostica }}</p>
-				<p class="col-sm-6"><strong>CIEX Pres. Diag.:</strong> {{ $consulta->CIEX }}</p>
-				<br>
-				<h3 class="col-sm-12">V. EXÁMENES AUXILIARES</h3>
-				<p class="col-sm-12">{{ $consulta->examen_auxiliar }}</p>
-				<br>
-				<h3 class="col-sm-12">VI. DIAGNÓSTICO DEFINITIVO:</h3>
-				<p class="col-sm-6">{{ $consulta->diagnostico_final }}</p>
-				<p class="col-sm-6"><strong>CIEX Diag. Def.: </strong>{{ $consulta->CIEX2 }}</p>
-				<br>
-				<h3 class="col-sm-12">VII. TRATAMIENTO:</h3>
-				<p class="col-sm-12">{{ $consulta->plan_tratamiento }}</p>
-				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
-				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
-		        <p  class="col-sm-6"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
-				
-
-
-				<br>
-			</div>
-		</div>
-	
-	@endforeach
-	<div class="col-sm-12">
-	<h3>Registrar nueva Historia</h3>
-	<br>
-	<form action="observacion/create" method="post" class="form-horizontal">
-		{{ csrf_field() }}
-		<div class="form-group">
-			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
-			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
-		    <input type="hidden" name="evento" value="{{$evento->id}}">
-             <div class="row">
-			  <label class="col-sm-3 control-label">DEJAR PENDIENTE?:</label>
-			<div class="col-sm-2">
-				<select id="el3" name="pendiente" required="true">
-					<option value="0">No</option>
-					<option value="1">Si</option>
-				</select>
-			</div> 
-			</div>
-			<h2>II. ANAMNESIS</h2>
-           <div class="row">
-            <label for="" class="col-sm-2 control-label">Motivo de Consulta:</label>
-			<div class="col-sm-10">	
-				<textarea name="motivo_consulta" cols="10" rows="3" class="form-control" ></textarea>
-			</div>
-		  </div>
-		  <div class="row">
-            <label for="" class="col-sm-2 control-label">Tiempo de enfermedad:</label>
-			<div class="col-sm-10">	
-				<textarea name="tiempo_enf" cols="10" rows="3" class="form-control" ></textarea>
-			</div>
-		  </div>
-
-		  <p><strong>ANTECEDENTES MÉDICOS</strong></p>
+	@else
+	<h4>Este usuario no cuenta con un historial base, por favor agregue uno</h4>
+		<div></div>
+		<form action="historial/create" method="post">
+			<div class="form-group">
+				{{ csrf_field() }}
+				<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
+				<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
+				<p><strong>ANTECEDENTES MÉDICOS</strong></p>
 				<div class="row">
 
 				<label for="" class="col-sm-3">Antecedentes Familiares:</label>
@@ -234,6 +151,122 @@
 				</div>
 
 				</div>
+
+				<label for="" class="col-sm-1">Menarquia:</label>
+					<div class="col-sm-3">
+						<input class="form-control" type="text" name="menarquia">
+					</div>
+			    <label for="" class="col-sm-1">1RS:</label>
+					<div class="col-sm-3">
+						<input class="form-control" type="text" name="prs">
+					</div>
+				
+			
+				<br>
+				<div class="col-sm-12">
+					<input type="button" onclick="form.submit()" value="Registrar" class="btn btn-success">
+				</div>
+			</div>
+		</form>
+	@endif	
+	<br>
+	<h2>Resultados anteriores de {{$data->nombres}} {{$data->apellidos}}</h2>
+	@foreach($consultas as $consulta)
+	<div class="rows">
+		<div class="col-sm-12">
+			<div class="rows">
+				<h3 class="col-sm-12"><strong>Consulta del {{$consulta->created_at}}</strong></h3>
+
+				<h3 class="col-sm-12">II. AMANESIS</h3>
+				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
+				<p class="col-sm-6"><strong>Tiempo de Enfermedad:</strong> {{ $consulta->tiempo_enf }}</p>
+			
+				<br>
+				<p class="col-sm-12"><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
+				
+				<p class="col-sm-3"><strong>R/C:</strong> {{$consulta->pulso}}</p>
+				<p class="col-sm-3"><strong>Nº PS:</strong> {{$consulta->andria}}</p>
+				<p class="col-sm-1"><strong>G:</strong> {{$consulta->g}}</p>
+				<p class="col-sm-1"><strong>P:</strong> {{$consulta->p}}</p>
+				<p class="col-sm-4"><strong>Fecha Últ. Emb.:</strong> {{$consulta->fechaemb}}</p>
+				<p class="col-sm-3"><strong>RN> peso:</strong> {{$consulta->rnpeso}}</p>
+				<p class="col-sm-3"><strong>FUR:</strong> {{$consulta->fur}}</p>
+				<p class="col-sm-12"><strong>Anticonceptivo:</strong> {{$consulta->anticon}}</p>
+				<p class="col-sm-3"><strong>Fecha Último PAP:</strong> {{$consulta->fecha}}</p>
+				<p class="col-sm-3"><strong>Resultado:</strong> {{$consulta->result}}</p>
+				<p class="col-sm-2"><strong>Grupo Sanguineo:</strong> {{$consulta->gsan}}</p>
+				<p class="col-sm-12"><strong>Procesos Hemorrágicos (Parto/Aborto):</strong> {{$consulta->phpa}}</p>
+				<p class="col-sm-6"><strong>Antecedentes de EPI:</strong> {{$consulta->antepi}}</p>
+				<p class="col-sm-3"><strong>ETS:</strong> {{$consulta->ets}}</p>
+				<p class="col-sm-6"><strong>OTROS:</strong> {{$consulta->etsotro}}</p>
+
+				<h3 class="col-sm-12">III. EXAMEN FÍSICO/CLÍNICO</h3>
+				<p class="col-sm-12"><strong>FUNCIONES VITALES</strong></p>
+				<p class="col-sm-2"><strong>P/A:</strong> {{$consulta->pa}}</p>
+				<p class="col-sm-2"><strong>Pulso:</strong> {{$consulta->card}}</p>
+				<p class="col-sm-2"><strong>TºO:</strong> {{$consulta->temperatura}}</p>
+				<p class="col-sm-2"><strong>SO<sub>3</sub>:</strong> {{$consulta->so3}}</p>
+				<p class="col-sm-2"><strong>Peso:</strong> {{$consulta->peso}}</p>
+				<p class="col-sm-2"><strong>Talla:</strong> {{$consulta->talla}}</p>
+				<p class="col-sm-2"><strong>IMC:</strong> {{$consulta->imc}}</p>
+				<br>
+				<h3 class="col-sm-12">IV. DIAGNÓSTICO PRESUNTIVO:</h3>
+				<p class="col-sm-6">{{ $consulta->presuncion_diagnostica }}</p>
+				<p class="col-sm-6"><strong>CIEX Pres. Diag.:</strong> {{ $consulta->CIEX }}</p>
+				<br>
+				<h3 class="col-sm-12">V. EXÁMENES AUXILIARES</h3>
+				<p class="col-sm-12">{{ $consulta->examen_auxiliar }}</p>
+				<br>
+				<h3 class="col-sm-12">VI. DIAGNÓSTICO DEFINITIVO:</h3>
+				<p class="col-sm-6">{{ $consulta->diagnostico_final }}</p>
+				<p class="col-sm-6"><strong>CIEX Diag. Def.: </strong>{{ $consulta->CIEX2 }}</p>
+				<br>
+				<h3 class="col-sm-12">VII. TRATAMIENTO:</h3>
+				<p class="col-sm-12">{{ $consulta->plan_tratamiento }}</p>
+				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
+				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
+		        <p  class="col-sm-6"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
+				
+
+
+				<br>
+			</div>
+		</div>
+	
+	@endforeach
+	<div class="col-sm-12">
+	<h3>Registrar nueva Historia</h3>
+	<br>
+	<form action="observacion/create" method="post" class="form-horizontal">
+		{{ csrf_field() }}
+		<div class="form-group">
+			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
+			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
+		    <input type="hidden" name="evento" value="{{$evento->id}}">
+             <div class="row">
+			  <label class="col-sm-3 control-label">DEJAR PENDIENTE?:</label>
+			<div class="col-sm-2">
+				<select id="el3" name="pendiente" required="true">
+					<option value="0">No</option>
+					<option value="1">Si</option>
+				</select>
+			</div> 
+			</div>
+			<h2>II. ANAMNESIS</h2>
+           <div class="row">
+            <label for="" class="col-sm-2 control-label">Motivo de Consulta:</label>
+			<div class="col-sm-10">	
+				<textarea name="motivo_consulta" cols="10" rows="3" class="form-control" ></textarea>
+			</div>
+		  </div>
+		  <div class="row">
+            <label for="" class="col-sm-2 control-label">Tiempo de enfermedad:</label>
+			<div class="col-sm-10">	
+				<textarea name="tiempo_enf" cols="10" rows="3" class="form-control" ></textarea>
+			</div>
+		  </div>
+
+		 
 				
 				<br>
 				<p><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
