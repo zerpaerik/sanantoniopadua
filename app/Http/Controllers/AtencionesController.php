@@ -958,6 +958,7 @@ $paciente = DB::table('pacientes')
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('tipo','=','1')
+                    ->where('estatus','=',1)
                     ->orderBy('lastname','asc')
                     ->get();  
 
@@ -970,6 +971,7 @@ $paciente = DB::table('pacientes')
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('tipo','=','2')
+                    ->where('estatus','=',1)
                     ->orderBy('lastname','asc')
                     ->whereNotIn('id',[99999999])
                     ->get();  

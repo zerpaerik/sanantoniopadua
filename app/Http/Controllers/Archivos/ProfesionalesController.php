@@ -96,6 +96,16 @@ class ProfesionalesController extends Controller
 	      Toastr::error('Error Registrando.', 'Profesional- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
 		} else {
+
+    
+    $users = new User();
+    $users->name =$request->name;
+    $users->lastname =$request->apellidos;
+    $users->tipo = 2;
+    $users->dni = $request->dni;
+    $users->save();
+          
+
 		$centros = Profesionales::create([
 	      'name' => $request->name,
 	      'apellidos' => $request->apellidos,
@@ -106,15 +116,10 @@ class ProfesionalesController extends Controller
 	      'centro' => $request->centro,
           'phone' => $request->phone,
 		  'usuario' => 	Auth::user()->id,
+      'id_user' => $users->id
    		]);
 
-      $users= User::create([
-        'name' => $request->name,
-        'lastname' => $request->apellidos,
-        'tipo' => 2,
-        'dni' => $request->dni
-
-      ]);
+      
 	  
 	      $historial = new Historiales();
           $historial->accion ='Registro';
@@ -135,6 +140,14 @@ class ProfesionalesController extends Controller
     $centros = Profesionales::find($id);
     $centros->estatus= 0;
     $centros->save();
+
+    $prof=Profesionales::where('id','=',$id)->first();
+
+  
+    $users = User::find($prof->id_user);
+    $users->estatus= 0;
+    $users->save();
+
     return redirect()->action('Archivos\ProfesionalesController@index', ["deleted" => true, "users" => Centros::all()]);
   }
 

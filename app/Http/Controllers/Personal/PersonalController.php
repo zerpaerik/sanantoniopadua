@@ -86,7 +86,32 @@ class PersonalController extends Controller
         if($validator->fails()) {
 	     Toastr::error('Error Registrando.', 'Personal- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Personal\PersonalController@createView', ['errors' => $validator->errors()]);
-		} else { 
+		} else {
+
+
+     if($request->tipo == 'Tecnologo'){
+
+   
+     $users = new User();
+    $users->name =$request->name;
+    $users->lastname =$request->lastname;
+    $users->tipo = 1;
+    $users->dni = $request->dni;
+    $users->tec =1;
+    $users->save(); 
+    } else {
+
+      $users = new User();
+    $users->name =$request->name;
+    $users->lastname =$request->lastname;
+    $users->tipo = 1;
+    $users->dni = $request->dni;
+    $users->save(); 
+
+    }
+
+
+
 		$personal = Personal::create([
 	      'name' => $request->name,
 	      'lastname' => $request->lastname,
@@ -96,33 +121,12 @@ class PersonalController extends Controller
 	      'address' => $request->address,
         'cargo' => $request->cargo,
 		'tipo' => $request->tipo,
-	    'usuario' => 	Auth::user()->id
+	    'usuario' => 	Auth::user()->id,
+      'id_user' => $users->id
 
    		]);
 
-    if($request->tipo == 'Tecnologo'){
-
-    $users= User::create([
-        'name' => $request->name,
-        'lastname' => $request->lastname,
-        'tipo' => '1',
-        'dni' => $request->dni,
-        'tec' => 1
-
-      ]);
-	  } else {
-
-       $users= User::create([
-        'name' => $request->name,
-        'lastname' => $request->lastname,
-        'tipo' => '1',
-        'dni' => $request->dni,
-
-      ]);
-
-
-    }
-	
+   	
 	  
 	      $historial = new Historiales();
           $historial->accion ='Registro';
@@ -162,6 +166,15 @@ class PersonalController extends Controller
     $personal = Personal::find($id);
     $personal->estatus = 0;
     $personal->save();
+
+   $pers=Personal::where('id','=',$id)->first();
+
+  
+    $users = User::find($pers->id_user);
+    $users->estatus= 0;
+    $users->save();
+
+
     return redirect()->action('Personal\PersonalController@index', ["deleted" => true, "users" => Personal::all()]);
   }
 

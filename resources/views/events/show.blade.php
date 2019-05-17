@@ -364,7 +364,7 @@
 				<div class="col-sm-1">	
 					<input   class="form-control" type="text" name="temperatura" placeholder="">
 				</div>
-				<label for="" class="col-sm-1 control-label">SO<sub>3</sub>:</label>
+				<label for="" class="col-sm-1 control-label">SO<sub>2</sub>:</label>
 				<div class="col-sm-1">	
 					<input   class="form-control" type="text" name="so3" placeholder="">
 				</div>
