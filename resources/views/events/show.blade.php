@@ -271,18 +271,12 @@
 				<br>
 				<p><strong>ANTECEDENTES GINECO - OBSTÉTRICOS</strong></p>
 				<div class="row">
-					<label for="" class="col-sm-1">Menarquia:</label>
-					<div class="col-sm-3">
-						<input class="form-control" type="text" name="menarquia">
-					</div>
+					
 					<label for="" class="col-sm-1">R/C:</label>
 					<div class="col-sm-2">	
 						<input   class="form-control" type="text" name="pulso">
 					</div>
-					<label for="" class="col-sm-1">1º R.S:</label>
-					<div class="col-sm-1">
-						<input class="form-control" type="text" name="prs">
-					</div>
+					
 					<label for="" class="col-sm-1">Nº PS:</label>
 					<div class="col-sm-2">	
 						<input class="form-control" type="text" name="andria">
