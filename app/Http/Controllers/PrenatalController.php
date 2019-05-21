@@ -482,7 +482,8 @@ class PrenatalController extends Controller
 			"hbsad" => $request->hbsad,
 			"creati" => $request->creati,
 			"creatid" => $request->creatid,
-			"tiempoemb" => $request->tiempoemb
+			"tiempoemb" => $request->tiempoemb,
+		     "observacion" => $request->observacion
 
     	]);
 

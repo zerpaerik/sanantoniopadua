@@ -616,6 +616,13 @@
 		<strong>Fecha:</strong> {{$c->sifid}}
 		</div>	
 	</div>
+	<div class="row">
+		<label class="col-sm-1">Observaciòn</label>
+		<div class="col-sm-3">
+		<strong>Observaciòn:</strong> {{$c->observacion}}
+		<br>
+		</div>	
+	</div>
 
 		    	
 </div>
@@ -791,6 +798,11 @@
 	            <div class="col-sm-3">
 	            	<input type="text" name="sifi" style="line-height: 20px; width: 140px;">
 					<input type="date" name="sifid" style="line-height: 20px; width: 140px;">
+	            </div>
+	            <label class="col-sm-1 control-label">Observaciòn</label>
+	            <div class="col-sm-6">
+	            	<input type="text" name="observacion">
+					
 	            </div>
 
 	        </div>

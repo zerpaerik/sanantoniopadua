@@ -280,6 +280,12 @@
     <br>
     <strong>Fecha:</strong> {{$c->sifid}}
     </div>  
+
+    <label class="col-sm-1">Observaciòn</label>
+    <div class="col-sm-3">
+    <strong>Observaciòn:</strong> {{$c->observacion}}
+    <br>
+    </div>  
   </div>
 
           
