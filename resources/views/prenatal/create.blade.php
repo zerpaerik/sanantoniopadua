@@ -796,13 +796,16 @@
 
             	<label class="col-sm-1 control-label">Sifilis</label>
 	            <div class="col-sm-3">
-	            	<input type="text" name="sifi" style="line-height: 20px; width: 140px;">
+		            <input type="text" name="sifi" style="line-height: 20px; width: 140px;">
 					<input type="date" name="sifid" style="line-height: 20px; width: 140px;">
 	            </div>
-	            <label class="col-sm-1 control-label">Observaciòn</label>
-	            <div class="col-sm-6">
-	            	<input type="text" name="observacion">
-					
+	            
+	        </div>
+	        <div class="row">
+	        	
+	        	<label class="col-sm-2 control-label">Observación</label>
+	            <div class="col-sm-10">
+	            	<textarea name="observacion" cols="10" rows="10" class="form-control" ></textarea>
 	            </div>
 
 	        </div>
