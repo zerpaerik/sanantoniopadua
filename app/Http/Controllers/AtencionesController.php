@@ -397,16 +397,7 @@ class AtencionesController extends Controller
 	
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {
-              $serMateriales = ServicioMaterial::where('servicio_id', $servicio['servicio'])
-                                        ->with('material', 'servicio')
-                                        ->get();
-
-          
-
-              foreach ($serMateriales as $sm) {
-                $sm->material->cantidad = $sm->material->cantidad - $sm->cantidad;
-                $sm->material->save();
-              }
+             
 
                $searchServicio = DB::table('servicios')
               ->select('*')
@@ -818,9 +809,7 @@ $paciente = DB::table('pacientes')
 	
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {
-              $serMateriales = ServicioMaterial::where('servicio_id', $servicio['servicio'])
-                                        ->with('material', 'servicio')
-                                        ->get();
+             
     $searchServicio = DB::table('servicios')
               ->select('*')
               ->where('id','=', $servicio['servicio'])
@@ -838,10 +827,7 @@ $paciente = DB::table('pacientes')
         $porcentaje = $searchServicio->porcentaje;
     }
 
-              foreach ($serMateriales as $sm) {
-                $sm->material->cantidad = $sm->material->cantidad - $sm->cantidad;
-                $sm->material->save();
-              }
+            
               $serv = new Atenciones();
               $serv->id_paciente = $request->id_paciente;
               $serv->origen = $request->origen;
