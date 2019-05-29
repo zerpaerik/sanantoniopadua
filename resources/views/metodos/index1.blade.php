@@ -88,7 +88,7 @@
 								<td>{{$atec->telefono}}</td>
 								<td>{{$atec->producto}}</td>
 								<td>{{$atec->monto}}</td>
-								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
+								<td style="background: #00FFFF;">{{ date('Y-m-d', strtotime($atec->proximo)) }}</td>
 								<td>{{$atec->personal}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td style="background: #F781D8">{{$atec->estatus}}</td>

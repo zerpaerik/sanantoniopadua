@@ -212,9 +212,7 @@
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li> 
-      <li>
-        <a href="{{route('metodos.index1')}}"><i class="fa fa-plus-circle"></i> Pacientes por Llamar</a>
-      </li>               
+                    
     </ul>
   </li>
   <li class="dropdown" style="background: #790D2A;">
@@ -576,9 +574,7 @@
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li> 
-      <li>
-        <a href="{{route('metodos.index1')}}"><i class="fa fa-plus-circle"></i> Pacientes por Llamar</a>
-      </li>               
+                  
     </ul>
   </li>
   <li class="dropdown" style="background: #790D2A;">
@@ -835,9 +831,7 @@
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>
-      <li>
-        <a href="{{route('metodos.index1')}}"><i class="fa fa-plus-circle"></i> Pacientes por Llamar</a>
-      </li>                
+                  
     </ul>
   </li>
  <li class="dropdown" style="background: #790D2A;">
@@ -1000,9 +994,7 @@
       <li>
         <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
       </li>  
-       <li>
-        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
-      </li>              
+                  
     </ul>
   </li>
   <li class="dropdown"  style="background: #790D2A;">
