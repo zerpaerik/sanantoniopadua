@@ -85,7 +85,7 @@
 
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
-				<form action="/pagarmultiple" method="post">
+				<form action="/pagarmultiple1" method="post">
 					<thead>
 						<tr>
 							<th>Marcar</th>

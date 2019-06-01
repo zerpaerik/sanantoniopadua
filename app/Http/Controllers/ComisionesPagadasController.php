@@ -588,13 +588,14 @@ if ($sobres == NULL) {
 
 
    $atenciones = DB::table('comisiones_consulta as a')
-   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.fecha_pago','a.recibo','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname')
+   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.fecha_pago','a.recibo','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname',DB::raw('SUM(a.pagar) as totalrecibo'))
    ->join('events as b','b.id','a.consulta')
    ->join('pacientes as c','c.id','b.paciente')
    ->join('personals as p','p.id','a.profesional')
    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
    ->where('a.pagado','=',1)
    ->orderby('a.id','desc')
+   ->groupBy('a.recibo')
    ->get();
 
 
@@ -632,13 +633,14 @@ if ($sobres == NULL) {
 
       
    $atenciones = DB::table('comisiones_consulta as a')
-   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.fecha_pago','a.recibo','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname')
+   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.fecha_pago','a.recibo','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname',DB::raw('SUM(a.pagar) as totalrecibo'))
    ->join('events as b','b.id','a.consulta')
    ->join('pacientes as c','c.id','b.paciente')
    ->join('personals as p','p.id','a.profesional')
    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
    ->where('a.pagado','=',1)
    ->orderby('a.id','desc')
+   ->groupBy('a.recibo')
    ->get();
 
    $aten = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
