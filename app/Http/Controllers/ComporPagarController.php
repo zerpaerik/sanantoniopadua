@@ -674,12 +674,13 @@ class ComporPagarController extends Controller
         }
 
 
-  $origen = DB::table('personals as a')
+   $origen = DB::table('personals as a')
 
-   ->select('a.id','a.name','a.lastname')
-   ->join('comisiones_consulta as c','c.profesional','a.id')
+   ->select('a.id','a.name','a.lastname','b.pagado')
+   ->join('comisiones_consulta as b','b.profesional','a.id')
+   ->where('b.pagado','=',NULL)
+   ->groupBy('a.id')
    ->get();
-
  
   
     $totalorigen = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -713,13 +714,13 @@ class ComporPagarController extends Controller
         if ($aten->monto == 0) {
         }
 
+ $origen = DB::table('personals as a')
 
-  $origen = DB::table('personals as a')
-
-   ->select('a.id','a.name','a.lastname')
-   ->join('comisiones_consulta as c','c.profesional','a.id')
+   ->select('a.id','a.name','a.lastname','b.pagado')
+   ->join('comisiones_consulta as b','b.profesional','a.id')
+   ->where('b.pagado','=',NULL)
+   ->groupBy('a.id')
    ->get();
-
  
   
     $totalorigen = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -773,12 +774,13 @@ class ComporPagarController extends Controller
         }
 
 
-  $origen = DB::table('personals as a')
+   $origen = DB::table('personals as a')
 
-   ->select('a.id','a.name','a.lastname')
-   ->join('comisiones_consulta as c','c.profesional','a.id')
+   ->select('a.id','a.name','a.lastname','b.pagado')
+   ->join('comisiones_consulta as b','b.profesional','a.id')
+   ->where('b.pagado','=',NULL)
+   ->groupBy('a.id')
    ->get();
-
  
   
     $totalorigen = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -818,8 +820,10 @@ class ComporPagarController extends Controller
 
   $origen = DB::table('personals as a')
 
-   ->select('a.id','a.name','a.lastname')
-   ->join('comisiones_consulta as c','c.profesional','a.id')
+   ->select('a.id','a.name','a.lastname','b.pagado')
+   ->join('comisiones_consulta as b','b.profesional','a.id')
+   ->where('b.pagado','=',NULL)
+   ->groupBy('a.id')
    ->get();
 
  

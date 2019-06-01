@@ -613,6 +613,7 @@ if ($sobres == NULL) {
    ->select('a.id','a.name','a.lastname','b.pagado')
    ->join('comisiones_consulta as b','b.profesional','a.id')
    ->where('b.pagado','=',1)
+      ->groupBy('a.id')
    ->get();
 
  
@@ -656,6 +657,7 @@ if ($sobres == NULL) {
    ->select('a.id','a.name','a.lastname','b.pagado')
    ->join('comisiones_consulta as b','b.profesional','a.id')
    ->where('b.pagado','=',1)
+      ->groupBy('a.id')
    ->get();
 
  
