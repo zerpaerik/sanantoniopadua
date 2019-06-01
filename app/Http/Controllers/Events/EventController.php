@@ -9,6 +9,7 @@ use App\Models\Personal;
 use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
+use App\Models\ComisionesConsulta;
 use App\Models\Events;
 use App\Models\Ciex;
 use App\Models\Historiales;
@@ -280,6 +281,14 @@ class EventController extends Controller
         $evt->usuario = \Auth::user()->id;
         $evt->tipo=$request->tipo;
         $evt->save();
+
+        $comision = new ComisionesConsulta;
+        $comision->consulta=$evt->id;
+        $comision->profesional=$request->especialista;
+        $comision->monto=$request->monto;
+        $comision->porcentaje='50%';
+        $comision->pagar=($request->monto * 50)/100;
+        $comision->save();
 
       $credito = Creditos::create([
         "origen" => 'CONSULTAS',

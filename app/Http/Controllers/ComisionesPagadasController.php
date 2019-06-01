@@ -8,6 +8,7 @@ use DB;
 use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
+use App\Models\ComisionesConsulta;
 use Auth;
 use Toastr;
 
@@ -573,6 +574,212 @@ if ($sobres == NULL) {
 
 
 
+  public function consulta(Request $request){
+    
+      if(! is_null($request->fecha)) {
+
+
+    
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2; 
+
+
+
+
+   $atenciones = DB::table('comisiones_consulta as a')
+   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.fecha_pago','a.recibo','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname')
+   ->join('events as b','b.id','a.consulta')
+   ->join('pacientes as c','c.id','b.paciente')
+   ->join('personals as p','p.id','a.profesional')
+   ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+   ->where('a.pagado','=',1)
+   ->orderby('a.id','desc')
+   ->get();
+
+
+
+   $aten = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->where('pagado','=',1)
+                                    ->select(DB::raw('SUM(pagar) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+
+  $origen = DB::table('personals as a')
+
+   ->select('a.id','a.name','a.lastname','b.pagado')
+   ->join('comisiones_consulta as b','b.profesional','a.id')
+   ->where('b.pagado','=',1)
+   ->get();
+
+ 
+  
+    $totalorigen = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->where('pagado','=',1)
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+     
+
+ }else{
+
+  
+         $f1 = Carbon::today()->toDateString();
+         $f2 = Carbon::today()->toDateString(); 
+
+
+      
+   $atenciones = DB::table('comisiones_consulta as a')
+   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.fecha_pago','a.recibo','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname')
+   ->join('events as b','b.id','a.consulta')
+   ->join('pacientes as c','c.id','b.paciente')
+   ->join('personals as p','p.id','a.profesional')
+   ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+   ->where('a.pagado','=',1)
+   ->orderby('a.id','desc')
+   ->get();
+
+   $aten = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->where('pagado','=',1)
+                                    ->select(DB::raw('SUM(pagar) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+
+ $origen = DB::table('personals as a')
+
+   ->select('a.id','a.name','a.lastname','b.pagado')
+   ->join('comisiones_consulta as b','b.profesional','a.id')
+   ->where('b.pagado','=',1)
+   ->get();
+
+ 
+  
+    $totalorigen = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->where('pagado','=',1)
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+
+
+
+
+
+        
+  }
+
+  return view('movimientos.compagadas.consulta', ['atenciones' => $atenciones,'aten' => $aten,'f1' => $f1,'f2' => $f2,'origen' => $origen,'totalorigen' => $totalorigen]);
+
+    }
+
+
+ public function consulta1(Request $request){
+
+
+    
+      if((! is_null($request->f1)) && (! is_null($request->origen))) {
+
+
+    
+
+    $f1 = $request->f1;
+    $f2 = $request->f2; 
+
+
+   $atenciones = DB::table('comisiones_consulta as a')
+   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname')
+   ->join('events as b','b.id','a.consulta')
+   ->join('pacientes as c','c.id','b.paciente')
+   ->join('personals as p','p.id','a.profesional')
+   ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+   ->where('a.profesional','=',$request->origen)
+   ->where('a.pagado','=',1)
+   ->orderby('a.id','desc')
+   ->get();
+
+   $aten = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->where('profesional','=',$request->origen)
+                                     ->where('pagado','=',1)
+                                    ->select(DB::raw('SUM(pagar) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+
+  $origen = DB::table('personals as a')
+
+   ->select('a.id','a.name','a.lastname','b.pagado')
+   ->join('comisiones_consulta as b','b.profesional','a.id')
+   ->where('b.pagado','=',1)
+   ->get();
+
+ 
+  
+    $totalorigen = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->where('profesional','=',$request->origen)
+                                     ->where('pagado','=',1)
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+ 
+
+
+ }else{
+
+  $f1 = $request->f1;
+    $f2 = $request->f2; 
+
+
+   $atenciones = DB::table('comisiones_consulta as a')
+   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname')
+   ->join('events as b','b.id','a.consulta')
+   ->join('pacientes as c','c.id','b.paciente')
+   ->join('personals as p','p.id','a.profesional')
+   ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+   ->where('a.profesional','=',$request->origen)
+   ->where('a.pagado','=', NULL)
+   ->orderby('a.id','desc')
+   ->get();
+
+   $aten = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->where('profesional','=',$request->origen)
+                                     ->where('pagado','=', NULL)
+                                    ->select(DB::raw('SUM(pagar) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+
+  $origen = DB::table('personals as a')
+
+   ->select('a.id','a.name','a.lastname')
+   ->join('comisiones_consulta as c','c.profesional','a.id')
+   ->get();
+
+ 
+  
+    $totalorigen = ComisionesConsulta::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->where('profesional','=',$request->origen)
+                                     ->where('pagado','=', 1)
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+
+
+ }
+
+
+
+
+        return view('movimientos.compagadas.consulta', ['atenciones' => $atenciones,'aten' => $aten,'f1' => $f1,'f2' => $f2,'origen' => $origen,'totalorigen' => $totalorigen]);
+  }
+
+
+
+
 
 
     
@@ -587,6 +794,21 @@ if ($sobres == NULL) {
           Atenciones::where('recibo', $id)
                   ->update([
                       'pagado_com' => NULL,
+                      'recibo' => nULL
+                  ]);
+     
+    Toastr::success('El pago de la comisiòn fue reversado.', 'Pago Reversado!', ['progressBar' => true]);
+      return back();
+
+  }
+
+   public function reversar1($id) {
+
+        
+
+          ComisionesConsulta::where('recibo', $id)
+                  ->update([
+                      'pagado' => NULL,
                       'recibo' => nULL
                   ]);
      

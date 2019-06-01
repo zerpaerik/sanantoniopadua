@@ -166,6 +166,10 @@
       <li>
         <a href="{{route('comporpagartec.index')}}"><i class="fa fa-list-alt"></i> Comis. Tecnólogos</a>
       </li>
+
+       <li>
+        <a href="{{route('comporpagar.consulta')}}"><i class="fa fa-list-alt"></i> Comis. Consultas.</a>
+      </li>
      
     </ul>
   </li>
@@ -186,6 +190,10 @@
       </li>
       <li>
         <a href="{{route('compagadas.index2')}}"><i class="fa fa-list-alt"></i> Comisiones Tecn.</a>
+      </li>
+
+          <li>
+        <a href="{{route('compagadas.consulta')}}"><i class="fa fa-list-alt"></i> Comisiones Consulta.</a>
       </li>
 
     </ul>
@@ -512,7 +520,8 @@
     </ul>
   </li>
 
-  <li class="dropdown" style="background: #790D2A;">
+  
+   <li class="dropdown" style="background: #790D2A;">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Comisiones por Pagar</span>
@@ -527,6 +536,10 @@
       </li>
       <li>
         <a href="{{route('comporpagartec.index')}}"><i class="fa fa-list-alt"></i> Comis. Tecnólogos</a>
+      </li>
+
+       <li>
+        <a href="{{route('comporpagar.consulta')}}"><i class="fa fa-list-alt"></i> Comis. Consultas.</a>
       </li>
      
     </ul>
@@ -548,6 +561,10 @@
       </li>
       <li>
         <a href="{{route('compagadas.index2')}}"><i class="fa fa-list-alt"></i> Comisiones Tecn.</a>
+      </li>
+
+          <li>
+        <a href="{{route('compagadas.consulta')}}"><i class="fa fa-list-alt"></i> Comisiones Consulta.</a>
       </li>
 
     </ul>

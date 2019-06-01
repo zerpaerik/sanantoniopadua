@@ -220,6 +220,10 @@ Route::get('comporpagar2', 'ComporPagarController@index2')->name('comporpagar.in
 
 Route::get('comporpagar3', 'ComporPagarController@index3')->name('comporpagar.index3')->middleware('auth');
 
+Route::get('comporpagarc', 'ComporPagarController@consulta')->name('comporpagar.consulta')->middleware('auth');
+
+Route::get('comporpagarcc', 'ComporPagarController@consulta1')->name('comporpagar.consulta1')->middleware('auth');
+
 Route::get('comporpagar-search', 'ComporPagarController@search')->name('comporpagar.search')->middleware('auth');
 Route::get('comporpagar-create', 'ComporPagarController@createView')->name('comporpagar.create')->middleware('auth');
 Route::post('comporpagar/create', 'ComporPagarController@create')->middleware('auth');
@@ -227,7 +231,10 @@ Route::get('comporpagar/{id}', 'ComporPagarController@delete')->middleware('auth
 Route::get('comporpagar-edit-{id}', 'ComporPagarController@editView')->name('comporpagar.edit');
 Route::post('comporpagar/edit', 'ComporPagarController@edit');
 Route::post('pagarmultiple', 'ComporPagarController@pagarmultiple');
+Route::post('pagarmultiple1', 'ComporPagarController@pagarmultiple1');
 Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth');
+Route::get('pagarcom1/{id}', 'ComporPagarController@pagarcom1')->middleware('auth');
+
 
 Route::get('comporpagartec', 'ComisionesPorPagarTecController@index')->name('comporpagartec.index')->middleware('auth');
 Route::get('comporpagartec1', 'ComisionesPorPagarTecController@index1')->name('comporpagartec.index1')->middleware('auth');
@@ -245,7 +252,10 @@ Route::get('compagadas', 'ComisionesPagadasController@index')->name('compagadas.
 Route::get('compagadas1', 'ComisionesPagadasController@index1')->name('compagadas.index1')->middleware('auth');
 Route::get('compagadas2', 'ComisionesPagadasController@index2')->name('compagadas.index2')->middleware('auth');
 Route::get('compagadas-search', 'ComisionesPagadasController@search')->name('compagadas.search')->middleware('auth');
+Route::get('compagadasc', 'ComisionesPagadasController@consulta')->name('compagadas.consulta')->middleware('auth');
+Route::get('compagadascc', 'ComisionesPagadasController@consulta1')->name('compagadas.consulta1')->middleware('auth');
 Route::get('reversar/{id}', 'ComisionesPagadasController@reversar')->middleware('auth');
+Route::get('reversar1/{id}', 'ComisionesPagadasController@reversar1')->middleware('auth');
 
 Route::get('reporte/pagadas', 'ComisionesPagadasController@reporte_pagadas');
 Route::get('reporte/pagadas1', 'ComisionesPagadasController@reporte_pagadas1');
@@ -511,6 +521,8 @@ Route::get('reporte-solicitar_consolidado', 'ReportesController@formConsolidado'
 Route::post('reporte/diario', 'ReportesController@relacion_diario');
 Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
 Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesionales_ver');
+
+Route::get('recibo_profesionales_ver1/{id}','ReportesController@recibo_profesionales_ver1');
 
 Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
 Route::get('recibo_caja_verd/{id}','ReportesController@recibo_caja_verd');

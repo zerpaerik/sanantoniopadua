@@ -12,6 +12,7 @@ use App\Models\Pacientes;
 use App\Models\VentasProductos;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
+use App\Models\ComisionesConsulta;
 use App\Models\MaterialesMalogrados;
 use App\Models\Events\Event;
 use PDF;
@@ -72,6 +73,29 @@ class ReportesController extends Controller
          }  
 
      }
+
+      public function recibo_cobro_ver($id)
+  { 
+        $recibo = DB::table('historialcobros as a')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->where('a.id','=',$id)
+        ->first();
+
+
+
+
+       $view = \View::make('reportes.recibocobro', compact('recibo'));
+      
+       //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
+       $pdf = \App::make('dompdf.wrapper');
+       //$pdf->setPaper('A5', 'landscape');
+       $pdf->setPaper(array(0,0,800.00,3000.00));
+       $pdf->loadHTML($view);
+       return $pdf->stream('cobro');
+
+  }
+
 
 
     public function editar($id)
@@ -444,10 +468,46 @@ class ReportesController extends Controller
        $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('recibo_profesionales_ver');
-    /* }else{
-      return response()->json([false]);
-     }*/
+   
     }
+
+      public function recibo_profesionales_ver1($id) 
+    {
+
+        $reciboe = DB::table('comisiones_consulta as a')
+   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.fecha_pago','a.recibo','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname')
+   ->join('events as b','b.id','a.consulta')
+   ->join('pacientes as c','c.id','b.paciente')
+   ->join('personals as p','p.id','a.profesional')
+   ->where('a.recibo','=',$id)
+   ->orderby('a.id','desc')
+   ->first();
+
+    $reciboprofesional = DB::table('comisiones_consulta as a')
+   ->select('a.id','a.consulta','a.profesional','a.monto','a.porcentaje','a.pagar','a.pagado','a.fecha_pago','a.recibo','a.created_at','b.paciente','c.nombres','c.apellidos','p.name','p.lastname')
+   ->join('events as b','b.id','a.consulta')
+   ->join('pacientes as c','c.id','b.paciente')
+   ->join('personals as p','p.id','a.profesional')
+   ->where('a.recibo','=',$id)
+   ->orderby('a.id','desc')
+   ->get();
+
+        $totalrecibo = ComisionesConsulta::where('recibo', $id)
+                            ->select(DB::raw('SUM(pagar) as totalrecibo'))
+                            ->get();
+    
+       $hoy= Carbon::today()->toDateString();
+
+
+
+      
+       $view = \View::make('reportes.recibo_profesionales_ver1')->with('reciboe', $reciboe)->with('reciboprofesional', $reciboprofesional)->with('totalrecibo', $totalrecibo)->with('hoy', $hoy);
+       $pdf = \App::make('dompdf.wrapper');
+       $pdf->loadHTML($view);
+       return $pdf->stream('recibo_profesionales_ver_consulta');
+  
+    }
+
 
 
     // cierres de caja reportes
