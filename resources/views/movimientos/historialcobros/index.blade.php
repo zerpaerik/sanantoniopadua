@@ -87,6 +87,7 @@
 								<td>{{$atec->pendiente}}</td>
 								<td>{{$atec->updated_at}}</td>
 								<td>
+								 <a target="_blank" href="{{asset('recibo_cobro_ver')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Recibo</a>
 										@if(\Auth::user()->role_id = 4)							 
 									<a class="btn btn-danger" href="historialcobros-delete-{{$atec->id_atencion}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 
