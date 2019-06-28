@@ -118,8 +118,8 @@
                                     <option value="ABDOMEN POLIPO VB-V.docx">ABDOMEN POLIPO VB-V</option>
                                     <option value="ABDOMEN POLIPOSIS VB-V.docx">ABDOMEN POLIPOSIS VB-V</option>
                                     <option value="ABDOMEN STATUS POST COLECISTECTOMIA-V.docx">ABDOMEN STATUS POST COLECISTECTOMIA-V</option>
-                                     <option value="COLPOSCOPIAPOSITIVO-V.docx">COLPOSCOPIAPOSITIVO-V</option>
-                                      <option value="COLPOSCOPIANEGATIVO-V.docx">COLPOSCOPIANEGATIVO-V</option>
+                                    <option value="EVALUACION GENERAL1.docx">COLPOSCOPIA</option>
+                                    
                                     <option value="GIN EPI-V.docx">GIN EPI-V</option>
                                     <option value="GIN NRML-V.docx">GIN NRML-V</option>
                                     <option value="GIN POLIFOL, EPI-V.docx">GIN POLIFOL, EPI-V</option>

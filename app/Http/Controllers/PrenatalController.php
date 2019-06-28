@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pacientes\Paciente;
 use App\Models\Historiales;
+use App\Historial;
 use App\Models\ConsultaMateriales;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
@@ -90,6 +91,18 @@ class PrenatalController extends Controller
         return view('prenatal.index',compact('prenatal','pacientes'));
 	}
 
+
+
+    public function deletebase($id){
+
+    	$historial = Historial::where('paciente_id','=',$id);
+    	$historial->delete();
+
+    	Toastr::success('Finalizado Exitosamente.', 'Historia Base!', ['progressBar' => true]);
+		return back();
+
+
+    }
   
 
       private function elasticSearch($dni)
