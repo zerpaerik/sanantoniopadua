@@ -377,6 +377,7 @@ class ConsultaController extends Controller
 
     $event = Event::find($request->evento);
     $event->atendido=1;
+    $prox->prox=$request->prox;
     $event->update();
 
 
