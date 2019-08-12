@@ -762,7 +762,7 @@
 					<input type="date" name="creatid" style="line-height: 20px; width: 140px;">	
 	            </div>
 
-	            <label class="col-sm-1 control-label">HBSAg</label>
+	            <label class="col-sm-1 control-label">HBsAG</label>
 	            <div class="col-sm-3">
 	               <input type="text" name="hbsa" style="line-height: 20px; width: 140px;">
 					<input type="date" name="hbsad" style="line-height: 20px; width: 140px;">	
@@ -799,6 +799,18 @@
 		            <input type="text" name="sifi" style="line-height: 20px; width: 140px;">
 					<input type="date" name="sifid" style="line-height: 20px; width: 140px;">
 	            </div>
+
+	            <label class="col-sm-1 control-label">PAP</label>
+	            <div class="col-sm-3">
+		            <input type="text" name="pap" style="line-height: 20px; width: 140px;">
+					<input type="date" name="papd" style="line-height: 20px; width: 140px;">
+	            </div>
+
+	            <label class="col-sm-1 control-label">TSH</label>
+	            <div class="col-sm-3">
+		            <input type="text" name="tsh" style="line-height: 20px; width: 140px;">
+					<input type="date" name="tshd" style="line-height: 20px; width: 140px;">
+	            </div>
 	            
 	        </div>
 	        <div class="row">
@@ -807,6 +819,15 @@
 	            <div class="col-sm-10">
 	            	<textarea name="observacion" cols="10" rows="10" class="form-control" ></textarea>
 	            </div>
+
+	        </div>
+
+	        <div class="row">
+	        	
+	        	<label class="col-sm-2 control-label">Pròxima Cita</label>
+	            <div class="col-sm-10">
+                     <input type="date" name="prox">	          
+                       </div>
 
 	        </div>
      	

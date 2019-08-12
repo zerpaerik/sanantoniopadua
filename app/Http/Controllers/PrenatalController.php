@@ -491,17 +491,23 @@ class PrenatalController extends Controller
 			"uread" => $request->uread,
 			"sifi" => $request->sifi,
 			"sifid" => $request->sifid,
+			"pap" => $request->pap,
+			"papd" => $request->papd,
+			"tsh" => $request->tsh,
+			"tshd" => $request->tshd,
 			"hbsa" => $request->hbsa,
 			"hbsad" => $request->hbsad,
 			"creati" => $request->creati,
 			"creatid" => $request->creatid,
 			"tiempoemb" => $request->tiempoemb,
-		     "observacion" => $request->observacion
+		     "observacion" => $request->observacion,
+		     "prox" => $request->prox
 
     	]);
 
     	 $event = Event::find($request->evento);
 		    $event->atendido=1;
+		    $event->prox= $request->prox;
 		    $event->update();
 
     	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
