@@ -250,7 +250,7 @@ class ServiceController extends Controller
         "consulta" =>'No',
         "control" =>'No',
         "usuario" =>\Auth::user()->id,
-        "title" => "Especialista: ".$especialista->name." ".$especialista->lastname." "."Servicio: ".$servicios->detalle." Paciente: ".$paciente->nombres." ".$paciente->apellidos
+        "title" =>" Paciente: ".$paciente->nombres." ".$paciente->apellidos." ". "Especialista: ".$especialista->name." ".$especialista->lastname." "."Servicio: ".$servicios->detalle
       ]);
 
     } else if($request->tipo == 2){//consultas
