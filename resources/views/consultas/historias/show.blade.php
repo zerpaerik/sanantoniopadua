@@ -58,6 +58,7 @@
         <p class="col-sm-2"><strong>Peso:</strong> {{$consulta->peso}}</p>
         <p class="col-sm-2"><strong>Talla:</strong> {{$consulta->talla}}</p>
         <p class="col-sm-2"><strong>IMC:</strong> {{$consulta->imc}}</p>
+        <p class="col-sm-2"><strong>Conclusiòn:</strong> {{$conclusion}}</p>
         <br>
         <h3 class="col-sm-12">IV. DIAGNÓSTICO PRESUNTIVO:</h3>
         <p class="col-sm-6">{{ $consulta->presuncion_diagnostica }}</p>

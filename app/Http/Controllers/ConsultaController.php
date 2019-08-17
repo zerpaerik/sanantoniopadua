@@ -241,6 +241,20 @@ class ConsultaController extends Controller
   {
 
     $consultas = Consulta::where('id','=',$id)->first();
+    if($consultas->imc <= 18.5){
+      $conclusion= 'Bajo Peso';
+    }elseif($consultas->imc >= 18.5 && $consultas->imc <= 24.9){
+      $conclusion= 'Normal';
+    }elseif($consultas->imc >= 25 && $consultas->imc <= 29.9){
+      $conclusion= 'SobrePeso';
+    }elseif($consultas->ima > 30){
+      $conclusion= 'Obesidad';
+    }else{
+            $conclusion= 'Obesidad';
+
+    }
+
+
     $historial = Historial::where('paciente_id','=',$consultas->paciente_id)->first();
     $data= Paciente::where('id','=',$consultas->paciente_id)->first();
     $personal = Personal::where('estatus','=',1)->get();
@@ -248,7 +262,8 @@ class ConsultaController extends Controller
       'historial' => $historial,
       'consulta' => $consultas,
       'personal' => $personal,
-      'data' => $data
+      'data' => $data,
+      'conclusion' => $conclusion
     ]);
   }
 
