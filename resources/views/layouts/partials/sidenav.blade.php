@@ -86,7 +86,7 @@
       <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de Productos</a>
         <ul class="dropdown-menu">
           <li>
-            <a href="{{route('productos.in')}}"><i class="fa fa-plus-square-o"></i> Ingresos</a>
+            <a href="{{route('reportentrada.index')}}"><i class="fa fa-plus-square-o"></i> Ingresos</a>
           </li>
         </ul>      
     </li>
@@ -466,7 +466,7 @@
       <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de Productos</a>
         <ul class="dropdown-menu">
           <li>
-            <a href="{{route('productos.in')}}"><i class="fa fa-plus-square-o"></i> Ingresos</a>
+            <a href="{{route('reportentrada.index')}}"><i class="fa fa-plus-square-o"></i> Ingresos</a>
           </li>
         </ul>      
     </li>

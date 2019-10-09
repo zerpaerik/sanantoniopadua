@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Existencia, Transferencia, Salidas,SalidasProductos};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 use DB;
-use App\Models\{Creditos, Ventas, Servicios,Pacientes,VentasProductos};
+use App\Models\{Creditos, Ventas, Servicios,Pacientes,VentasProductos,ProductosMovimientos};
 use App\Models\Pacientes\Paciente;
 use App\Models\Descarga;
 use Toastr;
@@ -25,6 +25,99 @@ class ProductoController extends Controller
     	
     }
 
+     public function reportentrada(Request $request){
+
+      
+     if(!is_null($request->fecha) && !is_null($request->fecha2) && !is_null($request->producto)){
+
+      $f1=$request->fecha;
+              $f2=$request->fecha2; 
+
+         $entradas= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->where('a.id_producto','=',$request->producto)
+                    ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
+                    ->get();
+
+          $total = ProductosMovimientos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                                    ->where('sede','=',$request->session()->get('sede'))
+                                    ->where('id_producto','=',$request->producto)
+                                    ->select(DB::raw('SUM(cantidad) as total'))
+                                    ->first();
+
+
+      }elseif(!is_null($request->fecha) && !is_null($request->fecha2) && is_null($request->producto)){
+
+         $f1=$request->fecha;
+              $f2=$request->fecha2; 
+      $entradas= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
+                    ->get();
+
+          $total = ProductosMovimientos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                                    ->where('sede','=',$request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(cantidad) as total'))
+                                    ->first();
+
+            
+
+
+
+      }elseif(is_null($request->fecha) && is_null($request->fecha2) && !is_null($request->producto)){
+
+         $entradas= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->where('a.id_producto','=',$request->producto)
+                    ->get();
+
+           $total = ProductosMovimientos::where('sede','=',$request->session()->get('sede'))
+                                    ->where('id_producto','=',$request->producto)
+                                    ->select(DB::raw('SUM(cantidad) as total'))
+                                    ->first();
+
+                  $f1=date('Y-m-d');
+                  $f2=date('Y-m-d');  
+
+
+      }else{
+
+
+      $entradas= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')                   
+                    ->whereDate('a.created_at','=',date('Y-m-d'))
+                    ->get();
+
+
+         $total = ProductosMovimientos::where('sede','=',$request->session()->get('sede'))
+                                    ->where('created_at','=',date('Y-m-d'))
+                                    ->select(DB::raw('SUM(cantidad) as total'))
+                                    ->first();
+
+        $f1=date('Y-m-d');
+        $f2=date('Y-m-d'); 
+
+      }
+
+
+        
+       $productos= Producto::where('almacen','=',1)->get();
+
+      return view('existencias.reportentrada',compact('f1','f2','entradas','total','productos'));
+
+    }
+
       public function index2(){
     //  $producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->orderBy('nombre','ASC')->get();
@@ -38,6 +131,19 @@ class ProductoController extends Controller
           $p = Producto::find($request->producto);
           $p->cantidad = $p->cantidad + $request->cantidadplus;
           $res = $p->save();
+
+
+             $productom = new ProductosMovimientos();
+              $productom->id_producto = $request->producto;
+              $productom->accion = 'ENTRADA';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad=$request->cantidadplus;
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+
+
+
+
           Toastr::success('La Entrada se Registro Exitosamente.', 'Producto!', ['progressBar' => true]);
           return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
   
