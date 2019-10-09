@@ -135,7 +135,6 @@ class MetodosController extends Controller
          $metodos->save();*/
 
         $producto= Producto::where('id',$request->producto)->first();
-        dd($producto);
 
         $metodos = new Metodos();
         $metodos->id_paciente =$request->paciente;
