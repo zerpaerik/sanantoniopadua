@@ -263,7 +263,7 @@ class AtencionesController extends Controller
          foreach ($searchLabPaq as $lab) {
             $id_laboratorio = $lab->laboratorio_id;
 
-            
+
            if($id_laboratorio == 287){
       $producto=Producto::where('id','=',414)->first();
       $producto->cantidad= $producto->cantidad - 1;
@@ -1162,6 +1162,27 @@ $paciente = DB::table('pacientes')
   }
   
    public function delete($id){
+
+    $atencion= Atenciones::where('id',$id)->first();
+
+    if($atencion->id_laboratorio == 287){
+      $producto=Producto::where('id','=',414)->first();
+      $producto->cantidad= $producto->cantidad + 1;
+      $producto->save();
+    }elseif($atencion->id_laboratorio == 285){
+      $producto=Producto::where('id','=',418)->first();
+      $producto->cantidad= $producto->cantidad + 1;
+      $producto->save();
+
+    }elseif($atencion->id_laboratorio == 439){
+      $producto=Producto::where('id','=',415)->first();
+      $producto->cantidad= $producto->cantidad + 1;
+      $producto->save();
+
+    }else{
+
+    }
+
     $atenciones = Atenciones::find($id);
     $atenciones->delete();
 	
