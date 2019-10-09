@@ -123,7 +123,7 @@ class MetodosController extends Controller
          $proximo=date("Y-m-d",strtotime($request->created_at."+ 30 days"));
 
  
-         $metodos = new Metodos();
+       /*  $metodos = new Metodos();
          $metodos->id_paciente =$request->paciente;
          $metodos->id_producto =$request->producto;
          $metodos->monto =$request->monto;
@@ -132,7 +132,37 @@ class MetodosController extends Controller
          $metodos->estatus ='No Llamado';
          $metodos->id_usuario = \Auth::user()->id;
          $metodos->sede = $request->session()->get('sede');
-         $metodos->save();
+         $metodos->save();*/
+
+        $producto= Producto::where('id',$request->producto)->first();
+        dd($producto);
+
+        $metodos = new Metodos();
+        $metodos->id_paciente =$request->paciente;
+        $metodos->personal = $request->personal;
+        $metodos->id_producto =$request->producto;
+        $metodos->monto =$request->monto;
+        if($producto->nombre =='DEPOPROVERA'){
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+        }elseif($producto->nombre =='SOLUTRES AMPOLLA'){ 
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+        }elseif($producto->nombre =='DIU COBRE 380'){ 
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+        }elseif($producto->nombre =='MINI T'){ 
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+        }elseif($producto->nombre =='TLEVONOGESTREL'){ 
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+        }elseif($producto->nombre =='NEXPLANON'){ 
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+        }elseif($producto->nombre =='NOVA T'){ 
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+        } else{
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 28 days"));
+        }
+        $metodos->estatus ='No Llamado';
+        $metodos->id_usuario = \Auth::user()->id;
+        $metodos->sede = $request->session()->get('sede');
+        $metodos->save();
 
 
           $credito = Creditos::create([
