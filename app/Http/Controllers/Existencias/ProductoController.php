@@ -21,35 +21,15 @@ class ProductoController extends Controller
     public function index(){
 		//	$producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->orderBy('nombre','ASC')->get();
-			return view('generics.index5', [
-				"icon" => "fa-list-alt",
-				"model" => "existencias",
-        "model1" => "Productos en Almacen Central",
-				"headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-				"data" => $producto,
-				"fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-			]);    	
+			     return view('existencias.central',compact('producto'));     
+    	
     }
 
       public function index2(){
     //  $producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->orderBy('nombre','ASC')->get();
-      return view('generics.index5', [
-        "icon" => "fa-list-alt",
-        "model" => "existencias",
-        "model1" => "Productos en Almacen Local",
-        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-        "data" => $producto,
-        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+    return view('existencias.local',compact('producto'));     
+  
     }
 
     
