@@ -317,7 +317,7 @@ class ProductoController extends Controller
 
     public function indexv(Request $request){
 
-       if(! is_null($request->fecha)) {
+       if(! is_null($request->fecha) && ! is_null($request->producto)) {
 
     $f1 = $request->fecha;
     $f2 = $request->fecha2;    
@@ -325,10 +325,50 @@ class ProductoController extends Controller
 
                
              $atenciones = DB::table('ventas as a')
-            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
             ->join('ventas_productos as v','v.id_venta','a.id')
             ->join('users as e','e.id','a.id_usuario')
             ->join('pacientes as p','p.id','v.paciente')
+            ->join('productos as pr','pr.id','v.id_producto')
+            ->groupBy('a.id')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('v.id_producto','=',$request->producto)
+            ->orderby('a.id','desc')
+            ->get();
+
+           $aten = VentasProductos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
+                                    ->where('id_producto',$request->producto)
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+            if ($aten->monto == 0) {
+        }
+          
+           $cantidad = VentasProductos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
+                        ->where('id_producto',$request->producto)
+                        ->select(DB::raw('COUNT(DISTINCT id_venta) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+        $pro= Producto::where('id',$request->producto)->first();
+
+
+        
+        }elseif(! is_null($request->fecha) && is_null($request->producto)){
+
+          $f1 = $request->fecha;
+    $f2 = $request->fecha2;    
+
+
+               
+             $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
+            ->join('ventas_productos as v','v.id_venta','a.id')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('pacientes as p','p.id','v.paciente')
+            ->join('productos as pr','pr.id','v.id_producto')
             ->groupBy('a.id')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
             ->orderby('a.id','desc')
@@ -348,18 +388,49 @@ class ProductoController extends Controller
         if ($cantidad->cantidad == 0) {
         }
 
+         }elseif( is_null($request->fecha) && is_null($request->producto)){
 
-        
+          $f1 = date('Y-m-d');
+          $f2 = date('Y-m-d');   
+
+
+               
+             $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
+            ->join('ventas_productos as v','v.id_venta','a.id')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('pacientes as p','p.id','v.paciente')
+            ->join('productos as pr','pr.id','v.id_producto')
+            ->groupBy('a.id')
+            ->where('v.id_producto','=',$request->producto)
+            ->orderby('a.id','desc')
+            ->get();
+
+           $aten = VentasProductos::where('id_producto',$request->producto)
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+            if ($aten->monto == 0) {
+        }
+          
+           $cantidad = VentasProductos::where('id_producto',$request->producto)
+                        ->select(DB::raw('COUNT(DISTINCT id_venta) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
 
 
         } else {
 
 
-            $atenciones = DB::table('ventas as a')
-            ->select(DB::raw('SUM(v.monto) as monto'),'a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.id as id3','v.paciente','v.created_at','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos')
+             $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
             ->join('ventas_productos as v','v.id_venta','a.id')
             ->join('users as e','e.id','a.id_usuario')
             ->join('pacientes as p','p.id','v.paciente')
+            ->join('productos as pr','pr.id','v.id_producto')
             ->groupBy('a.id')
             ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
             ->orderby('a.id','desc')
@@ -383,13 +454,23 @@ class ProductoController extends Controller
 
 
 
-
+         $f1= date('Y-m-d');
+         $f2= date('Y-m-d');
 
         }
 
         $ventasp = new VentasProductos();
         $ventas = new Ventas();
-        return view('existencias.ventas.index', ["atenciones" => $atenciones, "aten" => $aten,"cantidad" => $cantidad,"ventasp" => $ventasp,"ventas" => $ventas]);
+
+        $productos = DB::table('productos as p')
+            ->select('p.id','p.nombre as producto')
+            ->join('ventas_productos as v','v.id_producto','p.id')
+            ->orderby('p.nombre','ASC')
+            ->groupBy('p.id')
+            ->get();
+       
+
+        return view('existencias.ventas.index', compact('atenciones','aten','cantidad','ventasp','ventas','f1','f2','productos','pro'));
   }
 
 

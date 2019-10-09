@@ -19,17 +19,42 @@ class RequerimientosController extends Controller
 
     public function index(Request $request){
 
-      $requerimientos = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidadd','a.cantidad','a.estatus','b.name as sede','a.created_at','c.name as solicitante','d.nombre')
-                    ->join('sedes as b','a.id_sede_solicitada','b.id')
-                    ->join('users as c','c.id','a.usuario')
-                    ->join('productos as d','d.id','a.id_producto')
-                    ->where('a.id_sede_solicita', '=', $request->session()->get('sede'))
-                    ->where('a.usuario','=',Auth::user()->id)
-                    ->orderby('a.created_at','desc')
-                    ->get();  
 
-			return view('existencias.requerimientos.index',compact('requerimientos'));   	
+     if(! is_null($request->fecha)) {
+
+      $f1 = $request->fecha;
+        $f2 = $request->fecha2; 
+
+      $requerimientos = DB::table('requerimientos as a')
+      ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidadd','a.cantidad','a.estatus','b.name as sede','a.created_at','c.name as solicitante','d.nombre')
+      ->join('sedes as b','a.id_sede_solicitada','b.id')
+      ->join('users as c','c.id','a.usuario')
+      ->join('productos as d','d.id','a.id_producto')
+      ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+      ->where('a.id_sede_solicita', '=', $request->session()->get('sede'))
+      ->where('a.usuario','=',Auth::user()->id)
+      ->orderby('a.created_at','desc')
+      ->get(); 
+
+     } else{
+
+
+      $requerimientos = DB::table('requerimientos as a')
+      ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidadd','a.cantidad','a.estatus','b.name as sede','a.created_at','c.name as solicitante','d.nombre')
+      ->join('sedes as b','a.id_sede_solicitada','b.id')
+      ->join('users as c','c.id','a.usuario')
+      ->join('productos as d','d.id','a.id_producto')
+      ->whereDate('a.created_at','=',date('Y-m-d'))
+      ->where('a.id_sede_solicita', '=', $request->session()->get('sede'))
+      ->where('a.usuario','=',Auth::user()->id)
+      ->orderby('a.created_at','desc')
+      ->get(); 
+
+      $f1= date('Y-m-d');
+      $f2= date('Y-m-d');
+    } 
+
+			return view('existencias.requerimientos.index',compact('requerimientos','f1','f2'));   	
     }
 
      public function index2(Request $request){

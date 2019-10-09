@@ -26,6 +26,26 @@
 				</div>
 				<div class="no-move"></div>
 			</div>
+
+			{!! Form::open(['method' => 'get', 'route' => ['requerimientos.index']]) !!}
+
+			<div class="row">
+				<div class="col-md-2">
+					<label>Fecha Inicio</label>
+					<input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
+				</div>
+				<div class="col-md-2">
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
+				</div>
+				
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+				
+			</div>	
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -84,14 +104,6 @@
 </div>
 
 </body>
-
-
-
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-
-
-
 
 <script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
