@@ -354,7 +354,7 @@ class ProductoController extends Controller
         if ($cantidad->cantidad == 0) {
         }
 
-        $pro= Producto::where('id',$request->producto)->first();
+        $prod= Producto::where('id',$request->producto)->first();
 
 
         
@@ -362,6 +362,10 @@ class ProductoController extends Controller
 
           $f1 = $request->fecha;
     $f2 = $request->fecha2;    
+
+
+                           $prod= Producto::where('id',99999999999)->first(); 
+
 
 
                
@@ -461,6 +465,9 @@ class ProductoController extends Controller
 
          $f1= date('Y-m-d');
          $f2= date('Y-m-d');
+
+                                    $prod= Producto::where('id',99999999999)->first(); 
+
 
         }
 
