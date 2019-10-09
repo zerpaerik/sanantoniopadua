@@ -336,6 +336,8 @@ class ProductoController extends Controller
             ->orderby('a.id','desc')
             ->get();
 
+           $prod= Producto::where('id',$request->producto)->first(); 
+
            $aten = VentasProductos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
                                     ->where('id_producto',$request->producto)
                                     ->select(DB::raw('SUM(monto) as monto'))
@@ -406,6 +408,9 @@ class ProductoController extends Controller
             ->orderby('a.id','desc')
             ->get();
 
+                       $prod= Producto::where('id',$request->producto)->first(); 
+
+
            $aten = VentasProductos::where('id_producto',$request->producto)
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
@@ -470,7 +475,7 @@ class ProductoController extends Controller
             ->get();
        
 
-        return view('existencias.ventas.index', compact('atenciones','aten','cantidad','ventasp','ventas','f1','f2','productos','pro'));
+        return view('existencias.ventas.index', compact('atenciones','aten','cantidad','ventasp','ventas','f1','f2','productos','prod'));
   }
 
 

@@ -89,7 +89,11 @@
 							<tr>
 								<td>{{$atec->id}}</td>
 						        <td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+						        @if($prod)
 						        <td>{{$ventas->selectProductos($atec->id,$atec->id_producto)}}<span style="background: #00FF00;"> / {{$atec->producto}}</span></td>
+						        @else
+						        <td>{{$ventas->selectProductos($atec->id,$atec->id_producto)}}</td>
+						        @endif
 						        <td>{{$ventasp->montoVenta($atec->id)}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
