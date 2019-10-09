@@ -96,7 +96,7 @@
 						        <td>{{$ventas->selectProductos($atec->id,$atec->id_producto)}}</td>
 						        @endif
 						        <td>{{$ventasp->montoVenta($atec->id)}}</td>
-						        <td>{{$atec->tipo_ingreso}}</td>
+						        <td>{{$atec->tipopago}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>

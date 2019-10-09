@@ -207,7 +207,8 @@
 
 								</select>
 							</td>
-							<td><input type="submit" class="btn btn-success" value="Asociar"></td>
+							<td><input type="submit" class="btn btn-success" value="Asociar">
+							 <a href="resultados-descartar-{{$p->id}}" class="btn btn-danger" onclick="return confirm('¿Desea Descartar este registro?')">Descartar</a></td></td>
 							@endif
 							
 						</tr>

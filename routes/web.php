@@ -335,7 +335,7 @@ Route::get('alerg/no','ConsultaController@alno');
 
 
 
-
+Route::get('resultados-descartar-{id}', 'ResultadosController@descartar');
 
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
 Route::get('resultados1', 'ResultadosController@index1')->name('resultados.index1')->middleware('auth');
