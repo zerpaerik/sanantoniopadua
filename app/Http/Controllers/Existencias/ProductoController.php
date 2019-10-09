@@ -169,7 +169,7 @@ class ProductoController extends Controller
               $creditos->id_atencion = NULL;
               $creditos->monto= $precio * $request->monto_abol['laboratorios'][$key]['abono'];
               $creditos->id_sede = $request->session()->get('sede');
-              $creditos->tipo_ingreso ='EF';
+              $creditos->tipo_ingreso =$request->tipopago;
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
               $creditos->id_venta= $lab->id;
               $creditos->save();

@@ -114,6 +114,17 @@
 						
 					</div>
           <hr>
+          <div class="form-group form-inline">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                TipoPago:
+              </div> 
+              <select name="tipopago">
+                <option value="EF">EF</option>
+                <option value="TJ">TJ</option>
+              </select>
+            </div>
+          </div>
 
              <div class="form-group form-inline">
             <div class="col-sm-8 col-sm-offset-7">
