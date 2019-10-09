@@ -501,7 +501,8 @@ class PrenatalController extends Controller
 			"creatid" => $request->creatid,
 			"tiempoemb" => $request->tiempoemb,
 		     "observacion" => $request->observacion,
-		     "prox" => $request->prox
+		     "prox" => $request->prox,
+		     "created_at" => $request->fecha_cont
 
     	]);
 
