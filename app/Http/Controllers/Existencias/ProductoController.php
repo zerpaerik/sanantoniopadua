@@ -326,11 +326,12 @@ class ProductoController extends Controller
 
                
              $atenciones = DB::table('ventas as a')
-            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto','cr.tipo_ingreso')
             ->join('ventas_productos as v','v.id_venta','a.id')
             ->join('users as e','e.id','a.id_usuario')
             ->join('pacientes as p','p.id','v.paciente')
             ->join('productos as pr','pr.id','v.id_producto')
+            ->join('creditos as cr','cr.id_venta','a.id')
             ->groupBy('a.id')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
             ->where('v.id_producto','=',$request->producto)
@@ -370,12 +371,13 @@ class ProductoController extends Controller
 
 
                
-             $atenciones = DB::table('ventas as a')
-            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
+              $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto','cr.tipo_ingreso')
             ->join('ventas_productos as v','v.id_venta','a.id')
             ->join('users as e','e.id','a.id_usuario')
             ->join('pacientes as p','p.id','v.paciente')
             ->join('productos as pr','pr.id','v.id_producto')
+            ->join('creditos as cr','cr.id_venta','a.id')
             ->groupBy('a.id')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
             ->orderby('a.id','desc')
@@ -403,11 +405,12 @@ class ProductoController extends Controller
 
                
              $atenciones = DB::table('ventas as a')
-            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto','cr.tipo_ingreso')
             ->join('ventas_productos as v','v.id_venta','a.id')
             ->join('users as e','e.id','a.id_usuario')
             ->join('pacientes as p','p.id','v.paciente')
             ->join('productos as pr','pr.id','v.id_producto')
+            ->join('creditos as cr','cr.id_venta','a.id')
             ->groupBy('a.id')
             ->where('v.id_producto','=',$request->producto)
             ->orderby('a.id','desc')
@@ -435,12 +438,13 @@ class ProductoController extends Controller
         } else {
 
 
-             $atenciones = DB::table('ventas as a')
-            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
+              $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto','cr.tipo_ingreso')
             ->join('ventas_productos as v','v.id_venta','a.id')
             ->join('users as e','e.id','a.id_usuario')
             ->join('pacientes as p','p.id','v.paciente')
             ->join('productos as pr','pr.id','v.id_producto')
+            ->join('creditos as cr','cr.id_venta','a.id')
             ->groupBy('a.id')
             ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
             ->orderby('a.id','desc')

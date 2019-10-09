@@ -78,6 +78,7 @@
 							<th>Paciente</th>
 							<th>Productos</th>
 							<th>Monto Total</th>
+							<th>TipoPago</th>
 							<th>Usuario</th>
 						    <th>Fecha</th>
 						    <th>Acciones</th>
@@ -95,6 +96,7 @@
 						        <td>{{$ventas->selectProductos($atec->id,$atec->id_producto)}}</td>
 						        @endif
 						        <td>{{$ventasp->montoVenta($atec->id)}}</td>
+						        <td>{{$atec->tipo_ingreso}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
@@ -107,12 +109,14 @@
 						@endforeach
 					</tbody>
 					<tfoot>
-					        <th>Nro</th>
-							<th>Producto</th>
-							<th>Cantidad</th>
-							<th>Monto</th>
+					       <th>Nro</th>
+							<th>Paciente</th>
+							<th>Productos</th>
+							<th>Monto Total</th>
+							<th>TipoPago</th>
 							<th>Usuario</th>
 						    <th>Fecha</th>
+						    <th>Acciones</th>
 
 					</tfoot>
 
