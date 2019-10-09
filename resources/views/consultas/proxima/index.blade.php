@@ -33,24 +33,12 @@
 
 			<div class="row">
 				<div class="col-md-2">
-					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha'))
-					<p class="help-block">
-						{{ $errors->first('fecha') }}
-					</p>
-					@endif
+					<label>Fecha Inicio</label>
+					<input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
 				</div>
 				<div class="col-md-2">
-					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha2'))
-					<p class="help-block">
-						{{ $errors->first('fecha2') }}
-					</p>
-					@endif
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
 				</div>
 				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
@@ -68,6 +56,7 @@
 					<thead>
 						<tr>
 							<th>Paciente</th>
+							<th>Telèfono</th>
 						    <th>Tipo</th>
 							<th>Fecha de Pròxima Cita</th>
 						</tr>
@@ -76,7 +65,8 @@
                         	@foreach($atenciones as $atec)	
 
 							<tr>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+				                <td>{{$atec->telefono}}</td>
 								<td>{{$atec->tipo}}</td>
 								<td>{{$atec->prox}}</td>
 								
@@ -86,6 +76,8 @@
 					<tfoot>
 						<tr>
 							<th>Paciente</th>
+							<th>Telèfono</th>
+						    <th>Tipo</th>
 							<th>Fecha de Pròxima Cita</th>
 						</tr>
 						    
