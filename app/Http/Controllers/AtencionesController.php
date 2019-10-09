@@ -263,6 +263,23 @@ class AtencionesController extends Controller
          foreach ($searchLabPaq as $lab) {
             $id_laboratorio = $lab->laboratorio_id;
 
+            
+           if($id_laboratorio == 287){
+      $producto=Producto::where('id','=',414)->first();
+      $producto->cantidad= $producto->cantidad - 1;
+      $producto->save();
+    }elseif($id_laboratorio == 285){
+     $producto=Producto::where('id','=',418)->first();
+     $producto->cantidad= $producto->cantidad - 1;
+     $producto->save();
+   }elseif($id_laboratorio == 439){
+     $producto=Producto::where('id','=',415)->first();
+     $producto->cantidad= $producto->cantidad - 1;
+     $producto->save();
+   }else{
+
+   }
+
 
             if(!is_null($id_laboratorio)){
 			  $l = new Atenciones();
@@ -477,6 +494,23 @@ class AtencionesController extends Controller
     } else {
       $porcentaje=0;
     }   
+
+
+    if($laboratorio['laboratorio'] == 287){
+      $producto=Producto::where('id','=',414)->first();
+      $producto->cantidad= $producto->cantidad - 1;
+      $producto->save();
+    }elseif($laboratorio['laboratorio'] == 285){
+     $producto=Producto::where('id','=',418)->first();
+     $producto->cantidad= $producto->cantidad - 1;
+     $producto->save();
+   }elseif($laboratorio['laboratorio'] == 439){
+     $producto=Producto::where('id','=',415)->first();
+     $producto->cantidad= $producto->cantidad - 1;
+     $producto->save();
+   }else{
+
+   }
 
 
           $lab = new Atenciones();
@@ -889,6 +923,22 @@ $paciente = DB::table('pacientes')
     } else {
       $porcentaje=0;
     }   
+
+           if($laboratorio['laboratorio'] == 287){
+      $producto=Producto::where('id','=',414)->first();
+      $producto->cantidad= $producto->cantidad - 1;
+      $producto->save();
+    }elseif($laboratorio['laboratorio'] == 285){
+     $producto=Producto::where('id','=',418)->first();
+     $producto->cantidad= $producto->cantidad - 1;
+     $producto->save();
+   }elseif($laboratorio['laboratorio'] == 439){
+     $producto=Producto::where('id','=',415)->first();
+     $producto->cantidad= $producto->cantidad - 1;
+     $producto->save();
+   }else{
+
+   }
  
 
           $lab = new Atenciones();
