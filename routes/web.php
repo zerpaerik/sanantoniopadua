@@ -435,6 +435,11 @@ Route::get('ventas-delete-{id}', 'Existencias\ProductoController@delete_venta');
 Route::get('ticket_ver_ventas-{id}','Existencias\ProductoController@ticket_ver_ventas');
 
 
+Route::get('descargar-stock', 'Existencias\ProductoController@descargar')->name('descargar.index');
+Route::get('descargar-stock-create', 'Existencias\ProductoController@descargarcreate')->name('descargarcreate.index');
+Route::post('existencia/descargarstock', 'Existencias\ProductoController@procesarDescarga');
+
+
 Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');
 Route::get('requerimientos1', 'Existencias\RequerimientosController@index2')->name('requerimientos.index2')->middleware('auth');
 Route::get('requerimientos2', 'Existencias\RequerimientosController@index3')->name('requerimientos.index3')->middleware('auth');

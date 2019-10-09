@@ -103,6 +103,9 @@
           <li>
             <a href="{{route('ventas.index')}}"><i class="fa fa-plus-circle"></i> Listado de Ventas</a>
           </li>
+          <li>
+            <a href="{{route('descargar.index')}}"><i class="fa fa-plus-square-o"></i> Decargar Stock</a>
+          </li>
 @if(Session::get('sedeName') == 'PRINCIPAL')
 
           <li>
@@ -475,6 +478,9 @@
         <ul class="dropdown-menu">
           <li>
             <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
+          </li>
+          <li>
+            <a href="{{route('descargar.index')}}"><i class="fa fa-plus-square-o"></i> Decargar Stock</a>
           </li>
 @if(Session::get('sedeName') == 'PRINCIPAL')
 

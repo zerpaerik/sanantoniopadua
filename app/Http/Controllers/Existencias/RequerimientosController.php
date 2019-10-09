@@ -54,7 +54,7 @@ class RequerimientosController extends Controller
       $f2= date('Y-m-d');
     } 
 
-			return view('existencias.requerimientos.index',compact('requerimientos','f1','f2'));   	
+      return view('existencias.requerimientos.index',compact('requerimientos','f1','f2'));    
     }
 
      public function index2(Request $request){
@@ -70,7 +70,7 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('sedes as e','e.id','a.id_sede_solicita')
-                    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha2))])
                    // ->where('a.usuario','=',Auth::user()->id)
                     ->where('a.id_sede_solicita','=',$request->sede)
                     ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
@@ -86,7 +86,7 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('sedes as e','e.id','a.id_sede_solicita')
-                    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha2))])
                    // ->where('a.usuario','=',Auth::user()->id)
                     ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->where('a.estatus','=','Solicitado')
@@ -133,7 +133,7 @@ class RequerimientosController extends Controller
              $sedes = Sede::all();
        
 
-        return view('existencias.requerimientos.index2', ["requerimientos2" => $requerimientos2,"sedes" => $sedes]);   	
+        return view('existencias.requerimientos.index2', ["requerimientos2" => $requerimientos2,"sedes" => $sedes]);    
     }
 
      public function index3(Request $request){
@@ -216,7 +216,7 @@ class RequerimientosController extends Controller
 
 
     public function createView(){
-    	return view('existencias.requerimientos.create', ["productos" => Producto::where('sede_id','=', 1)->where('almacen','=',1)->orderBy('nombre','asc')->get(["id", "nombre"])]);
+      return view('existencias.requerimientos.create', ["productos" => Producto::where('sede_id','=', 1)->where('almacen','=',1)->orderBy('nombre','asc')->get(["id", "nombre"])]);
     }
 
 
@@ -254,7 +254,8 @@ class RequerimientosController extends Controller
 
     
 
-      public function edit(Request $request){
+     public function edit(Request $request){
+
 
 
         $searchRequerimiento = DB::table('requerimientos')
@@ -268,8 +269,10 @@ class RequerimientosController extends Controller
                     $producto = $searchRequerimiento->id_producto;
                     $sede_solicita = $searchRequerimiento->id_sede_solicita;
 
-             
-                  
+
+
+            
+        
 
         $searchProducto = DB::table('productos')
                     ->select('*')
@@ -311,11 +314,17 @@ class RequerimientosController extends Controller
       $res = $p->save();
 
      
-      $p = Producto::where("nombre", "=", $nombre)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->get()->first();
+      $p = Producto::where("padre", "=", $producto)->where('sede_id','=',$sede_solicita)->where('almacen','=',2)->first();
+
 
       if($p){
-        $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
-        $p->save();
+        
+        $atec=Producto::where("padre","=",$producto)
+                          ->update(['cantidad' => $cantidadactualsedesolicita + $request->cantidadd]);
+
+
+
+
       }else{
 
         $prod = new Producto();
@@ -331,11 +340,15 @@ class RequerimientosController extends Controller
         $prod->padre = $producto;
         $prod->save();
 
+          
+
+
       }
 
         Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
 
-      return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
+          return back();
+
     }
 
       public function reversar(Request $request,$id){
