@@ -14,7 +14,5 @@ class Producto extends Model
         return Medida::where('id', '=', $value)->get()->first()->nombre;
     }
 
-    public function getCategoriaAttribute($value){
-        return Categoria::where('id', '=', $value)->get()->first()->nombre;
-    }    
+     
 }
