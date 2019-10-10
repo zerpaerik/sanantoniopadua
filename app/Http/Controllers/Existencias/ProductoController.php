@@ -174,7 +174,7 @@ class ProductoController extends Controller
 
    public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where("categoria",'<>',3)->orderby('nombre','asc')->get(['id', 'nombre','cantidad']),
+        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where("categoria",'<>',3)->orderby('nombre','asc')->whereNotIn('categoria',[3])->get(['id', 'nombre','cantidad']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all(),"pacientes" => Paciente::where('estatus','=',1)->orderby('apellidos','asc')->get()
       ]);    
