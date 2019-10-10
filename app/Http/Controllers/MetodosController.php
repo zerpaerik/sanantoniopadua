@@ -27,7 +27,7 @@ class MetodosController extends Controller
 
       //$laboratorios =Laboratorios::where("estatus", '=', 1)->get();
 	  $metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','e.id_metodo','e.tipo_ingreso')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.personal','a.monto','a.proximo1','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','e.id_metodo','e.tipo_ingreso')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
@@ -40,7 +40,7 @@ class MetodosController extends Controller
       } else {
 
       	$metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.sede','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','e.id_metodo','e.tipo_ingreso')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.sede','a.proximo1','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','e.id_metodo','e.tipo_ingreso')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
@@ -147,13 +147,18 @@ class MetodosController extends Controller
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         }elseif($producto->nombre =='DIU COBRE 380'){ 
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
         }elseif($producto->nombre =='MINI T'){ 
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         }elseif($producto->nombre =='TLEVONOGESTREL'){ 
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         }elseif($producto->nombre =='NEXPLANON'){ 
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         }elseif($producto->nombre =='NOVA T'){ 
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         } else{
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 28 days"));

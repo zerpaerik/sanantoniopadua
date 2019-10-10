@@ -75,6 +75,7 @@
 							<th>Monto</th>
 							<th>TP</th>
 							<th>Próxima Aplicación</th>
+							<th>Próxima Aplicación2</th>
 							<th>Lo Aplicara</th>
 						    <th>Registrado Por:</th>
 							<th>Acciones</th>
@@ -92,6 +93,7 @@
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->tipo_ingreso}}</td>
 								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
+								<td style="background: #00FFFF;">{{$atec->proximo1}}</td>
 								<td>{{$atec->personal}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>
@@ -112,6 +114,7 @@
 							<th>Monto</th>
 							<th>TP</th>
 							<th>Próxima Aplicación</th>
+							<th>Próxima Aplicación2</th>
 							<th>Lo Aplicara</th>
 						    <th>Registrado Por:</th>
 							<th>Acciones</th>
