@@ -146,20 +146,20 @@ class MetodosController extends Controller
         }elseif($producto->nombre =='SOLUTRES AMPOLLA'){ 
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         }elseif($producto->nombre =='DIU COBRE 380'){ 
-          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
-          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
         }elseif($producto->nombre =='MINI T'){ 
-          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
-          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         }elseif($producto->nombre =='TLEVONOGESTREL'){ 
-          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
-          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         }elseif($producto->nombre =='NEXPLANON'){ 
-          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
-          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         }elseif($producto->nombre =='NOVA T'){ 
-          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
-          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
+          $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 6 days"));
+          $metodos->proximo1 = date("Y-m-d",strtotime($request->created_at."+ 88 days"));
         } else{
           $metodos->proximo = date("Y-m-d",strtotime($request->created_at."+ 28 days"));
         }
