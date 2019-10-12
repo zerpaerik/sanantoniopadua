@@ -25,6 +25,14 @@ class ProductoController extends Controller
     	
     }
 
+     public function index2(){
+    //  $producto = Producto::all();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->orderBy('nombre','ASC')->get();
+    return view('existencias.local',compact('producto'));     
+  
+    }
+
+
      public function reportentrada(Request $request){
 
       
@@ -118,13 +126,7 @@ class ProductoController extends Controller
 
     }
 
-      public function index2(){
-    //  $producto = Producto::all();
-      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->orderBy('nombre','ASC')->get();
-    return view('existencias.local',compact('producto'));     
-  
-    }
-
+     
     
    public function entrada(Request $request){
     
@@ -236,7 +238,7 @@ class ProductoController extends Controller
           }
 
 
-
+          dd($request->monto_l['laboratorios'][$key]['monto']);
 
           $lab = new VentasProductos();
           $lab->id_producto =  $laboratorio['laboratorio'];
