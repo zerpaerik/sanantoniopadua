@@ -256,7 +256,7 @@ class ProductoController extends Controller
               $creditos = new Creditos();
               $creditos->origen = 'VENTA DE PRODUCTOS';
               $creditos->id_atencion = NULL;
-              $creditos->monto= 33333;
+              $creditos->monto= $preciov * $request->monto_abol['laboratorios'][$key]['abono'];
               $creditos->id_sede = $request->session()->get('sede');
               $creditos->tipo_ingreso =$request->tipopago;
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
