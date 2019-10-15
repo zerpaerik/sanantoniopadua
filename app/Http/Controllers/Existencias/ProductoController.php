@@ -238,7 +238,6 @@ class ProductoController extends Controller
           }
 
 
-          dd($request->monto_l['laboratorios'][$key]['monto']);
 
           $lab = new VentasProductos();
           $lab->id_producto =  $laboratorio['laboratorio'];
@@ -257,7 +256,7 @@ class ProductoController extends Controller
               $creditos = new Creditos();
               $creditos->origen = 'VENTA DE PRODUCTOS';
               $creditos->id_atencion = NULL;
-              $creditos->monto= $precio * $request->monto_abol['laboratorios'][$key]['abono'];
+              $creditos->monto= 33333;
               $creditos->id_sede = $request->session()->get('sede');
               $creditos->tipo_ingreso =$request->tipopago;
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
@@ -484,43 +483,6 @@ class ProductoController extends Controller
         if ($cantidad->cantidad == 0) {
         }
 
-         }elseif( is_null($request->fecha) && is_null($request->producto)){
-
-          $f1 = date('Y-m-d');
-          $f2 = date('Y-m-d');   
-
-
-               
-            $atenciones = DB::table('ventas as a')
-            ->select('a.id','a.id_usuario','v.id_producto','v.id_venta as id2','v.paciente','v.created_at','v.id as id3','v.monto','v.cantidad','v.tipopago','e.name','e.lastname','p.nombres','p.apellidos','pr.nombre as producto')
-            ->join('ventas_productos as v','v.id_venta','a.id')
-            ->join('users as e','e.id','a.id_usuario')
-            ->join('pacientes as p','p.id','v.paciente')
-            ->join('productos as pr','pr.id','v.id_producto')
-            ->groupBy('a.id')
-            ->where('v.id_producto','=',$request->producto)
-            ->orderby('a.id','desc')
-            ->get();
-
-                       $prod= Producto::where('id',$request->producto)->first(); 
-
-
-           $aten = VentasProductos::where('id_producto',$request->producto)
-                                    ->select(DB::raw('SUM(monto) as monto'))
-                                    ->first();
-
-            if ($aten->monto == 0) {
-        }
-          
-           $cantidad = VentasProductos::where('id_producto',$request->producto)
-                        ->select(DB::raw('COUNT(DISTINCT id_venta) as cantidad'))
-                       ->first();
-
-        if ($cantidad->cantidad == 0) {
-        }
-
-
-
         } else {
 
              $atenciones = DB::table('ventas as a')
@@ -533,6 +495,8 @@ class ProductoController extends Controller
             ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
             ->orderby('a.id','desc')
             ->get();
+
+           // dd($atenciones);
 
        
            
